@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Biblia Crux</title>
+  <style>
+    :root {
+      --bg: #fbf7ef;
+      --card: #ffffff;
+      --text: #2b2118;
+      --muted: #6f6257;
+      --accent: #7a2f3b;
+      --accent-dark: #5d202b;
+      --border: #eadfce;
+      --shadow: 0 18px 45px rgba(43, 33, 24, 0.10);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      background:
+        radial-gradient(circle at top left, rgba(122, 47, 59, 0.10), transparent 35%),
+        linear-gradient(180deg, #fffaf2 0%, var(--bg) 100%);
+      color: var(--text);
+      line-height: 1.72;
+    }
+
+    .page {
+      width: min(980px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 40px 0 56px;
+    }
+
+    .hero {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: clamp(24px, 5vw, 48px);
+      margin-bottom: 28px;
+      text-align: center;
+    }
+
+    .app-kicker {
+      margin: 0 0 10px;
+      color: var(--accent);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--accent-dark);
+      font-size: clamp(2.1rem, 6vw, 4rem);
+      line-height: 1.08;
+      letter-spacing: 0.02em;
+    }
+
+    .language-panel {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 28px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    label {
+      color: var(--muted);
+      font-size: 0.98rem;
+      font-weight: 650;
+    }
+
+    select {
+      appearance: none;
+      min-width: 245px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background:
+        linear-gradient(45deg, transparent 50%, var(--accent) 50%),
+        linear-gradient(135deg, var(--accent) 50%, transparent 50%),
+        linear-gradient(to right, #fff, #fff);
+      background-position:
+        calc(100% - 22px) 50%,
+        calc(100% - 16px) 50%,
+        100% 0;
+      background-size:
+        6px 6px,
+        6px 6px,
+        2.8em 100%;
+      background-repeat: no-repeat;
+      color: var(--text);
+      cursor: pointer;
+      font-size: 1rem;
+      padding: 12px 48px 12px 18px;
+      outline: none;
+      box-shadow: 0 8px 24px rgba(43, 33, 24, 0.06);
+    }
+
+    select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(122, 47, 59, 0.12);
+    }
+
+    .content-card {
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: clamp(24px, 5vw, 52px);
+      text-align: justify;
+    }
+
+    .section {
+      padding: 28px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section:first-child { padding-top: 0; }
+    .section:last-child { border-bottom: 0; padding-bottom: 0; }
+
+    h2 {
+      margin: 0 0 16px;
+      color: var(--accent-dark);
+      font-size: clamp(1.35rem, 3.5vw, 2rem);
+      line-height: 1.2;
+    }
+
+    p {
+      margin: 0 0 15px;
+      font-size: clamp(1.03rem, 2.2vw, 1.16rem);
+      text-align: justify;
+      text-justify: inter-word;
+      hyphens: auto;
+    }
+
+    p:last-child { margin-bottom: 0; }
+
+    .footer-note {
+      margin-top: 24px;
+      text-align: center;
+      color: var(--muted);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        width: min(100% - 22px, 980px);
+        padding-top: 18px;
+      }
+
+      .hero,
+      .content-card {
+        border-radius: 18px;
+      }
+
+      .language-panel {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      select {
+        width: 100%;
+        min-width: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <p class="app-kicker">Biblia Crux</p>
+      <h1 id="pageTitle">About Biblia Crux</h1>
+
+      <div class="language-panel">
+        <label id="languageLabel" for="languageSelect">Choose language</label>
+        <select id="languageSelect" aria-label="Choose language">
+          <option value="en" selected>English</option>
+          <option value="pt">Português</option>
+          <option value="fr">Français</option>
+          <option value="it">Italiano</option>
+          <option value="es">Español</option>
+          <option value="tl">Tagalog</option>
+        </select>
+      </div>
+    </header>
+
+    <article id="aboutContent" class="content-card"></article>
+
+    <p class="footer-note">© Biblia Crux</p>
+  </main>
+
+  <script>
+    const aboutData = {
+  "schemaVersion": "1.0.0",
+  "appName": "Biblia Crux",
+  "contentType": "about",
+  "defaultLanguage": "pt",
+  "supportedLanguages": [
+    "pt",
+    "en",
+    "fr",
+    "it",
+    "es",
+    "tl"
+  ],
+  "languages": {
+    "pt": {
+      "name": "Português",
+      "title": "Sobre a Biblia Crux",
+      "sections": [
+        {
+          "id": "about",
+          "title": "Sobre a Biblia Crux",
+          "paragraphs": [
+            "A Biblia Crux foi criada para ser uma companhia diária de fé, estudo e oração.",
+            "Aqui, você encontra a Bíblia, o Catecismo, a Lectio Divina, histórias infantis e o calendário dos santos em uma experiência simples, reverente e acessível. A proposta do aplicativo é unir espiritualidade e tecnologia prática, oferecendo recursos que ajudam o usuário a se aproximar da Palavra de Deus com mais clareza, constância e beleza.",
+            "Nossa missão é clara: aproximar você da Palavra de Deus, reduzir distrações e fortalecer uma rotina espiritual viva, concreta e transformadora.",
+            "A Biblia Crux nasce também com uma visão de longo prazo: tornar-se uma plataforma católica de referência para o estudo bíblico em múltiplos idiomas, unindo o útil ao agradável — aprofundar a fé enquanto se aprende línguas de forma prática no dia a dia."
+          ]
+        },
+        {
+          "id": "access_features",
+          "title": "Recursos e tipos de acesso",
+          "paragraphs": [
+            "O aplicativo combina conteúdo espiritual com funcionalidades distintas conforme o tipo de acesso do usuário.",
+            "No plano Free, o usuário pode ler conteúdos com conexão à internet, utilizar múltiplos idiomas de interface e tradução, salvar versículos, ajustar tipografia e aparência, além de utilizar recursos de conta com sincronização de dados suportados. O plano Free pode exibir anúncios.",
+            "No plano Premium, além dos recursos disponíveis no plano Free, o usuário tem acesso a uma experiência sem anúncios e à área de downloads offline, podendo instalar conteúdos elegíveis para leitura sem conexão à internet, conforme a disponibilidade dos pacotes dentro do aplicativo.",
+            "A disponibilidade de funcionalidades pode variar de acordo com a versão do aplicativo, a plataforma utilizada e o estado da assinatura no momento de uso."
+          ]
+        },
+        {
+          "id": "multilingual_bible",
+          "title": "Bíblia multilíngue",
+          "paragraphs": [
+            "Os textos bíblicos multilíngues da Biblia Crux foram estruturados com apoio de Inteligência Artificial e revisão editorial, tendo como base principal a Douay-Rheims Bible em inglês, a Clementina Vulgata em latim e a Catholic Public Domain Version (CPDV).",
+            "Essas referências foram escolhidas por serem de domínio público, permitindo a formação de uma base consistente em seis idiomas: Português, Inglês, Francês, Italiano, Espanhol e Tagalo. Com isso, a Biblia Crux busca alcançar uma parcela significativa da população católica mundial, oferecendo acesso mais amplo à Palavra de Deus.",
+            "Essa base multilíngue foi pensada não apenas para o aplicativo atual, mas também para apoiar novas iniciativas no futuro, incluindo outros aplicativos, materiais editoriais e projetos voltados à evangelização, ao estudo bíblico e à formação espiritual.",
+            "Todo uso e redistribuição de conteúdo deve respeitar as licenças e regras jurídicas aplicáveis em cada contexto."
+          ]
+        },
+        {
+          "id": "catechism",
+          "title": "Catecismo",
+          "paragraphs": [
+            "Na seção de Catecismo da Biblia Crux, buscamos unir profundidade doutrinária e linguagem acessível, ajudando o usuário a compreender melhor os textos bíblicos no contexto da fé católica.",
+            "Para isso, utilizamos como referência a obra Catecismo Romano, também chamada Catecismo dos Párocos, redigida por decreto do Concílio Tridentino e publicada por ordem do Papa São Pio V. Seu título original em latim é Catechismus ex decreto Concilii Tridentini ad Parochos Pii Quinti Pont. Max. iussu editus ad editionem Romae A. D. MDLXVI publici iuris factam accuratissime expressus.",
+            "A edição consultada é a Nova Versão Portuguesa baseada na edição autêntica de 1566, preparada por Frei Leopoldo Pires Martins, O.F.M., publicada pelo Serviço de Animação Eucarística Mariana. Nas páginas consultadas, consta imprimatur concedido em Petrópolis, em 1º de outubro de 1950.",
+            "Segundo o próprio plano de trabalho da edição, trata-se da primeira tradução do Catecismo Romano publicada em terras do Brasil. A obra foi preparada com a preocupação de oferecer uma tradução em linguagem clara, fiel ao texto original e útil para párocos, catequistas, seminários, casas de formação teológica e todos os que desejam aprofundar o conhecimento dos elementos da fé católica.",
+            "A edição também informa que foram consultadas diferentes edições latinas, traduções portuguesas antigas e modernas, além de traduções estrangeiras, buscando maior rigor, uniformidade e fidelidade doutrinária. Também foram organizados anexos, notas, índices e referências para facilitar o estudo, a compreensão e o uso pastoral da obra.",
+            "Essa base de referência permitiu estruturar conteúdos mais fiéis, consistentes e úteis tanto para o estudo quanto para a vida espiritual.",
+            "Com apoio de Inteligência Artificial, os conteúdos de Catecismo foram organizados para facilitar a leitura, a conexão entre temas e a aplicação prática dos ensinamentos. O objetivo não é substituir a Tradição da Igreja, mas tornar o acesso ao seu conteúdo mais claro, didático e próximo da rotina de quem estuda."
+          ]
+        },
+        {
+          "id": "saints",
+          "title": "Santos",
+          "paragraphs": [
+            "Na seção de Santos, a lista-base foi construída a partir do calendário hagiológico.",
+            "Os textos biográficos e devocionais também foram preparados com apoio de Inteligência Artificial, sempre com foco em apresentar vidas que inspirem oração, conversão, perseverança e amor a Deus.",
+            "Ao conhecer a vida dos santos, o usuário é convidado a perceber que a santidade é um chamado real, possível e concreto, vivido em diferentes épocas, culturas, vocações e circunstâncias."
+          ]
+        },
+        {
+          "id": "lectio_divina",
+          "title": "Lectio Divina",
+          "paragraphs": [
+            "A seção de Lectio Divina foi desenvolvida a partir dos próprios textos bíblicos do aplicativo.",
+            "Com auxílio de Inteligência Artificial, foram criados roteiros que ajudam o usuário a seguir um caminho de leitura, meditação, contemplação e aplicação concreta da Palavra de Deus no dia a dia.",
+            "A intenção é oferecer uma experiência de oração guiada, simples e profunda, que favoreça o encontro pessoal com Deus por meio das Sagradas Escrituras."
+          ]
+        },
+        {
+          "id": "children_stories",
+          "title": "Histórias infantis",
+          "paragraphs": [
+            "A seção de histórias infantis também foi desenvolvida com apoio de Inteligência Artificial, a partir dos textos bíblicos gerados e estruturados para o aplicativo.",
+            "Essas histórias foram pensadas para apresentar a fé de maneira simples, acolhedora e acessível às crianças, ajudando famílias, catequistas e educadores a transmitir valores cristãos, passagens bíblicas e exemplos de virtude em uma linguagem adequada ao universo infantil.",
+            "O objetivo é aproximar as crianças da Palavra de Deus com beleza, clareza e imaginação, sem perder o vínculo com o conteúdo bíblico que inspira cada narrativa."
+          ]
+        },
+        {
+          "id": "proposal",
+          "title": "Nossa proposta",
+          "paragraphs": [
+            "Em resumo, a proposta da Biblia Crux é simples e espiritual ao mesmo tempo: oferecer conteúdo sólido, em linguagem amigável, para que mais pessoas possam estudar, rezar e crescer na fé com constância.",
+            "Mais do que reunir textos e recursos, a Biblia Crux deseja ser uma companhia de caminhada: um espaço de encontro com a Palavra de Deus, com a doutrina da Igreja, com a vida dos santos e com uma rotina de oração mais profunda.",
+            "Tudo foi pensado para ajudar o usuário a viver a fé de modo mais consciente, constante e transformador, seja no estudo pessoal, na oração diária, na catequese, na evangelização ou na formação espiritual em família."
+          ]
+        }
+      ]
+    },
+    "en": {
+      "name": "English",
+      "title": "About Biblia Crux",
+      "sections": [
+        {
+          "id": "about",
+          "title": "About Biblia Crux",
+          "paragraphs": [
+            "Biblia Crux was created to be a daily companion for faith, study, and prayer.",
+            "Here, you will find the Bible, the Catechism, Lectio Divina, children’s stories, and the calendar of saints in a simple, reverent, and accessible experience. The purpose of the app is to unite spirituality and practical technology, offering resources that help users draw closer to the Word of God with greater clarity, constancy, and beauty.",
+            "Our mission is clear: to bring you closer to the Word of God, reduce distractions, and strengthen a living, concrete, and transformative spiritual routine.",
+            "Biblia Crux also begins with a long-term vision: to become a Catholic reference platform for biblical study in multiple languages, joining usefulness with delight — deepening faith while learning languages in a practical way in daily life."
+          ]
+        },
+        {
+          "id": "access_features",
+          "title": "Features and access types",
+          "paragraphs": [
+            "The app combines spiritual content with features that differ according to the user’s type of access.",
+            "In the Free plan, users can read content with an internet connection, use multiple interface and translation languages, save verses, adjust typography and appearance, and use supported account features with data synchronization. The Free plan may display ads.",
+            "In the Premium plan, in addition to the resources available in the Free plan, users receive an ad-free experience and access to the offline downloads area, where eligible content can be installed for reading without an internet connection, according to the availability of packages inside the app.",
+            "The availability of features may vary according to the app version, platform, and subscription status at the time of use."
+          ]
+        },
+        {
+          "id": "multilingual_bible",
+          "title": "Multilingual Bible",
+          "paragraphs": [
+            "The multilingual biblical texts of Biblia Crux were structured with the support of Artificial Intelligence and editorial review, using as their main basis the Douay-Rheims Bible in English, the Clementina Vulgata in Latin, and the Catholic Public Domain Version (CPDV).",
+            "These references were chosen because they are in the public domain, allowing the formation of a consistent base in six languages: Portuguese, English, French, Italian, Spanish, and Tagalog. In this way, Biblia Crux seeks to reach a significant portion of the world’s Catholic population, offering broader access to the Word of God.",
+            "This multilingual base was designed not only for the current app, but also to support future initiatives, including other apps, editorial materials, and projects aimed at evangelization, biblical study, and spiritual formation.",
+            "All use and redistribution of content must respect the licenses and legal rules applicable in each context."
+          ]
+        },
+        {
+          "id": "catechism",
+          "title": "Catechism",
+          "paragraphs": [
+            "In the Catechism section of Biblia Crux, we seek to unite doctrinal depth with accessible language, helping users better understand biblical texts within the context of the Catholic faith.",
+            "For this purpose, we used as a reference the work Catecismo Romano, also called the Catechism of the Parish Priests, written by decree of the Council of Trent and published by order of Pope Saint Pius V. Its original Latin title is Catechismus ex decreto Concilii Tridentini ad Parochos Pii Quinti Pont. Max. iussu editus ad editionem Romae A. D. MDLXVI publici iuris factam accuratissime expressus.",
+            "The edition consulted is the New Portuguese Version based on the authentic 1566 edition, prepared by Frei Leopoldo Pires Martins, O.F.M., and published by Serviço de Animação Eucarística Mariana. In the pages consulted, an imprimatur granted in Petrópolis on October 1, 1950, is recorded.",
+            "According to the edition’s own work plan, it is the first translation of the Catecismo Romano published in Brazil. The work was prepared with the concern of offering a translation in clear language, faithful to the original text, and useful for parish priests, catechists, seminaries, houses of theological formation, and all those who wish to deepen their knowledge of the elements of the Catholic faith.",
+            "The edition also states that different Latin editions, old and modern Portuguese translations, and foreign translations were consulted, seeking greater rigor, uniformity, and doctrinal fidelity. Annexes, notes, indexes, and references were also organized to facilitate study, understanding, and pastoral use of the work.",
+            "This reference base made it possible to structure content that is more faithful, consistent, and useful both for study and for the spiritual life.",
+            "With the support of Artificial Intelligence, the Catechism content was organized to make reading easier, connect themes, and support the practical application of the teachings. The goal is not to replace the Tradition of the Church, but to make access to its content clearer, more didactic, and closer to the routine of those who study."
+          ]
+        },
+        {
+          "id": "saints",
+          "title": "Saints",
+          "paragraphs": [
+            "In the Saints section, the base list was built from the hagiological calendar.",
+            "The biographical and devotional texts were also prepared with the support of Artificial Intelligence, always focusing on presenting lives that inspire prayer, conversion, perseverance, and love for God.",
+            "By learning about the lives of the saints, users are invited to see that holiness is a real, possible, and concrete calling, lived in different times, cultures, vocations, and circumstances."
+          ]
+        },
+        {
+          "id": "lectio_divina",
+          "title": "Lectio Divina",
+          "paragraphs": [
+            "The Lectio Divina section was developed from the app’s own biblical texts.",
+            "With the support of Artificial Intelligence, guides were created to help users follow a path of reading, meditation, contemplation, and concrete application of the Word of God in daily life.",
+            "The intention is to offer a simple and profound guided prayer experience that favors a personal encounter with God through Sacred Scripture."
+          ]
+        },
+        {
+          "id": "children_stories",
+          "title": "Children’s stories",
+          "paragraphs": [
+            "The children’s stories section was also developed with the support of Artificial Intelligence, based on the biblical texts generated and structured for the app.",
+            "These stories were designed to present the faith in a simple, welcoming, and accessible way for children, helping families, catechists, and educators transmit Christian values, biblical passages, and examples of virtue in language suited to the world of children.",
+            "The goal is to bring children closer to the Word of God with beauty, clarity, and imagination, without losing the connection with the biblical content that inspires each narrative."
+          ]
+        },
+        {
+          "id": "proposal",
+          "title": "Our proposal",
+          "paragraphs": [
+            "In summary, Biblia Crux has a proposal that is both simple and spiritual: to offer solid content in friendly language so that more people can study, pray, and grow in faith with constancy.",
+            "More than bringing together texts and resources, Biblia Crux wishes to be a companion on the journey: a space of encounter with the Word of God, with the doctrine of the Church, with the lives of the saints, and with a deeper routine of prayer.",
+            "Everything was designed to help users live the faith in a more conscious, constant, and transformative way, whether in personal study, daily prayer, catechesis, evangelization, or spiritual formation within the family."
+          ]
+        }
+      ]
+    },
+    "fr": {
+      "name": "Français",
+      "title": "À propos de Biblia Crux",
+      "sections": [
+        {
+          "id": "about",
+          "title": "À propos de Biblia Crux",
+          "paragraphs": [
+            "Biblia Crux a été créée pour être une compagne quotidienne de foi, d’étude et de prière.",
+            "Vous y trouverez la Bible, le Catéchisme, la Lectio Divina, des histoires pour enfants et le calendrier des saints dans une expérience simple, respectueuse et accessible. La proposition de l’application est d’unir spiritualité et technologie pratique, en offrant des ressources qui aident l’utilisateur à se rapprocher de la Parole de Dieu avec plus de clarté, de constance et de beauté.",
+            "Notre mission est claire : vous rapprocher de la Parole de Dieu, réduire les distractions et renforcer une routine spirituelle vivante, concrète et transformatrice.",
+            "Biblia Crux naît également avec une vision à long terme : devenir une plateforme catholique de référence pour l’étude biblique en plusieurs langues, en joignant l’utile à l’agréable — approfondir la foi tout en apprenant les langues de manière pratique au quotidien."
+          ]
+        },
+        {
+          "id": "access_features",
+          "title": "Ressources et types d’accès",
+          "paragraphs": [
+            "L’application combine du contenu spirituel avec des fonctionnalités distinctes selon le type d’accès de l’utilisateur.",
+            "Dans le plan Free, l’utilisateur peut lire les contenus avec une connexion à Internet, utiliser plusieurs langues d’interface et de traduction, enregistrer des versets, ajuster la typographie et l’apparence, ainsi qu’utiliser les ressources de compte avec synchronisation des données prises en charge. Le plan Free peut afficher des annonces.",
+            "Dans le plan Premium, en plus des ressources disponibles dans le plan Free, l’utilisateur bénéficie d’une expérience sans annonces et d’un accès à l’espace de téléchargements hors ligne, afin d’installer les contenus éligibles et de les lire sans connexion à Internet, selon la disponibilité des paquets dans l’application.",
+            "La disponibilité des fonctionnalités peut varier selon la version de l’application, la plateforme utilisée et l’état de l’abonnement au moment de l’utilisation."
+          ]
+        },
+        {
+          "id": "multilingual_bible",
+          "title": "Bible multilingue",
+          "paragraphs": [
+            "Les textes bibliques multilingues de Biblia Crux ont été structurés avec l’aide de l’Intelligence Artificielle et d’une révision éditoriale, ayant pour bases principales la Douay-Rheims Bible en anglais, la Clementina Vulgata en latin et la Catholic Public Domain Version (CPDV).",
+            "Ces références ont été choisies parce qu’elles appartiennent au domaine public, permettant de former une base cohérente en six langues : portugais, anglais, français, italien, espagnol et tagalog. Ainsi, Biblia Crux cherche à rejoindre une part significative de la population catholique mondiale, en offrant un accès plus large à la Parole de Dieu.",
+            "Cette base multilingue a été pensée non seulement pour l’application actuelle, mais aussi pour soutenir de futures initiatives, y compris d’autres applications, des matériels éditoriaux et des projets orientés vers l’évangélisation, l’étude biblique et la formation spirituelle.",
+            "Toute utilisation et redistribution de contenu doit respecter les licences et les règles juridiques applicables dans chaque contexte."
+          ]
+        },
+        {
+          "id": "catechism",
+          "title": "Catéchisme",
+          "paragraphs": [
+            "Dans la section Catéchisme de Biblia Crux, nous cherchons à unir profondeur doctrinale et langage accessible, afin d’aider l’utilisateur à mieux comprendre les textes bibliques dans le contexte de la foi catholique.",
+            "Pour cela, nous avons utilisé comme référence l’ouvrage Catecismo Romano, également appelé Catéchisme des curés, rédigé par décret du Concile de Trente et publié par ordre du pape saint Pie V. Son titre original en latin est Catechismus ex decreto Concilii Tridentini ad Parochos Pii Quinti Pont. Max. iussu editus ad editionem Romae A. D. MDLXVI publici iuris factam accuratissime expressus.",
+            "L’édition consultée est la Nouvelle Version Portugaise fondée sur l’édition authentique de 1566, préparée par Frei Leopoldo Pires Martins, O.F.M., et publiée par le Serviço de Animação Eucarística Mariana. Dans les pages consultées figure un imprimatur accordé à Petrópolis le 1er octobre 1950.",
+            "Selon le plan de travail même de cette édition, il s’agit de la première traduction du Catecismo Romano publiée au Brésil. L’ouvrage a été préparé avec le souci d’offrir une traduction en langage clair, fidèle au texte original et utile aux curés, catéchistes, séminaires, maisons de formation théologique et à tous ceux qui souhaitent approfondir la connaissance des éléments de la foi catholique.",
+            "L’édition indique également que différentes éditions latines, des traductions portugaises anciennes et modernes, ainsi que des traductions étrangères ont été consultées, dans la recherche d’une plus grande rigueur, uniformité et fidélité doctrinale. Des annexes, notes, index et références ont également été organisés pour faciliter l’étude, la compréhension et l’usage pastoral de l’ouvrage.",
+            "Cette base de référence a permis de structurer des contenus plus fidèles, cohérents et utiles, tant pour l’étude que pour la vie spirituelle.",
+            "Avec l’aide de l’Intelligence Artificielle, les contenus du Catéchisme ont été organisés pour faciliter la lecture, la connexion entre les thèmes et l’application pratique des enseignements. L’objectif n’est pas de remplacer la Tradition de l’Église, mais de rendre l’accès à son contenu plus clair, plus pédagogique et plus proche de la routine de ceux qui étudient."
+          ]
+        },
+        {
+          "id": "saints",
+          "title": "Saints",
+          "paragraphs": [
+            "Dans la section des Saints, la liste de base a été construite à partir du calendrier hagiologique.",
+            "Les textes biographiques et dévotionnels ont également été préparés avec l’aide de l’Intelligence Artificielle, toujours avec l’objectif de présenter des vies qui inspirent la prière, la conversion, la persévérance et l’amour de Dieu.",
+            "En découvrant la vie des saints, l’utilisateur est invité à comprendre que la sainteté est un appel réel, possible et concret, vécu à différentes époques, dans diverses cultures, vocations et circonstances."
+          ]
+        },
+        {
+          "id": "lectio_divina",
+          "title": "Lectio Divina",
+          "paragraphs": [
+            "La section Lectio Divina a été développée à partir des propres textes bibliques de l’application.",
+            "Avec l’aide de l’Intelligence Artificielle, des parcours ont été créés pour aider l’utilisateur à suivre un chemin de lecture, de méditation, de contemplation et d’application concrète de la Parole de Dieu au quotidien.",
+            "L’intention est d’offrir une expérience de prière guidée, simple et profonde, qui favorise la rencontre personnelle avec Dieu à travers les Saintes Écritures."
+          ]
+        },
+        {
+          "id": "children_stories",
+          "title": "Histoires pour enfants",
+          "paragraphs": [
+            "La section des histoires pour enfants a également été développée avec l’aide de l’Intelligence Artificielle, à partir des textes bibliques générés et structurés pour l’application.",
+            "Ces histoires ont été pensées pour présenter la foi de manière simple, accueillante et accessible aux enfants, en aidant les familles, les catéchistes et les éducateurs à transmettre les valeurs chrétiennes, les passages bibliques et les exemples de vertu dans un langage adapté à l’univers de l’enfant.",
+            "L’objectif est de rapprocher les enfants de la Parole de Dieu avec beauté, clarté et imagination, sans perdre le lien avec le contenu biblique qui inspire chaque récit."
+          ]
+        },
+        {
+          "id": "proposal",
+          "title": "Notre proposition",
+          "paragraphs": [
+            "En résumé, la proposition de Biblia Crux est à la fois simple et spirituelle : offrir un contenu solide, dans un langage accueillant, afin que davantage de personnes puissent étudier, prier et grandir dans la foi avec constance.",
+            "Plus que réunir des textes et des ressources, Biblia Crux souhaite être une compagne de cheminement : un espace de rencontre avec la Parole de Dieu, avec la doctrine de l’Église, avec la vie des saints et avec une routine de prière plus profonde.",
+            "Tout a été pensé pour aider l’utilisateur à vivre la foi de manière plus consciente, constante et transformatrice, que ce soit dans l’étude personnelle, la prière quotidienne, la catéchèse, l’évangélisation ou la formation spirituelle en famille."
+          ]
+        }
+      ]
+    },
+    "it": {
+      "name": "Italiano",
+      "title": "Informazioni su Biblia Crux",
+      "sections": [
+        {
+          "id": "about",
+          "title": "Informazioni su Biblia Crux",
+          "paragraphs": [
+            "Biblia Crux è stata creata per essere una compagna quotidiana di fede, studio e preghiera.",
+            "Qui trovi la Bibbia, il Catechismo, la Lectio Divina, storie per bambini e il calendario dei santi in un’esperienza semplice, riverente e accessibile. La proposta dell’applicazione è unire spiritualità e tecnologia pratica, offrendo risorse che aiutano l’utente ad avvicinarsi alla Parola di Dio con maggiore chiarezza, costanza e bellezza.",
+            "La nostra missione è chiara: avvicinarti alla Parola di Dio, ridurre le distrazioni e rafforzare una routine spirituale viva, concreta e trasformante.",
+            "Biblia Crux nasce anche con una visione a lungo termine: diventare una piattaforma cattolica di riferimento per lo studio biblico in più lingue, unendo l’utile al piacevole — approfondire la fede mentre si imparano le lingue in modo pratico nella vita quotidiana."
+          ]
+        },
+        {
+          "id": "access_features",
+          "title": "Risorse e tipi di accesso",
+          "paragraphs": [
+            "L’applicazione combina contenuti spirituali con funzionalità distinte secondo il tipo di accesso dell’utente.",
+            "Nel piano Free, l’utente può leggere contenuti con connessione a Internet, utilizzare più lingue di interfaccia e traduzione, salvare versetti, regolare tipografia e aspetto, oltre a utilizzare le risorse dell’account con sincronizzazione dei dati supportata. Il piano Free può mostrare annunci.",
+            "Nel piano Premium, oltre alle risorse disponibili nel piano Free, l’utente ha accesso a un’esperienza senza annunci e all’area dei download offline, potendo installare contenuti idonei per la lettura senza connessione a Internet, secondo la disponibilità dei pacchetti all’interno dell’applicazione.",
+            "La disponibilità delle funzionalità può variare in base alla versione dell’applicazione, alla piattaforma utilizzata e allo stato dell’abbonamento al momento dell’uso."
+          ]
+        },
+        {
+          "id": "multilingual_bible",
+          "title": "Bibbia multilingue",
+          "paragraphs": [
+            "I testi biblici multilingue di Biblia Crux sono stati strutturati con il supporto dell’Intelligenza Artificiale e di una revisione editoriale, avendo come base principale la Douay-Rheims Bible in inglese, la Clementina Vulgata in latino e la Catholic Public Domain Version (CPDV).",
+            "Questi riferimenti sono stati scelti perché sono di dominio pubblico, permettendo la formazione di una base coerente in sei lingue: portoghese, inglese, francese, italiano, spagnolo e tagalog. In questo modo, Biblia Crux cerca di raggiungere una parte significativa della popolazione cattolica mondiale, offrendo un accesso più ampio alla Parola di Dio.",
+            "Questa base multilingue è stata pensata non solo per l’applicazione attuale, ma anche per sostenere future iniziative, inclusi altri applicativi, materiali editoriali e progetti rivolti all’evangelizzazione, allo studio biblico e alla formazione spirituale.",
+            "Ogni uso e redistribuzione del contenuto deve rispettare le licenze e le norme giuridiche applicabili in ciascun contesto."
+          ]
+        },
+        {
+          "id": "catechism",
+          "title": "Catechismo",
+          "paragraphs": [
+            "Nella sezione del Catechismo di Biblia Crux, cerchiamo di unire profondità dottrinale e linguaggio accessibile, aiutando l’utente a comprendere meglio i testi biblici nel contesto della fede cattolica.",
+            "A questo scopo, abbiamo utilizzato come riferimento l’opera Catecismo Romano, chiamata anche Catechismo dei parroci, redatta per decreto del Concilio di Trento e pubblicata per ordine di papa san Pio V. Il suo titolo originale in latino è Catechismus ex decreto Concilii Tridentini ad Parochos Pii Quinti Pont. Max. iussu editus ad editionem Romae A. D. MDLXVI publici iuris factam accuratissime expressus.",
+            "L’edizione consultata è la Nuova Versione Portoghese basata sull’edizione autentica del 1566, preparata da Frei Leopoldo Pires Martins, O.F.M., e pubblicata dal Serviço de Animação Eucarística Mariana. Nelle pagine consultate risulta un imprimatur concesso a Petrópolis il 1º ottobre 1950.",
+            "Secondo il piano di lavoro della stessa edizione, si tratta della prima traduzione del Catecismo Romano pubblicata in Brasile. L’opera è stata preparata con l’intento di offrire una traduzione in linguaggio chiaro, fedele al testo originale e utile per parroci, catechisti, seminari, case di formazione teologica e tutti coloro che desiderano approfondire la conoscenza degli elementi della fede cattolica.",
+            "L’edizione informa inoltre che sono state consultate diverse edizioni latine, traduzioni portoghesi antiche e moderne, oltre a traduzioni straniere, cercando maggiore rigore, uniformità e fedeltà dottrinale. Sono stati inoltre organizzati allegati, note, indici e riferimenti per facilitare lo studio, la comprensione e l’uso pastorale dell’opera.",
+            "Questa base di riferimento ha permesso di strutturare contenuti più fedeli, coerenti e utili sia per lo studio sia per la vita spirituale.",
+            "Con il supporto dell’Intelligenza Artificiale, i contenuti del Catechismo sono stati organizzati per facilitare la lettura, il collegamento tra i temi e l’applicazione pratica degli insegnamenti. L’obiettivo non è sostituire la Tradizione della Chiesa, ma rendere l’accesso al suo contenuto più chiaro, didattico e vicino alla routine di chi studia."
+          ]
+        },
+        {
+          "id": "saints",
+          "title": "Santi",
+          "paragraphs": [
+            "Nella sezione dei Santi, la lista di base è stata costruita a partire dal calendario agiologico.",
+            "Anche i testi biografici e devozionali sono stati preparati con il supporto dell’Intelligenza Artificiale, sempre con l’obiettivo di presentare vite che ispirino preghiera, conversione, perseveranza e amore per Dio.",
+            "Conoscendo la vita dei santi, l’utente è invitato a comprendere che la santità è una chiamata reale, possibile e concreta, vissuta in epoche, culture, vocazioni e circostanze diverse."
+          ]
+        },
+        {
+          "id": "lectio_divina",
+          "title": "Lectio Divina",
+          "paragraphs": [
+            "La sezione Lectio Divina è stata sviluppata a partire dagli stessi testi biblici dell’applicazione.",
+            "Con l’aiuto dell’Intelligenza Artificiale, sono stati creati percorsi che aiutano l’utente a seguire un cammino di lettura, meditazione, contemplazione e applicazione concreta della Parola di Dio nella vita quotidiana.",
+            "L’intenzione è offrire un’esperienza di preghiera guidata, semplice e profonda, che favorisca l’incontro personale con Dio attraverso le Sacre Scritture."
+          ]
+        },
+        {
+          "id": "children_stories",
+          "title": "Storie per bambini",
+          "paragraphs": [
+            "La sezione delle storie per bambini è stata sviluppata anch’essa con il supporto dell’Intelligenza Artificiale, a partire dai testi biblici generati e strutturati per l’applicazione.",
+            "Queste storie sono state pensate per presentare la fede in modo semplice, accogliente e accessibile ai bambini, aiutando famiglie, catechisti ed educatori a trasmettere valori cristiani, passi biblici ed esempi di virtù in un linguaggio adatto al mondo infantile.",
+            "L’obiettivo è avvicinare i bambini alla Parola di Dio con bellezza, chiarezza e immaginazione, senza perdere il legame con il contenuto biblico che ispira ogni racconto."
+          ]
+        },
+        {
+          "id": "proposal",
+          "title": "La nostra proposta",
+          "paragraphs": [
+            "In sintesi, la proposta di Biblia Crux è semplice e spirituale allo stesso tempo: offrire contenuti solidi, in un linguaggio amichevole, affinché più persone possano studiare, pregare e crescere nella fede con costanza.",
+            "Più che riunire testi e risorse, Biblia Crux desidera essere una compagna di cammino: uno spazio di incontro con la Parola di Dio, con la dottrina della Chiesa, con la vita dei santi e con una routine di preghiera più profonda.",
+            "Tutto è stato pensato per aiutare l’utente a vivere la fede in modo più consapevole, costante e trasformante, sia nello studio personale, nella preghiera quotidiana, nella catechesi, nell’evangelizzazione o nella formazione spirituale in famiglia."
+          ]
+        }
+      ]
+    },
+    "es": {
+      "name": "Español",
+      "title": "Acerca de Biblia Crux",
+      "sections": [
+        {
+          "id": "about",
+          "title": "Acerca de Biblia Crux",
+          "paragraphs": [
+            "Biblia Crux fue creada para ser una compañía diaria de fe, estudio y oración.",
+            "Aquí encontrarás la Biblia, el Catecismo, la Lectio Divina, historias infantiles y el calendario de los santos en una experiencia sencilla, reverente y accesible. La propuesta de la aplicación es unir espiritualidad y tecnología práctica, ofreciendo recursos que ayudan al usuario a acercarse a la Palabra de Dios con más claridad, constancia y belleza.",
+            "Nuestra misión es clara: acercarte a la Palabra de Dios, reducir distracciones y fortalecer una rutina espiritual viva, concreta y transformadora.",
+            "Biblia Crux nace también con una visión a largo plazo: convertirse en una plataforma católica de referencia para el estudio bíblico en múltiples idiomas, uniendo lo útil con lo agradable — profundizar la fe mientras se aprenden idiomas de forma práctica en el día a día."
+          ]
+        },
+        {
+          "id": "access_features",
+          "title": "Recursos y tipos de acceso",
+          "paragraphs": [
+            "La aplicación combina contenido espiritual con funcionalidades distintas según el tipo de acceso del usuario.",
+            "En el plan Free, el usuario puede leer contenidos con conexión a internet, utilizar múltiples idiomas de interfaz y traducción, guardar versículos, ajustar tipografía y apariencia, además de utilizar recursos de cuenta con sincronización de datos compatibles. El plan Free puede mostrar anuncios.",
+            "En el plan Premium, además de los recursos disponibles en el plan Free, el usuario tiene acceso a una experiencia sin anuncios y al área de descargas offline, pudiendo instalar contenidos elegibles para leer sin conexión a internet, según la disponibilidad de los paquetes dentro de la aplicación.",
+            "La disponibilidad de funcionalidades puede variar de acuerdo con la versión de la aplicación, la plataforma utilizada y el estado de la suscripción en el momento de uso."
+          ]
+        },
+        {
+          "id": "multilingual_bible",
+          "title": "Biblia multilingüe",
+          "paragraphs": [
+            "Los textos bíblicos multilingües de Biblia Crux fueron estructurados con apoyo de Inteligencia Artificial y revisión editorial, teniendo como base principal la Douay-Rheims Bible en inglés, la Clementina Vulgata en latín y la Catholic Public Domain Version (CPDV).",
+            "Estas referencias fueron escogidas por ser de dominio público, permitiendo la formación de una base consistente en seis idiomas: portugués, inglés, francés, italiano, español y tagalo. Con ello, Biblia Crux busca alcanzar una parte significativa de la población católica mundial, ofreciendo un acceso más amplio a la Palabra de Dios.",
+            "Esta base multilingüe fue pensada no solo para la aplicación actual, sino también para apoyar nuevas iniciativas en el futuro, incluyendo otras aplicaciones, materiales editoriales y proyectos orientados a la evangelización, el estudio bíblico y la formación espiritual.",
+            "Todo uso y redistribución de contenido debe respetar las licencias y normas jurídicas aplicables en cada contexto."
+          ]
+        },
+        {
+          "id": "catechism",
+          "title": "Catecismo",
+          "paragraphs": [
+            "En la sección de Catecismo de Biblia Crux, buscamos unir profundidad doctrinal y lenguaje accesible, ayudando al usuario a comprender mejor los textos bíblicos en el contexto de la fe católica.",
+            "Para ello, utilizamos como referencia la obra Catecismo Romano, también llamada Catecismo de los párrocos, redactada por decreto del Concilio de Trento y publicada por orden del papa san Pío V. Su título original en latín es Catechismus ex decreto Concilii Tridentini ad Parochos Pii Quinti Pont. Max. iussu editus ad editionem Romae A. D. MDLXVI publici iuris factam accuratissime expressus.",
+            "La edición consultada es la Nueva Versión Portuguesa basada en la edición auténtica de 1566, preparada por Frei Leopoldo Pires Martins, O.F.M., y publicada por el Serviço de Animação Eucarística Mariana. En las páginas consultadas consta un imprimatur concedido en Petrópolis el 1 de octubre de 1950.",
+            "Según el propio plan de trabajo de la edición, se trata de la primera traducción del Catecismo Romano publicada en tierras de Brasil. La obra fue preparada con la preocupación de ofrecer una traducción en lenguaje claro, fiel al texto original y útil para párrocos, catequistas, seminarios, casas de formación teológica y todos los que desean profundizar en el conocimiento de los elementos de la fe católica.",
+            "La edición también informa que fueron consultadas diferentes ediciones latinas, traducciones portuguesas antiguas y modernas, además de traducciones extranjeras, buscando mayor rigor, uniformidad y fidelidad doctrinal. También se organizaron anexos, notas, índices y referencias para facilitar el estudio, la comprensión y el uso pastoral de la obra.",
+            "Esta base de referencia permitió estructurar contenidos más fieles, consistentes y útiles tanto para el estudio como para la vida espiritual.",
+            "Con apoyo de Inteligencia Artificial, los contenidos de Catecismo fueron organizados para facilitar la lectura, la conexión entre temas y la aplicación práctica de las enseñanzas. El objetivo no es sustituir la Tradición de la Iglesia, sino hacer que el acceso a su contenido sea más claro, didáctico y cercano a la rutina de quien estudia."
+          ]
+        },
+        {
+          "id": "saints",
+          "title": "Santos",
+          "paragraphs": [
+            "En la sección de Santos, la lista base fue construida a partir del calendario hagiológico.",
+            "Los textos biográficos y devocionales también fueron preparados con apoyo de Inteligencia Artificial, siempre con el foco en presentar vidas que inspiren oración, conversión, perseverancia y amor a Dios.",
+            "Al conocer la vida de los santos, el usuario es invitado a percibir que la santidad es un llamado real, posible y concreto, vivido en diferentes épocas, culturas, vocaciones y circunstancias."
+          ]
+        },
+        {
+          "id": "lectio_divina",
+          "title": "Lectio Divina",
+          "paragraphs": [
+            "La sección de Lectio Divina fue desarrollada a partir de los propios textos bíblicos de la aplicación.",
+            "Con ayuda de Inteligencia Artificial, se crearon guías que ayudan al usuario a seguir un camino de lectura, meditación, contemplación y aplicación concreta de la Palabra de Dios en el día a día.",
+            "La intención es ofrecer una experiencia de oración guiada, sencilla y profunda, que favorezca el encuentro personal con Dios por medio de las Sagradas Escrituras."
+          ]
+        },
+        {
+          "id": "children_stories",
+          "title": "Historias infantiles",
+          "paragraphs": [
+            "La sección de historias infantiles también fue desarrollada con apoyo de Inteligencia Artificial, a partir de los textos bíblicos generados y estructurados para la aplicación.",
+            "Estas historias fueron pensadas para presentar la fe de manera sencilla, acogedora y accesible a los niños, ayudando a familias, catequistas y educadores a transmitir valores cristianos, pasajes bíblicos y ejemplos de virtud en un lenguaje adecuado al universo infantil.",
+            "El objetivo es acercar a los niños a la Palabra de Dios con belleza, claridad e imaginación, sin perder el vínculo con el contenido bíblico que inspira cada narración."
+          ]
+        },
+        {
+          "id": "proposal",
+          "title": "Nuestra propuesta",
+          "paragraphs": [
+            "En resumen, la propuesta de Biblia Crux es sencilla y espiritual al mismo tiempo: ofrecer contenido sólido, en un lenguaje amigable, para que más personas puedan estudiar, rezar y crecer en la fe con constancia.",
+            "Más que reunir textos y recursos, Biblia Crux desea ser una compañera de camino: un espacio de encuentro con la Palabra de Dios, con la doctrina de la Iglesia, con la vida de los santos y con una rutina de oración más profunda.",
+            "Todo fue pensado para ayudar al usuario a vivir la fe de modo más consciente, constante y transformador, ya sea en el estudio personal, en la oración diaria, en la catequesis, en la evangelización o en la formación espiritual en familia."
+          ]
+        }
+      ]
+    },
+    "tl": {
+      "name": "Tagalog",
+      "title": "Tungkol sa Biblia Crux",
+      "sections": [
+        {
+          "id": "about",
+          "title": "Tungkol sa Biblia Crux",
+          "paragraphs": [
+            "Ang Biblia Crux ay nilikha upang maging araw-araw na kasama sa pananampalataya, pag-aaral, at panalangin.",
+            "Dito, makikita mo ang Bibliya, ang Katesismo, ang Lectio Divina, mga kuwentong pambata, at ang kalendaryo ng mga santo sa isang karanasang simple, mapitagang, at madaling maabot. Layunin ng app na pag-isahin ang espirituwalidad at praktikal na teknolohiya, sa pamamagitan ng mga tulong na naglalapit sa gumagamit sa Salita ng Diyos nang may higit na linaw, pagpapatuloy, at kagandahan.",
+            "Malinaw ang aming misyon: ilapit ka sa Salita ng Diyos, bawasan ang mga abala, at patatagin ang isang buhay, kongkreto, at nakapagpapabagong gawain ng espirituwal na pamumuhay.",
+            "Ang Biblia Crux ay isinilang din na may pangmatagalang pananaw: maging isang Katolikong sanggunian para sa pag-aaral ng Bibliya sa maraming wika, pinagsasama ang kapaki-pakinabang at ang nakalulugod — ang pagpapalalim ng pananampalataya habang natututo ng mga wika sa praktikal na paraan sa araw-araw."
+          ]
+        },
+        {
+          "id": "access_features",
+          "title": "Mga tampok at uri ng access",
+          "paragraphs": [
+            "Pinagsasama ng app ang espirituwal na nilalaman at mga tampok na nag-iiba ayon sa uri ng access ng gumagamit.",
+            "Sa planong Free, maaaring magbasa ang gumagamit ng mga nilalaman na may koneksyon sa internet, gumamit ng maraming wika para sa interface at salin, mag-save ng mga talata, ayusin ang typography at hitsura, at gumamit ng mga suportadong tampok ng account na may data synchronization. Maaaring magpakita ng mga ad ang planong Free.",
+            "Sa planong Premium, bukod sa mga tampok na nasa planong Free, nagkakaroon ang gumagamit ng karanasang walang ad at access sa lugar ng offline downloads, upang mai-install ang mga karapat-dapat na nilalaman at mabasa ang mga ito kahit walang koneksyon sa internet, ayon sa availability ng mga package sa loob ng app.",
+            "Maaaring mag-iba ang availability ng mga tampok ayon sa bersyon ng app, platform na ginagamit, at estado ng subscription sa oras ng paggamit."
+          ]
+        },
+        {
+          "id": "multilingual_bible",
+          "title": "Multilingual na Bibliya",
+          "paragraphs": [
+            "Ang mga multilingual na tekstong biblikal ng Biblia Crux ay inayos sa tulong ng Artificial Intelligence at editorial review, na pangunahing nakabatay sa Douay-Rheims Bible sa Ingles, sa Clementina Vulgata sa Latin, at sa Catholic Public Domain Version (CPDV).",
+            "Pinili ang mga sangguniang ito dahil ang mga ito ay nasa public domain, kaya naging posible ang pagbuo ng isang matatag na base sa anim na wika: Portuguese, English, French, Italian, Spanish, at Tagalog. Sa ganitong paraan, hinahangad ng Biblia Crux na maabot ang malaking bahagi ng populasyong Katoliko sa buong mundo, at mag-alok ng mas malawak na access sa Salita ng Diyos.",
+            "Ang multilingual na base na ito ay hindi lamang nilayon para sa kasalukuyang app, kundi para rin suportahan ang mga bagong inisyatiba sa hinaharap, kabilang ang iba pang app, materyales na pang-editoryal, at mga proyektong nakatuon sa ebanghelisasyon, pag-aaral ng Bibliya, at espirituwal na paghubog.",
+            "Ang anumang paggamit at muling pamamahagi ng nilalaman ay dapat sumunod sa mga lisensya at mga tuntuning legal na naaangkop sa bawat konteksto."
+          ]
+        },
+        {
+          "id": "catechism",
+          "title": "Katesismo",
+          "paragraphs": [
+            "Sa seksyon ng Katesismo ng Biblia Crux, hinahangad naming pag-isahin ang lalim ng doktrina at madaling maunawaang wika, upang tulungan ang gumagamit na mas maunawaan ang mga tekstong biblikal sa konteksto ng pananampalatayang Katoliko.",
+            "Para dito, ginamit namin bilang sanggunian ang akdang Catecismo Romano, na tinatawag ding Catechism of the Parish Priests, na isinulat sa bisa ng atas ng Council of Trent at inilathala sa utos ni Pope Saint Pius V. Ang orihinal na pamagat nito sa Latin ay Catechismus ex decreto Concilii Tridentini ad Parochos Pii Quinti Pont. Max. iussu editus ad editionem Romae A. D. MDLXVI publici iuris factam accuratissime expressus.",
+            "Ang edisyong sinangguni ay ang New Portuguese Version batay sa tunay na edisyon ng 1566, na inihanda ni Frei Leopoldo Pires Martins, O.F.M., at inilathala ng Serviço de Animação Eucarística Mariana. Sa mga pahinang sinuri, nakasaad ang imprimatur na ipinagkaloob sa Petrópolis noong Oktubre 1, 1950.",
+            "Ayon sa mismong plano ng gawain ng edisyon, ito ang unang salin ng Catecismo Romano na inilathala sa Brazil. Inihanda ang akda na may layuning mag-alok ng salin sa malinaw na wika, tapat sa orihinal na teksto, at kapaki-pakinabang para sa mga pari, katekista, seminaryo, bahay ng pormasyong teolohikal, at sa lahat ng nagnanais lumalim sa kaalaman tungkol sa mga elemento ng pananampalatayang Katoliko.",
+            "Ipinahahayag din ng edisyon na sinangguni ang iba’t ibang edisyong Latin, mga lumang at makabagong saling Portuges, pati na rin ang mga saling banyaga, upang makamit ang higit na higpit, pagkakaisa, at katapatang doktrinal. Inayos din ang mga annex, tala, index, at sanggunian upang mapadali ang pag-aaral, pag-unawa, at pastoral na paggamit ng akda.",
+            "Ang base na sangguniang ito ay nakatulong upang mabuo ang mga nilalamang mas tapat, mas magkakaugnay, at mas kapaki-pakinabang kapwa para sa pag-aaral at sa buhay espirituwal.",
+            "Sa tulong ng Artificial Intelligence, inayos ang mga nilalaman ng Katesismo upang mapadali ang pagbabasa, pag-uugnay ng mga tema, at praktikal na pagsasabuhay ng mga turo. Ang layunin ay hindi palitan ang Tradisyon ng Simbahan, kundi gawing mas malinaw, mas didaktiko, at mas malapit sa araw-araw na pag-aaral ang pag-access sa nilalaman nito."
+          ]
+        },
+        {
+          "id": "saints",
+          "title": "Mga Santo",
+          "paragraphs": [
+            "Sa seksyon ng mga Santo, ang base list ay binuo mula sa hagiological calendar.",
+            "Ang mga tekstong biograpikal at debosyonal ay inihanda rin sa tulong ng Artificial Intelligence, laging nakatuon sa pagpapakita ng mga buhay na nagbibigay-inspirasyon sa panalangin, pagbabalik-loob, pagtitiyaga, at pag-ibig sa Diyos.",
+            "Sa pagkilala sa buhay ng mga santo, inaanyayahan ang gumagamit na makita na ang kabanalan ay isang tunay, posible, at kongkretong tawag, na isinabuhay sa iba’t ibang panahon, kultura, bokasyon, at kalagayan."
+          ]
+        },
+        {
+          "id": "lectio_divina",
+          "title": "Lectio Divina",
+          "paragraphs": [
+            "Ang seksyon ng Lectio Divina ay binuo mula sa mismong mga tekstong biblikal ng app.",
+            "Sa tulong ng Artificial Intelligence, nilikha ang mga gabay na tumutulong sa gumagamit na sundan ang landas ng pagbabasa, pagninilay, kontemplasyon, at kongkretong pagsasabuhay ng Salita ng Diyos sa araw-araw.",
+            "Layunin nitong mag-alok ng isang simple at malalim na karanasan ng gabay na panalangin, na nagpapalago ng personal na pakikipagtagpo sa Diyos sa pamamagitan ng Banal na Kasulatan."
+          ]
+        },
+        {
+          "id": "children_stories",
+          "title": "Mga kuwentong pambata",
+          "paragraphs": [
+            "Ang seksyon ng mga kuwentong pambata ay binuo rin sa tulong ng Artificial Intelligence, mula sa mga tekstong biblikal na ginawa at inayos para sa app.",
+            "Ang mga kuwentong ito ay idinisenyo upang ipakita ang pananampalataya sa paraang simple, malugod, at madaling maabot ng mga bata, na tumutulong sa mga pamilya, katekista, at guro na maipasa ang mga pagpapahalagang Kristiyano, mga tagpong biblikal, at mga halimbawa ng birtud sa wikang angkop sa mundo ng mga bata.",
+            "Ang layunin ay ilapit ang mga bata sa Salita ng Diyos nang may kagandahan, linaw, at imahinasyon, habang nananatili ang ugnayan sa nilalamang biblikal na nagbibigay-inspirasyon sa bawat salaysay."
+          ]
+        },
+        {
+          "id": "proposal",
+          "title": "Ang aming panukala",
+          "paragraphs": [
+            "Sa kabuuan, ang panukala ng Biblia Crux ay simple at espirituwal sa parehong panahon: mag-alok ng matibay na nilalaman sa magiliw na wika upang mas maraming tao ang makapag-aral, makapanalangin, at lumago sa pananampalataya nang may pagpapatuloy.",
+            "Higit pa sa pagsasama-sama ng mga teksto at mapagkukunan, ninanais ng Biblia Crux na maging kasama sa paglalakbay: isang lugar ng pakikipagtagpo sa Salita ng Diyos, sa doktrina ng Simbahan, sa buhay ng mga santo, at sa mas malalim na gawain ng panalangin.",
+            "Ang lahat ay pinag-isipan upang tulungan ang gumagamit na isabuhay ang pananampalataya sa mas mulat, tuloy-tuloy, at nakapagpapabagong paraan, maging sa personal na pag-aaral, araw-araw na panalangin, katekesis, ebanghelisasyon, o espirituwal na paghubog sa pamilya."
+          ]
+        }
+      ]
+    }
+  }
+};
+
+    const languageLabels = {
+      en: "Choose language",
+      pt: "Escolha o idioma",
+      fr: "Choisir la langue",
+      it: "Scegli la lingua",
+      es: "Elige el idioma",
+      tl: "Pumili ng wika"
+    };
+
+    const htmlLangMap = {
+      en: "en",
+      pt: "pt-BR",
+      fr: "fr",
+      it: "it",
+      es: "es",
+      tl: "tl"
+    };
+
+    const languageSelect = document.getElementById("languageSelect");
+    const pageTitle = document.getElementById("pageTitle");
+    const languageLabel = document.getElementById("languageLabel");
+    const aboutContent = document.getElementById("aboutContent");
+
+    function createParagraph(text) {
+      const paragraph = document.createElement("p");
+      paragraph.textContent = text;
+      return paragraph;
+    }
+
+    function renderAbout(languageCode) {
+      const selectedLanguage = aboutData.languages[languageCode] || aboutData.languages[aboutData.defaultLanguage];
+
+      document.documentElement.lang = htmlLangMap[languageCode] || languageCode;
+      document.title = selectedLanguage.title;
+      pageTitle.textContent = selectedLanguage.title;
+      languageLabel.textContent = languageLabels[languageCode] || languageLabels.en;
+
+      aboutContent.innerHTML = "";
+
+      selectedLanguage.sections.forEach((section) => {
+        const sectionElement = document.createElement("section");
+        sectionElement.className = "section";
+        sectionElement.id = section.id;
+
+        const heading = document.createElement("h2");
+        heading.textContent = section.title;
+        sectionElement.appendChild(heading);
+
+        section.paragraphs.forEach((paragraphText) => {
+          sectionElement.appendChild(createParagraph(paragraphText));
+        });
+
+        aboutContent.appendChild(sectionElement);
+      });
+    }
+
+    languageSelect.addEventListener("change", (event) => {
+      renderAbout(event.target.value);
+    });
+
+    renderAbout("en");
+  </script>
+</body>
+</html>
