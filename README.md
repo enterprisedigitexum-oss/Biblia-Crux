@@ -249,6 +249,21 @@ The vision of the project is to become an open reference for Catholic digital, p
 
 We thank everyone who wishes to collaborate with this project.
 
+---
+
+## License
+
+Biblia Crux is licensed under the **Creative Commons Attribution 4.0 International License (CC BY 4.0)**.
+
+You are free to copy, share, adapt, modify, and use this material, including for commercial purposes, provided that proper credit is given to the **Biblia Crux** project.
+
+Suggested attribution:
+
+> Based on Biblia Crux, an open multilingual Catholic Bible database, licensed under CC BY 4.0.
+
+License details:  
+https://creativecommons.org/licenses/by/4.0/
+
 Every suggestion, correction, and review helps make Biblia Crux more faithful, clear, and useful for the worldwide Catholic community.
 
 > “Go ye into the whole world, and preach the gospel to every creature.”  
