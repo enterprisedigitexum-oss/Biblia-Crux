@@ -233,6 +233,61 @@ The current translation files follow Biblia Crux’s multilingual proposal:
 
 ---
 
+## Future language expansion and global mission
+
+Biblia Crux begins with six initial languages:
+
+- Portuguese
+- English
+- French
+- Italian
+- Spanish
+- Tagalog / Filipino
+
+As a next stage, the project intends to expand the biblical database to include ten additional languages:
+
+- German
+- Polish
+- Hungarian
+- Croatian
+- Czech
+- Vietnamese
+- Korean
+- Chinese
+- Swahili
+- Arabic
+
+After this stage, Biblia Crux also intends to continue expanding into many more languages, with the long-term goal of making an open, reusable, multilingual Catholic Bible database available to as many peoples and cultures as possible.
+
+Some of the languages considered for future expansion include:
+
+Abkhaz, Acehnese, Acholi, Afrikaans, Albanian, Alur, Amharic, Armenian, Assamese, Awadhi, Aymara, Azerbaijani, Balinese, Bambara, Bashkir, Basque, Batak Karo, Batak Simalungun, Batak Toba, Belarusian, Bemba, Bengali, Betawi, Bhojpuri, Bikol, Bosnian, Breton, Bulgarian, Buryat, Cantonese, Catalan, Cebuano, Chichewa / Nyanja, Chuvash, Corsican, Crimean Tatar, Danish, Dinka, Divehi, Dogri, Dombe, Dutch, Dzongkha, Esperanto, Estonian, Ewe, Fijian, Finnish, Frisian, Fulfulde, Ga, Galician, Ganda / Luganda, Georgian, Greek, Guarani, Gujarati, Haitian Creole, Hakha Chin, Hausa, Hawaiian, Hebrew, Hiligaynon, Hindi, Hmong, Hunsrik, Icelandic, Igbo, Iloko, Indonesian, Irish, Japanese, Javanese, Kannada, Kapampangan, Kazakh, Khmer, Kiga, Kinyarwanda, Kituba, Konkani, Krio, Kurdish Kurmanji, Kurdish Sorani, Kyrgyz, Lao, Latgalian, Latin, Latvian, Ligurian, Limburgan, Lingala, Lithuanian, Lombard, Luo, Luxembourgish, Macedonian, Maithili, Makassar, Malagasy, Malay, Malay Jawi, Malayalam, Maltese, Maori, Marathi, Meadow Mari, Meiteilon / Manipuri, Minang, Mizo, Mongolian, Myanmar / Burmese, Ndebele South, Nepalbhasa / Newari, Nepali, Northern Sotho / Sepedi, Norwegian, Nuer, Occitan, Odia / Oriya, Oromo, Pangasinan, Papiamento, Pashto, Persian, Punjabi, Punjabi Shahmukhi, Quechua, Romani, Romanian, Rundi, Russian, Samoan, Sango, Sanskrit, Scots Gaelic, Serbian, Sesotho, Seychellois Creole, Shan, Shona, Sicilian, Silesian, Sindhi, Sinhala / Sinhalese, Slovak, Slovenian, Somali, Sundanese, Swati, Swedish, Tajik, Tamil, Tatar, Telugu, Tetum, Thai, Tigrinya, Tsonga, Tswana, Turkish, Turkmen, Twi / Akan, Ukrainian, Urdu, Uyghur, Uzbek, Welsh, Xhosa, Yiddish, Yoruba, Yucatec Maya, and Zulu.
+
+This expansion would make Biblia Crux a broad multilingual biblical project, offering translations and structured biblical data that anyone could use, adapt, study, improve, and reuse for many purposes, including websites, applications, pastoral materials, catechetical projects, educational initiatives, editorial projects, and commercial or non-commercial uses, according to the terms of the project license.
+
+Because this is a large and long-term mission, Biblia Crux needs the help of everyone who is able to contribute. Translators, reviewers, developers, catechists, scholars, pastors, native speakers, and members of the Catholic community can all help improve the quality, clarity, fidelity, and usefulness of the database.
+
+In addition to textual and technical contributions, the project may also be supported through donations. Bitcoin donations are welcome as a modern and transparent way to help fund the maintenance, development, review, infrastructure, organization, and expansion of the Biblia Crux project, including the correction and improvement of the biblical translations themselves.
+
+**Bitcoin donation address:**
+
+`bc1qrq945s0623tpqxhax3hec4f56u8fmdv2qeuln9`
+
+Donated funds may be used to support activities such as:
+
+- Maintaining the project infrastructure
+- Reviewing biblical texts
+- Correcting translation errors
+- Improving translation quality
+- Revising biblical terms, proper names, and theological expressions
+- Organizing and validating contributions from the community
+- Expanding the database to new languages
+- Supporting technical development and long-term preservation of the project
+
+Every contribution, whether through translation review, technical improvement, correction suggestions, or financial support, helps bring Sacred Scripture to more people, in more languages, and through more Catholic and evangelization projects around the world.
+
+---
+
 ## Mission
 
 The mission of Biblia Crux is to build an open, reviewable, reusable, multilingual Catholic Bible database to help bring the Word of God to more people, in more languages, and through more projects.
