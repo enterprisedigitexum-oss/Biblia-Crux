@@ -1,0 +1,2509 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Termos de Uso — Biblia Crux</title>
+  <meta name="description" content="Termos de Uso do Biblia Crux." />
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #ffffff;
+      --text: #1f2937;
+      --muted: #4b5563;
+      --card: #f8fafc;
+      --border: #e5e7eb;
+      --accent: #7c2d12;
+      --focus: rgba(124, 45, 18, 0.18);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b0f17;
+        --text: #e5e7eb;
+        --muted: #9ca3af;
+        --card: #111827;
+        --border: #1f2937;
+        --accent: #f59e0b;
+        --focus: rgba(245, 158, 11, 0.20);
+      }
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+    }
+    .wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 24px 16px 56px;
+    }
+    header,
+    .preferences-card,
+    .intro-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 1.8rem;
+      line-height: 1.25;
+    }
+    h2 {
+      margin-top: 28px;
+      font-size: 1.2rem;
+      color: var(--accent);
+    }
+    .preferences-card h2 {
+      margin-top: 0;
+      margin-bottom: 14px;
+    }
+    p, li {
+      color: var(--text);
+    }
+    .meta {
+      color: var(--muted);
+      margin: 2px 0;
+      font-size: 0.95rem;
+    }
+    ul {
+      padding-left: 1.1rem;
+    }
+    .contact {
+      font-weight: 600;
+    }
+    .language-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(210px, 280px);
+      gap: 16px;
+      align-items: center;
+    }
+    .language-label {
+      display: block;
+      color: var(--text);
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+    .language-hint {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    select {
+      width: 100%;
+      min-height: 44px;
+      color: var(--text);
+      background-color: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 12px;
+      font: inherit;
+    }
+    select:focus {
+      outline: 3px solid var(--focus);
+      border-color: var(--accent);
+    }
+    @media (max-width: 640px) {
+      .language-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <h1 id="pageTitle"></h1>
+      <p class="meta"><strong id="lastUpdatedLabel"></strong> <span id="lastUpdated"></span></p>
+    </header>
+
+    <section class="preferences-card" aria-labelledby="settingsTitle">
+      <h2 id="settingsTitle"></h2>
+      <div class="language-row">
+        <div>
+          <label id="languageSelectLabel" class="language-label" for="languageSelect"></label>
+          <p id="languageSelectHint" class="language-hint"></p>
+        </div>
+        <select id="languageSelect"></select>
+      </div>
+    </section>
+
+    <section id="introContent" class="intro-card"></section>
+    <article id="termsContent"></article>
+  </main>
+
+  <script>
+    const supportedLocales = ["en", "pt", "es", "fr", "it", "tl"];
+    const storageKey = "uiLocale";
+    const translations = {
+  "pt": {
+    "htmlLang": "pt-BR",
+    "documentTitle": "Termos de Uso — Biblia Crux",
+    "metaDescription": "Termos de Uso do Biblia Crux.",
+    "pageTitle": "Termos de Uso — Biblia Crux",
+    "lastUpdatedLabel": "Última atualização:",
+    "lastUpdated": "[preencher data]",
+    "settingsTitle": "Preferências",
+    "labelAppLanguage": "Idioma principal do app",
+    "settingsUiLanguageHint": "Menus, botões e listas de livros",
+    "languageEnglish": "Inglês",
+    "languagePortuguese": "Português",
+    "languageSpanish": "Espanhol",
+    "languageFrench": "Francês",
+    "languageItalian": "Italiano",
+    "languageTagalog": "Tagalo",
+    "emailLabel": "E-mail:",
+    "responsibleLabel": "Responsável:",
+    "intro": [
+      "Leia estes Termos de Uso com atenção. Eles contêm informações importantes sobre seus direitos e deveres, limitações de responsabilidade, regras de uso da plataforma e forma de resolução de disputas.",
+      "Ao usar o aplicativo, site e serviços do Biblia Crux (“Serviços”), você declara que leu, entendeu e concorda com estes Termos. Se não concordar, não utilize os Serviços.",
+      "Nestes Termos, “Biblia Crux”, “nós” ou “nosso” refere-se ao operador do aplicativo Biblia Crux."
+    ],
+    "sections": [
+      {
+        "title": "1. Aceitação dos Termos",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "1.1. O acesso e uso dos Serviços do Biblia Crux estão sujeitos a estes Termos e à nossa Política de Privacidade."
+          },
+          {
+            "type": "p",
+            "html": "1.2. Ao continuar usando os Serviços, você confirma que leu e aceitou estes Termos."
+          },
+          {
+            "type": "p",
+            "html": "1.3. Você declara ter capacidade legal para aceitar estes Termos. Se for menor de idade segundo a legislação local, deve utilizar os Serviços com autorização e supervisão dos responsáveis legais."
+          },
+          {
+            "type": "p",
+            "html": "1.4. Podemos atualizar estes Termos periodicamente. A versão atualizada passa a valer após publicação nos canais oficiais do Biblia Crux. O uso contínuo dos Serviços após a atualização representa sua concordância com os novos Termos."
+          }
+        ]
+      },
+      {
+        "title": "2. Descrição dos Serviços",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "2.1. O Biblia Crux é um aplicativo de leitura e estudo de conteúdo religioso (incluindo Bíblia e conteúdos relacionados), com recursos que podem incluir:"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "leitura online e/ou offline de conteúdos;",
+              "conta de usuário (opcional para algumas funcionalidades);",
+              "recursos premium por assinatura;",
+              "exibição de anúncios para usuários não premium;",
+              "integração com serviços de terceiros."
+            ]
+          },
+          {
+            "type": "p",
+            "html": "2.2. O Biblia Crux não oferece aconselhamento médico, psicológico, financeiro, jurídico ou profissional de qualquer natureza."
+          },
+          {
+            "type": "p",
+            "html": "2.3. Conteúdos gerados ou assistidos por tecnologia de IA são informativos e podem conter imprecisões. Sempre use discernimento e, quando necessário, consulte fontes oficiais."
+          }
+        ]
+      },
+      {
+        "title": "3. Acesso, disponibilidade e alterações",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "3.1. A disponibilidade dos Serviços depende de infraestrutura técnica, conectividade, lojas de aplicativos e serviços de terceiros, podendo haver interrupções, lentidão, manutenção ou indisponibilidade temporária."
+          },
+          {
+            "type": "p",
+            "html": "3.2. Não garantimos operação contínua, ininterrupta ou livre de erros."
+          },
+          {
+            "type": "p",
+            "html": "3.3. Podemos alterar, suspender ou descontinuar funcionalidades, planos, recursos ou partes dos Serviços, com ou sem aviso prévio, inclusive por motivos técnicos, legais, de segurança ou comerciais."
+          }
+        ]
+      },
+      {
+        "title": "4. Regras de uso",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "Ao usar os Serviços, você concorda em:"
+          },
+          {
+            "type": "p",
+            "html": "4.1. Cumprir as leis e regulamentos aplicáveis."
+          },
+          {
+            "type": "p",
+            "html": "4.2. Não usar os Serviços para finalidades ilícitas, fraudulentas, abusivas ou maliciosas."
+          },
+          {
+            "type": "p",
+            "html": "4.3. Não tentar acessar sistemas, dados, contas ou informações sem autorização."
+          },
+          {
+            "type": "p",
+            "html": "4.4. Não praticar engenharia reversa indevida, scraping abusivo, ataque, injeção de código malicioso, distribuição de vírus, bots prejudiciais ou qualquer ação que comprometa os Serviços."
+          },
+          {
+            "type": "p",
+            "html": "4.5. Não publicar ou transmitir conteúdo ilegal, difamatório, discriminatório, violento, obsceno, fraudulento ou que viole direitos de terceiros."
+          },
+          {
+            "type": "p",
+            "html": "4.6. Não violar direitos autorais, marcas, segredos comerciais ou quaisquer direitos de propriedade intelectual."
+          },
+          {
+            "type": "p",
+            "html": "4.7. Não interferir no funcionamento da plataforma, servidores, banco de dados, segurança ou experiência de outros usuários."
+          },
+          {
+            "type": "p",
+            "html": "4.8. Em caso de violação, podemos suspender ou encerrar seu acesso, sem prejuízo das medidas legais cabíveis."
+          }
+        ]
+      },
+      {
+        "title": "5. Conta de usuário",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "5.1. Alguns recursos podem exigir cadastro de conta."
+          },
+          {
+            "type": "p",
+            "html": "5.2. Você é responsável por fornecer dados verdadeiros, completos e atualizados."
+          },
+          {
+            "type": "p",
+            "html": "5.3. Você é responsável por manter a confidencialidade de suas credenciais e por atividades realizadas em sua conta."
+          },
+          {
+            "type": "p",
+            "html": "5.4. Se suspeitar de uso não autorizado, informe imediatamente pelos canais de contato do Biblia Crux."
+          },
+          {
+            "type": "p",
+            "html": "5.5. Podemos suspender ou encerrar contas em caso de violação destes Termos, suspeita de fraude, risco de segurança ou exigência legal."
+          }
+        ]
+      },
+      {
+        "title": "6. Planos, assinaturas, pagamentos e cancelamento",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "6.1. O Biblia Crux pode oferecer planos pagos (mensal, anual ou outros formatos), com recursos premium descritos no próprio aplicativo."
+          },
+          {
+            "type": "p",
+            "html": "6.2. O processamento de pagamento é feito por terceiros (por exemplo, Google Play, App Store e/ou gateways parceiros), conforme a plataforma usada."
+          },
+          {
+            "type": "p",
+            "html": "6.3. Ao contratar uma assinatura, você autoriza a cobrança dos valores, taxas e tributos aplicáveis conforme regras da loja/plataforma de pagamento."
+          },
+          {
+            "type": "p",
+            "html": "6.4. Salvo disposição legal obrigatória em contrário, pagamentos são não reembolsáveis e não transferíveis."
+          },
+          {
+            "type": "p",
+            "html": "6.5. Cancelamentos e renovação automática seguem as regras da loja/plataforma onde a compra foi feita. Você é responsável por gerenciar o cancelamento no canal correto (Google Play, App Store etc.)."
+          },
+          {
+            "type": "p",
+            "html": "6.6. Podemos recusar, suspender ou cancelar transações em caso de suspeita de fraude, inconsistência de pagamento ou exigência de conformidade."
+          }
+        ]
+      },
+      {
+        "title": "7. Anúncios e conteúdo patrocinado",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "7.1. Usuários não premium podem visualizar anúncios."
+          },
+          {
+            "type": "p",
+            "html": "7.2. O Biblia Crux pode usar parceiros de publicidade de terceiros para exibição e medição de anúncios."
+          },
+          {
+            "type": "p",
+            "html": "7.3. A interação com anúncios e sites de terceiros é de responsabilidade do usuário e pode estar sujeita aos termos e políticas desses terceiros."
+          },
+          {
+            "type": "p",
+            "html": "7.4. A presença de anúncios não implica endosso do Biblia Crux a produtos, serviços ou conteúdos anunciados."
+          }
+        ]
+      },
+      {
+        "title": "8. Links e serviços de terceiros",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "8.1. Os Serviços podem conter links para sites, serviços ou conteúdos de terceiros."
+          },
+          {
+            "type": "p",
+            "html": "8.2. Não controlamos nem garantimos conteúdo, disponibilidade, segurança ou políticas de terceiros."
+          },
+          {
+            "type": "p",
+            "html": "8.3. O uso de serviços de terceiros é por sua conta e risco e pode estar sujeito a termos próprios."
+          }
+        ]
+      },
+      {
+        "title": "9. Conteúdo, propriedade intelectual e licenças",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "9.1. O Biblia Crux e seus licenciantes detêm os direitos sobre o aplicativo, marca, layout, software e demais elementos protegidos por propriedade intelectual, exceto quando indicado de outra forma."
+          },
+          {
+            "type": "p",
+            "html": "9.2. Você recebe uma licença limitada, não exclusiva, intransferível e revogável para uso pessoal e não comercial dos Serviços, conforme estes Termos."
+          },
+          {
+            "type": "p",
+            "html": "9.3. É proibido copiar, distribuir, sublicenciar, vender, explorar comercialmente ou criar obras derivadas sem autorização prévia, salvo hipóteses legalmente permitidas."
+          },
+          {
+            "type": "p",
+            "html": "9.4. Caso você envie conteúdo ao Biblia Crux (ex.: feedback, sugestões, correções, comentários), você nos concede licença não exclusiva, mundial, gratuita e sublicenciável para uso desse conteúdo na operação, melhoria e promoção dos Serviços, respeitada a legislação aplicável."
+          }
+        ]
+      },
+      {
+        "title": "10. Isenções de garantia",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "10.1. Os Serviços são fornecidos “no estado em que se encontram” e “conforme disponibilidade”."
+          },
+          {
+            "type": "p",
+            "html": "10.2. Não garantimos que os Serviços atenderão a todas as expectativas, funcionarão sem interrupções, serão totalmente livres de falhas ou que todo conteúdo será sempre exato e atualizado."
+          },
+          {
+            "type": "p",
+            "html": "10.3. Dentro dos limites legais, rejeitamos garantias expressas ou implícitas, incluindo adequação a finalidade específica, disponibilidade contínua e não violação."
+          }
+        ]
+      },
+      {
+        "title": "11. Limitação de responsabilidade",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "11.1. Na máxima extensão permitida por lei, o Biblia Crux não se responsabiliza por danos indiretos, incidentais, especiais, punitivos, lucros cessantes, perda de dados, perda de oportunidade ou danos consequentes decorrentes do uso ou impossibilidade de uso dos Serviços."
+          },
+          {
+            "type": "p",
+            "html": "11.2. Quando permitido por lei, a responsabilidade total do Biblia Crux por quaisquer reclamações relacionadas aos Serviços fica limitada ao valor efetivamente pago por você ao Biblia Crux nos 12 (doze) meses anteriores ao evento que originou a reclamação."
+          },
+          {
+            "type": "p",
+            "html": "11.3. Algumas jurisdições não permitem certas limitações; nesses casos, aplicam-se os limites máximos permitidos pela legislação local."
+          }
+        ]
+      },
+      {
+        "title": "12. Indenização",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "Você concorda em indenizar e manter o Biblia Crux, seus administradores, colaboradores e parceiros isentos de responsabilidades por perdas, danos, custos e despesas (incluindo honorários advocatícios razoáveis) decorrentes de:"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "violação destes Termos;",
+              "uso indevido dos Serviços;",
+              "violação de direitos de terceiros;",
+              "conteúdo enviado por você."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "13. Suspensão e encerramento",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "13.1. Podemos suspender ou encerrar seu acesso, total ou parcialmente, a qualquer momento, por motivo de segurança, fraude, violação destes Termos, exigência legal ou descontinuação de serviços."
+          },
+          {
+            "type": "p",
+            "html": "13.2. Você pode deixar de usar os Serviços a qualquer momento e solicitar encerramento de conta conforme os canais de suporte disponíveis."
+          },
+          {
+            "type": "p",
+            "html": "13.3. O encerramento não afeta cláusulas que, por sua natureza, devam permanecer válidas (ex.: propriedade intelectual, limitações de responsabilidade, foro, indenização)."
+          }
+        ]
+      },
+      {
+        "title": "14. Privacidade e proteção de dados",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "14.1. O tratamento de dados pessoais segue a Política de Privacidade do Biblia Crux."
+          },
+          {
+            "type": "p",
+            "html": "14.2. Ao usar os Serviços, você reconhece que determinados dados técnicos e operacionais podem ser tratados para autenticação, segurança, manutenção, analytics, personalização e funcionamento dos recursos."
+          },
+          {
+            "type": "p",
+            "html": "14.3. Recursos de terceiros (ex.: login social, assinatura, anúncios) podem tratar dados conforme suas próprias políticas."
+          }
+        ]
+      },
+      {
+        "title": "15. Alterações nos Serviços e nestes Termos",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "15.1. Podemos modificar os Serviços e estes Termos para refletir mudanças técnicas, legais, comerciais, de segurança ou regulatórias."
+          },
+          {
+            "type": "p",
+            "html": "15.2. A continuação do uso após a publicação de alterações implica aceitação da versão vigente dos Termos."
+          }
+        ]
+      },
+      {
+        "title": "16. Lei aplicável e foro",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "16.1. Estes Termos são regidos pelas leis do país/estado de estabelecimento do operador do Biblia Crux, salvo disposições obrigatórias de proteção do consumidor aplicáveis ao seu local de residência."
+          },
+          {
+            "type": "p",
+            "html": "16.2. Fica eleito o foro da comarca de [preencher cidade/UF/país], com renúncia de qualquer outro, salvo regra legal obrigatória em contrário."
+          }
+        ]
+      },
+      {
+        "title": "17. Contato",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "Dúvidas sobre estes Termos podem ser enviadas para:"
+          },
+          {
+            "type": "p",
+            "className": "contact",
+            "html": "{{emailLabel}} [preencher e-mail oficial de suporte jurídico]<br>{{responsibleLabel}} Biblia Crux"
+          }
+        ]
+      }
+    ]
+  },
+  "en": {
+    "htmlLang": "en",
+    "documentTitle": "Terms of Use — Biblia Crux",
+    "metaDescription": "Terms of Use for Biblia Crux.",
+    "pageTitle": "Terms of Use — Biblia Crux",
+    "lastUpdatedLabel": "Last updated:",
+    "lastUpdated": "[fill in date]",
+    "settingsTitle": "Preferences",
+    "labelAppLanguage": "App primary language",
+    "settingsUiLanguageHint": "Menus, buttons, and book lists",
+    "languageEnglish": "English",
+    "languagePortuguese": "Portuguese",
+    "languageSpanish": "Spanish",
+    "languageFrench": "French",
+    "languageItalian": "Italian",
+    "languageTagalog": "Tagalog",
+    "emailLabel": "Email:",
+    "responsibleLabel": "Responsible:",
+    "intro": [
+      "Read these Terms of Use carefully. They contain important information about your rights and duties, limitations of liability, platform usage rules, and dispute resolution.",
+      "By using the Biblia Crux application, website, and services (“Services”), you state that you have read, understood, and agree to these Terms. If you do not agree, do not use the Services.",
+      "In these Terms, “Biblia Crux”, “we”, or “our” refers to the operator of the Biblia Crux application."
+    ],
+    "sections": [
+      {
+        "title": "1. Acceptance of the Terms",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "1.1. Access to and use of the Biblia Crux Services are subject to these Terms and our Privacy Policy."
+          },
+          {
+            "type": "p",
+            "html": "1.2. By continuing to use the Services, you confirm that you have read and accepted these Terms."
+          },
+          {
+            "type": "p",
+            "html": "1.3. You state that you have legal capacity to accept these Terms. If you are a minor under local law, you must use the Services with authorization and supervision from your legal guardians."
+          },
+          {
+            "type": "p",
+            "html": "1.4. We may update these Terms periodically. The updated version becomes effective after publication through Biblia Crux’s official channels. Continued use of the Services after the update represents your agreement to the new Terms."
+          }
+        ]
+      },
+      {
+        "title": "2. Description of the Services",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "2.1. Biblia Crux is an application for reading and studying religious content (including the Bible and related content), with features that may include:"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "online and/or offline reading of content;",
+              "user account (optional for some features);",
+              "premium subscription features;",
+              "display of ads for non-premium users;",
+              "integration with third-party services."
+            ]
+          },
+          {
+            "type": "p",
+            "html": "2.2. Biblia Crux does not provide medical, psychological, financial, legal, or professional advice of any kind."
+          },
+          {
+            "type": "p",
+            "html": "2.3. Content generated or assisted by AI technology is informational and may contain inaccuracies. Always use discernment and, when necessary, consult official sources."
+          }
+        ]
+      },
+      {
+        "title": "3. Access, availability, and changes",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "3.1. Availability of the Services depends on technical infrastructure, connectivity, app stores, and third-party services, and interruptions, slowness, maintenance, or temporary unavailability may occur."
+          },
+          {
+            "type": "p",
+            "html": "3.2. We do not guarantee continuous, uninterrupted, or error-free operation."
+          },
+          {
+            "type": "p",
+            "html": "3.3. We may change, suspend, or discontinue features, plans, resources, or parts of the Services, with or without prior notice, including for technical, legal, security, or commercial reasons."
+          }
+        ]
+      },
+      {
+        "title": "4. Usage rules",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "When using the Services, you agree to:"
+          },
+          {
+            "type": "p",
+            "html": "4.1. Comply with applicable laws and regulations."
+          },
+          {
+            "type": "p",
+            "html": "4.2. Not use the Services for unlawful, fraudulent, abusive, or malicious purposes."
+          },
+          {
+            "type": "p",
+            "html": "4.3. Not attempt to access systems, data, accounts, or information without authorization."
+          },
+          {
+            "type": "p",
+            "html": "4.4. Not perform improper reverse engineering, abusive scraping, attacks, malicious code injection, virus distribution, harmful bots, or any action that compromises the Services."
+          },
+          {
+            "type": "p",
+            "html": "4.5. Not publish or transmit illegal, defamatory, discriminatory, violent, obscene, fraudulent content, or content that violates third-party rights."
+          },
+          {
+            "type": "p",
+            "html": "4.6. Not violate copyrights, trademarks, trade secrets, or any intellectual property rights."
+          },
+          {
+            "type": "p",
+            "html": "4.7. Not interfere with the operation of the platform, servers, database, security, or other users’ experience."
+          },
+          {
+            "type": "p",
+            "html": "4.8. In case of violation, we may suspend or terminate your access, without prejudice to applicable legal measures."
+          }
+        ]
+      },
+      {
+        "title": "5. User account",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "5.1. Some features may require account registration."
+          },
+          {
+            "type": "p",
+            "html": "5.2. You are responsible for providing true, complete, and up-to-date data."
+          },
+          {
+            "type": "p",
+            "html": "5.3. You are responsible for maintaining the confidentiality of your credentials and for activities carried out in your account."
+          },
+          {
+            "type": "p",
+            "html": "5.4. If you suspect unauthorized use, immediately inform us through Biblia Crux contact channels."
+          },
+          {
+            "type": "p",
+            "html": "5.5. We may suspend or terminate accounts in case of violation of these Terms, suspected fraud, security risk, or legal requirement."
+          }
+        ]
+      },
+      {
+        "title": "6. Plans, subscriptions, payments, and cancellation",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "6.1. Biblia Crux may offer paid plans (monthly, annual, or other formats), with premium features described in the application itself."
+          },
+          {
+            "type": "p",
+            "html": "6.2. Payment processing is performed by third parties (for example, Google Play, App Store, and/or partner gateways), according to the platform used."
+          },
+          {
+            "type": "p",
+            "html": "6.3. By subscribing, you authorize the charging of applicable amounts, fees, and taxes according to the rules of the store/payment platform."
+          },
+          {
+            "type": "p",
+            "html": "6.4. Unless mandatory law provides otherwise, payments are non-refundable and non-transferable."
+          },
+          {
+            "type": "p",
+            "html": "6.5. Cancellations and automatic renewal follow the rules of the store/platform where the purchase was made. You are responsible for managing cancellation through the correct channel (Google Play, App Store, etc.)."
+          },
+          {
+            "type": "p",
+            "html": "6.6. We may refuse, suspend, or cancel transactions in case of suspected fraud, payment inconsistency, or compliance requirement."
+          }
+        ]
+      },
+      {
+        "title": "7. Ads and sponsored content",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "7.1. Non-premium users may view ads."
+          },
+          {
+            "type": "p",
+            "html": "7.2. Biblia Crux may use third-party advertising partners to display and measure ads."
+          },
+          {
+            "type": "p",
+            "html": "7.3. Interaction with ads and third-party websites is the user’s responsibility and may be subject to those third parties’ terms and policies."
+          },
+          {
+            "type": "p",
+            "html": "7.4. The presence of ads does not imply endorsement by Biblia Crux of advertised products, services, or content."
+          }
+        ]
+      },
+      {
+        "title": "8. Third-party links and services",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "8.1. The Services may contain links to third-party websites, services, or content."
+          },
+          {
+            "type": "p",
+            "html": "8.2. We do not control or guarantee third-party content, availability, security, or policies."
+          },
+          {
+            "type": "p",
+            "html": "8.3. Use of third-party services is at your own risk and may be subject to their own terms."
+          }
+        ]
+      },
+      {
+        "title": "9. Content, intellectual property, and licenses",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "9.1. Biblia Crux and its licensors hold rights over the application, brand, layout, software, and other elements protected by intellectual property, except where otherwise indicated."
+          },
+          {
+            "type": "p",
+            "html": "9.2. You receive a limited, non-exclusive, non-transferable, revocable license for personal and non-commercial use of the Services, according to these Terms."
+          },
+          {
+            "type": "p",
+            "html": "9.3. Copying, distributing, sublicensing, selling, commercially exploiting, or creating derivative works without prior authorization is prohibited, except where legally permitted."
+          },
+          {
+            "type": "p",
+            "html": "9.4. If you submit content to Biblia Crux (e.g., feedback, suggestions, corrections, comments), you grant us a non-exclusive, worldwide, free, sublicensable license to use that content in the operation, improvement, and promotion of the Services, respecting applicable law."
+          }
+        ]
+      },
+      {
+        "title": "10. Warranty disclaimers",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "10.1. The Services are provided “as is” and “as available”."
+          },
+          {
+            "type": "p",
+            "html": "10.2. We do not guarantee that the Services will meet all expectations, operate without interruptions, be completely free of failures, or that all content will always be accurate and up to date."
+          },
+          {
+            "type": "p",
+            "html": "10.3. Within legal limits, we disclaim express or implied warranties, including fitness for a particular purpose, continuous availability, and non-infringement."
+          }
+        ]
+      },
+      {
+        "title": "11. Limitation of liability",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "11.1. To the maximum extent permitted by law, Biblia Crux is not liable for indirect, incidental, special, punitive damages, lost profits, data loss, loss of opportunity, or consequential damages arising from the use or inability to use the Services."
+          },
+          {
+            "type": "p",
+            "html": "11.2. Where permitted by law, Biblia Crux’s total liability for any claims related to the Services is limited to the amount actually paid by you to Biblia Crux in the 12 (twelve) months before the event that gave rise to the claim."
+          },
+          {
+            "type": "p",
+            "html": "11.3. Some jurisdictions do not allow certain limitations; in such cases, the maximum limits permitted by local law apply."
+          }
+        ]
+      },
+      {
+        "title": "12. Indemnification",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "You agree to indemnify and hold Biblia Crux, its administrators, collaborators, and partners harmless from liabilities for losses, damages, costs, and expenses (including reasonable attorneys’ fees) arising from:"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "violation of these Terms;",
+              "misuse of the Services;",
+              "violation of third-party rights;",
+              "content submitted by you."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "13. Suspension and termination",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "13.1. We may suspend or terminate your access, in whole or in part, at any time, for security reasons, fraud, violation of these Terms, legal requirement, or discontinuation of services."
+          },
+          {
+            "type": "p",
+            "html": "13.2. You may stop using the Services at any time and request account closure according to the available support channels."
+          },
+          {
+            "type": "p",
+            "html": "13.3. Termination does not affect clauses that, by their nature, should remain valid (e.g., intellectual property, limitations of liability, venue, indemnification)."
+          }
+        ]
+      },
+      {
+        "title": "14. Privacy and data protection",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "14.1. Personal data processing follows Biblia Crux’s Privacy Policy."
+          },
+          {
+            "type": "p",
+            "html": "14.2. By using the Services, you acknowledge that certain technical and operational data may be processed for authentication, security, maintenance, analytics, personalization, and feature operation."
+          },
+          {
+            "type": "p",
+            "html": "14.3. Third-party features (e.g., social login, subscription, ads) may process data according to their own policies."
+          }
+        ]
+      },
+      {
+        "title": "15. Changes to the Services and these Terms",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "15.1. We may modify the Services and these Terms to reflect technical, legal, commercial, security, or regulatory changes."
+          },
+          {
+            "type": "p",
+            "html": "15.2. Continued use after publication of changes implies acceptance of the current version of the Terms."
+          }
+        ]
+      },
+      {
+        "title": "16. Governing law and venue",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "16.1. These Terms are governed by the laws of the country/state where the Biblia Crux operator is established, except for mandatory consumer protection provisions applicable to your place of residence."
+          },
+          {
+            "type": "p",
+            "html": "16.2. The venue of the district of [fill in city/state/country] is elected, waiving any other, except where mandatory legal rule provides otherwise."
+          }
+        ]
+      },
+      {
+        "title": "17. Contact",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "Questions about these Terms may be sent to:"
+          },
+          {
+            "type": "p",
+            "className": "contact",
+            "html": "{{emailLabel}} [fill in official legal support email]<br>{{responsibleLabel}} Biblia Crux"
+          }
+        ]
+      }
+    ]
+  },
+  "es": {
+    "htmlLang": "es",
+    "documentTitle": "Términos de Uso — Biblia Crux",
+    "metaDescription": "Términos de Uso de Biblia Crux.",
+    "pageTitle": "Términos de Uso — Biblia Crux",
+    "lastUpdatedLabel": "Última actualización:",
+    "lastUpdated": "[completar fecha]",
+    "settingsTitle": "Preferencias",
+    "labelAppLanguage": "Idioma principal de la app",
+    "settingsUiLanguageHint": "Menús, botones y listas de libros",
+    "languageEnglish": "Inglés",
+    "languagePortuguese": "Portugués",
+    "languageSpanish": "Español",
+    "languageFrench": "Francés",
+    "languageItalian": "Italiano",
+    "languageTagalog": "Tagalo",
+    "emailLabel": "Correo electrónico:",
+    "responsibleLabel": "Responsable:",
+    "intro": [
+      "Lee estos Términos de Uso con atención. Contienen información importante sobre tus derechos y deberes, limitaciones de responsabilidad, reglas de uso de la plataforma y forma de resolución de disputas.",
+      "Al usar la aplicación, el sitio y los servicios de Biblia Crux (“Servicios”), declaras que has leído, entendido y aceptas estos Términos. Si no estás de acuerdo, no utilices los Servicios.",
+      "En estos Términos, “Biblia Crux”, “nosotros” o “nuestro” se refiere al operador de la aplicación Biblia Crux."
+    ],
+    "sections": [
+      {
+        "title": "1. Aceptación de los Términos",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "1.1. El acceso y uso de los Servicios de Biblia Crux están sujetos a estos Términos y a nuestra Política de Privacidad."
+          },
+          {
+            "type": "p",
+            "html": "1.2. Al continuar usando los Servicios, confirmas que has leído y aceptado estos Términos."
+          },
+          {
+            "type": "p",
+            "html": "1.3. Declaras tener capacidad legal para aceptar estos Términos. Si eres menor de edad según la legislación local, debes utilizar los Servicios con autorización y supervisión de tus responsables legales."
+          },
+          {
+            "type": "p",
+            "html": "1.4. Podemos actualizar estos Términos periódicamente. La versión actualizada entra en vigor tras su publicación en los canales oficiales de Biblia Crux. El uso continuo de los Servicios después de la actualización representa tu aceptación de los nuevos Términos."
+          }
+        ]
+      },
+      {
+        "title": "2. Descripción de los Servicios",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "2.1. Biblia Crux es una aplicación de lectura y estudio de contenido religioso (incluida la Biblia y contenidos relacionados), con recursos que pueden incluir:"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "lectura online y/o offline de contenidos;",
+              "cuenta de usuario (opcional para algunas funcionalidades);",
+              "recursos premium por suscripción;",
+              "visualización de anuncios para usuarios no premium;",
+              "integración con servicios de terceros."
+            ]
+          },
+          {
+            "type": "p",
+            "html": "2.2. Biblia Crux no ofrece asesoramiento médico, psicológico, financiero, jurídico ni profesional de ninguna naturaleza."
+          },
+          {
+            "type": "p",
+            "html": "2.3. Los contenidos generados o asistidos por tecnología de IA son informativos y pueden contener imprecisiones. Usa siempre discernimiento y, cuando sea necesario, consulta fuentes oficiales."
+          }
+        ]
+      },
+      {
+        "title": "3. Acceso, disponibilidad y cambios",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "3.1. La disponibilidad de los Servicios depende de infraestructura técnica, conectividad, tiendas de aplicaciones y servicios de terceros, por lo que puede haber interrupciones, lentitud, mantenimiento o indisponibilidad temporal."
+          },
+          {
+            "type": "p",
+            "html": "3.2. No garantizamos operación continua, ininterrumpida o libre de errores."
+          },
+          {
+            "type": "p",
+            "html": "3.3. Podemos alterar, suspender o discontinuar funcionalidades, planes, recursos o partes de los Servicios, con o sin aviso previo, incluso por motivos técnicos, legales, de seguridad o comerciales."
+          }
+        ]
+      },
+      {
+        "title": "4. Reglas de uso",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "Al usar los Servicios, aceptas:"
+          },
+          {
+            "type": "p",
+            "html": "4.1. Cumplir las leyes y reglamentos aplicables."
+          },
+          {
+            "type": "p",
+            "html": "4.2. No usar los Servicios para fines ilícitos, fraudulentos, abusivos o maliciosos."
+          },
+          {
+            "type": "p",
+            "html": "4.3. No intentar acceder a sistemas, datos, cuentas o información sin autorización."
+          },
+          {
+            "type": "p",
+            "html": "4.4. No practicar ingeniería inversa indebida, scraping abusivo, ataques, inyección de código malicioso, distribución de virus, bots perjudiciales o cualquier acción que comprometa los Servicios."
+          },
+          {
+            "type": "p",
+            "html": "4.5. No publicar ni transmitir contenido ilegal, difamatorio, discriminatorio, violento, obsceno, fraudulento o que viole derechos de terceros."
+          },
+          {
+            "type": "p",
+            "html": "4.6. No violar derechos de autor, marcas, secretos comerciales ni cualquier derecho de propiedad intelectual."
+          },
+          {
+            "type": "p",
+            "html": "4.7. No interferir en el funcionamiento de la plataforma, servidores, base de datos, seguridad o experiencia de otros usuarios."
+          },
+          {
+            "type": "p",
+            "html": "4.8. En caso de violación, podemos suspender o cerrar tu acceso, sin perjuicio de las medidas legales aplicables."
+          }
+        ]
+      },
+      {
+        "title": "5. Cuenta de usuario",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "5.1. Algunos recursos pueden exigir registro de cuenta."
+          },
+          {
+            "type": "p",
+            "html": "5.2. Eres responsable de proporcionar datos verdaderos, completos y actualizados."
+          },
+          {
+            "type": "p",
+            "html": "5.3. Eres responsable de mantener la confidencialidad de tus credenciales y de las actividades realizadas en tu cuenta."
+          },
+          {
+            "type": "p",
+            "html": "5.4. Si sospechas de uso no autorizado, informa inmediatamente por los canales de contacto de Biblia Crux."
+          },
+          {
+            "type": "p",
+            "html": "5.5. Podemos suspender o cerrar cuentas en caso de violación de estos Términos, sospecha de fraude, riesgo de seguridad o exigencia legal."
+          }
+        ]
+      },
+      {
+        "title": "6. Planes, suscripciones, pagos y cancelación",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "6.1. Biblia Crux puede ofrecer planes pagos (mensual, anual u otros formatos), con recursos premium descritos en la propia aplicación."
+          },
+          {
+            "type": "p",
+            "html": "6.2. El procesamiento de pago lo realizan terceros (por ejemplo, Google Play, App Store y/o pasarelas asociadas), según la plataforma utilizada."
+          },
+          {
+            "type": "p",
+            "html": "6.3. Al contratar una suscripción, autorizas el cobro de los importes, tasas e impuestos aplicables conforme a las reglas de la tienda/plataforma de pago."
+          },
+          {
+            "type": "p",
+            "html": "6.4. Salvo disposición legal obligatoria en contrario, los pagos no son reembolsables ni transferibles."
+          },
+          {
+            "type": "p",
+            "html": "6.5. Las cancelaciones y la renovación automática siguen las reglas de la tienda/plataforma donde se realizó la compra. Eres responsable de gestionar la cancelación en el canal correcto (Google Play, App Store, etc.)."
+          },
+          {
+            "type": "p",
+            "html": "6.6. Podemos rechazar, suspender o cancelar transacciones en caso de sospecha de fraude, inconsistencia de pago o exigencia de cumplimiento."
+          }
+        ]
+      },
+      {
+        "title": "7. Anuncios y contenido patrocinado",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "7.1. Los usuarios no premium pueden ver anuncios."
+          },
+          {
+            "type": "p",
+            "html": "7.2. Biblia Crux puede usar socios publicitarios de terceros para mostrar y medir anuncios."
+          },
+          {
+            "type": "p",
+            "html": "7.3. La interacción con anuncios y sitios de terceros es responsabilidad del usuario y puede estar sujeta a los términos y políticas de esos terceros."
+          },
+          {
+            "type": "p",
+            "html": "7.4. La presencia de anuncios no implica respaldo de Biblia Crux a productos, servicios o contenidos anunciados."
+          }
+        ]
+      },
+      {
+        "title": "8. Enlaces y servicios de terceros",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "8.1. Los Servicios pueden contener enlaces a sitios, servicios o contenidos de terceros."
+          },
+          {
+            "type": "p",
+            "html": "8.2. No controlamos ni garantizamos contenido, disponibilidad, seguridad o políticas de terceros."
+          },
+          {
+            "type": "p",
+            "html": "8.3. El uso de servicios de terceros corre por tu cuenta y riesgo y puede estar sujeto a términos propios."
+          }
+        ]
+      },
+      {
+        "title": "9. Contenido, propiedad intelectual y licencias",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "9.1. Biblia Crux y sus licenciantes tienen los derechos sobre la aplicación, marca, diseño, software y demás elementos protegidos por propiedad intelectual, salvo indicación en contrario."
+          },
+          {
+            "type": "p",
+            "html": "9.2. Recibes una licencia limitada, no exclusiva, intransferible y revocable para uso personal y no comercial de los Servicios, conforme a estos Términos."
+          },
+          {
+            "type": "p",
+            "html": "9.3. Está prohibido copiar, distribuir, sublicenciar, vender, explotar comercialmente o crear obras derivadas sin autorización previa, salvo hipótesis legalmente permitidas."
+          },
+          {
+            "type": "p",
+            "html": "9.4. Si envías contenido a Biblia Crux (ej.: comentarios, sugerencias, correcciones), nos concedes una licencia no exclusiva, mundial, gratuita y sublicenciable para usar ese contenido en la operación, mejora y promoción de los Servicios, respetando la legislación aplicable."
+          }
+        ]
+      },
+      {
+        "title": "10. Exenciones de garantía",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "10.1. Los Servicios se proporcionan “tal como están” y “según disponibilidad”."
+          },
+          {
+            "type": "p",
+            "html": "10.2. No garantizamos que los Servicios cumplan todas las expectativas, funcionen sin interrupciones, estén totalmente libres de fallos o que todo el contenido sea siempre exacto y actualizado."
+          },
+          {
+            "type": "p",
+            "html": "10.3. Dentro de los límites legales, rechazamos garantías expresas o implícitas, incluida la adecuación a una finalidad específica, disponibilidad continua y no infracción."
+          }
+        ]
+      },
+      {
+        "title": "11. Limitación de responsabilidad",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "11.1. En la máxima medida permitida por la ley, Biblia Crux no se responsabiliza por daños indirectos, incidentales, especiales, punitivos, lucro cesante, pérdida de datos, pérdida de oportunidad o daños consecuentes derivados del uso o imposibilidad de uso de los Servicios."
+          },
+          {
+            "type": "p",
+            "html": "11.2. Cuando la ley lo permita, la responsabilidad total de Biblia Crux por cualquier reclamación relacionada con los Servicios queda limitada al valor efectivamente pagado por ti a Biblia Crux en los 12 (doce) meses anteriores al evento que originó la reclamación."
+          },
+          {
+            "type": "p",
+            "html": "11.3. Algunas jurisdicciones no permiten ciertas limitaciones; en esos casos, se aplican los límites máximos permitidos por la legislación local."
+          }
+        ]
+      },
+      {
+        "title": "12. Indemnización",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "Aceptas indemnizar y mantener a Biblia Crux, sus administradores, colaboradores y socios libres de responsabilidad por pérdidas, daños, costos y gastos (incluidos honorarios razonables de abogados) derivados de:"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "violación de estos Términos;",
+              "uso indebido de los Servicios;",
+              "violación de derechos de terceros;",
+              "contenido enviado por ti."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "13. Suspensión y terminación",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "13.1. Podemos suspender o terminar tu acceso, total o parcialmente, en cualquier momento, por motivo de seguridad, fraude, violación de estos Términos, exigencia legal o discontinuación de servicios."
+          },
+          {
+            "type": "p",
+            "html": "13.2. Puedes dejar de usar los Servicios en cualquier momento y solicitar el cierre de cuenta conforme a los canales de soporte disponibles."
+          },
+          {
+            "type": "p",
+            "html": "13.3. La terminación no afecta cláusulas que, por su naturaleza, deban permanecer válidas (ej.: propiedad intelectual, limitaciones de responsabilidad, fuero, indemnización)."
+          }
+        ]
+      },
+      {
+        "title": "14. Privacidad y protección de datos",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "14.1. El tratamiento de datos personales sigue la Política de Privacidad de Biblia Crux."
+          },
+          {
+            "type": "p",
+            "html": "14.2. Al usar los Servicios, reconoces que ciertos datos técnicos y operativos pueden ser tratados para autenticación, seguridad, mantenimiento, analytics, personalización y funcionamiento de los recursos."
+          },
+          {
+            "type": "p",
+            "html": "14.3. Recursos de terceros (ej.: login social, suscripción, anuncios) pueden tratar datos conforme a sus propias políticas."
+          }
+        ]
+      },
+      {
+        "title": "15. Cambios en los Servicios y en estos Términos",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "15.1. Podemos modificar los Servicios y estos Términos para reflejar cambios técnicos, legales, comerciales, de seguridad o regulatorios."
+          },
+          {
+            "type": "p",
+            "html": "15.2. La continuación del uso tras la publicación de cambios implica aceptación de la versión vigente de los Términos."
+          }
+        ]
+      },
+      {
+        "title": "16. Ley aplicable y fuero",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "16.1. Estos Términos se rigen por las leyes del país/estado de establecimiento del operador de Biblia Crux, salvo disposiciones obligatorias de protección al consumidor aplicables a tu lugar de residencia."
+          },
+          {
+            "type": "p",
+            "html": "16.2. Queda elegido el fuero de la comarca de [completar ciudad/estado/país], con renuncia a cualquier otro, salvo regla legal obligatoria en contrario."
+          }
+        ]
+      },
+      {
+        "title": "17. Contacto",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "Las dudas sobre estos Términos pueden enviarse a:"
+          },
+          {
+            "type": "p",
+            "className": "contact",
+            "html": "{{emailLabel}} [completar correo electrónico oficial de soporte jurídico]<br>{{responsibleLabel}} Biblia Crux"
+          }
+        ]
+      }
+    ]
+  },
+  "fr": {
+    "htmlLang": "fr",
+    "documentTitle": "Conditions d’utilisation — Biblia Crux",
+    "metaDescription": "Conditions d’utilisation de Biblia Crux.",
+    "pageTitle": "Conditions d’utilisation — Biblia Crux",
+    "lastUpdatedLabel": "Dernière mise à jour:",
+    "lastUpdated": "[indiquer la date]",
+    "settingsTitle": "Préférences",
+    "labelAppLanguage": "Langue principale de l’application",
+    "settingsUiLanguageHint": "Menus, boutons et listes de livres",
+    "languageEnglish": "Anglais",
+    "languagePortuguese": "Portugais",
+    "languageSpanish": "Espagnol",
+    "languageFrench": "Français",
+    "languageItalian": "Italien",
+    "languageTagalog": "Tagalog",
+    "emailLabel": "E-mail:",
+    "responsibleLabel": "Responsable:",
+    "intro": [
+      "Lisez attentivement ces Conditions d’utilisation. Elles contiennent des informations importantes sur vos droits et obligations, les limitations de responsabilité, les règles d’utilisation de la plateforme et le mode de résolution des litiges.",
+      "En utilisant l’application, le site et les services de Biblia Crux (« Services »), vous déclarez avoir lu, compris et accepté ces Conditions. Si vous n’êtes pas d’accord, n’utilisez pas les Services.",
+      "Dans ces Conditions, « Biblia Crux », « nous » ou « notre » désigne l’opérateur de l’application Biblia Crux."
+    ],
+    "sections": [
+      {
+        "title": "1. Acceptation des Conditions",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "1.1. L’accès aux Services de Biblia Crux et leur utilisation sont soumis à ces Conditions et à notre Politique de confidentialité."
+          },
+          {
+            "type": "p",
+            "html": "1.2. En continuant à utiliser les Services, vous confirmez avoir lu et accepté ces Conditions."
+          },
+          {
+            "type": "p",
+            "html": "1.3. Vous déclarez avoir la capacité juridique d’accepter ces Conditions. Si vous êtes mineur selon la loi locale, vous devez utiliser les Services avec l’autorisation et la supervision de vos représentants légaux."
+          },
+          {
+            "type": "p",
+            "html": "1.4. Nous pouvons mettre à jour ces Conditions périodiquement. La version mise à jour entre en vigueur après sa publication sur les canaux officiels de Biblia Crux. L’utilisation continue des Services après la mise à jour vaut acceptation des nouvelles Conditions."
+          }
+        ]
+      },
+      {
+        "title": "2. Description des Services",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "2.1. Biblia Crux est une application de lecture et d’étude de contenu religieux (y compris la Bible et des contenus connexes), avec des fonctionnalités pouvant inclure:"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "lecture en ligne et/ou hors ligne de contenus;",
+              "compte utilisateur (facultatif pour certaines fonctionnalités);",
+              "fonctionnalités premium par abonnement;",
+              "affichage d’annonces pour les utilisateurs non premium;",
+              "intégration avec des services tiers."
+            ]
+          },
+          {
+            "type": "p",
+            "html": "2.2. Biblia Crux ne fournit aucun conseil médical, psychologique, financier, juridique ou professionnel de quelque nature que ce soit."
+          },
+          {
+            "type": "p",
+            "html": "2.3. Les contenus générés ou assistés par technologie d’IA sont informatifs et peuvent contenir des imprécisions. Faites toujours preuve de discernement et, si nécessaire, consultez des sources officielles."
+          }
+        ]
+      },
+      {
+        "title": "3. Accès, disponibilité et modifications",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "3.1. La disponibilité des Services dépend de l’infrastructure technique, de la connectivité, des boutiques d’applications et de services tiers, et peut faire l’objet d’interruptions, lenteurs, maintenance ou indisponibilité temporaire."
+          },
+          {
+            "type": "p",
+            "html": "3.2. Nous ne garantissons pas un fonctionnement continu, ininterrompu ou exempt d’erreurs."
+          },
+          {
+            "type": "p",
+            "html": "3.3. Nous pouvons modifier, suspendre ou interrompre des fonctionnalités, plans, ressources ou parties des Services, avec ou sans préavis, notamment pour des raisons techniques, juridiques, de sécurité ou commerciales."
+          }
+        ]
+      },
+      {
+        "title": "4. Règles d’utilisation",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "En utilisant les Services, vous acceptez de:"
+          },
+          {
+            "type": "p",
+            "html": "4.1. Respecter les lois et règlements applicables."
+          },
+          {
+            "type": "p",
+            "html": "4.2. Ne pas utiliser les Services à des fins illicites, frauduleuses, abusives ou malveillantes."
+          },
+          {
+            "type": "p",
+            "html": "4.3. Ne pas tenter d’accéder sans autorisation à des systèmes, données, comptes ou informations."
+          },
+          {
+            "type": "p",
+            "html": "4.4. Ne pas pratiquer l’ingénierie inverse indue, le scraping abusif, les attaques, l’injection de code malveillant, la distribution de virus, les bots nuisibles ou toute action compromettant les Services."
+          },
+          {
+            "type": "p",
+            "html": "4.5. Ne pas publier ni transmettre de contenu illégal, diffamatoire, discriminatoire, violent, obscène, frauduleux ou violant les droits de tiers."
+          },
+          {
+            "type": "p",
+            "html": "4.6. Ne pas violer les droits d’auteur, marques, secrets commerciaux ou tout droit de propriété intellectuelle."
+          },
+          {
+            "type": "p",
+            "html": "4.7. Ne pas interférer avec le fonctionnement de la plateforme, des serveurs, de la base de données, de la sécurité ou de l’expérience des autres utilisateurs."
+          },
+          {
+            "type": "p",
+            "html": "4.8. En cas de violation, nous pouvons suspendre ou résilier votre accès, sans préjudice des mesures légales applicables."
+          }
+        ]
+      },
+      {
+        "title": "5. Compte utilisateur",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "5.1. Certaines fonctionnalités peuvent exiger la création d’un compte."
+          },
+          {
+            "type": "p",
+            "html": "5.2. Vous êtes responsable de fournir des données exactes, complètes et à jour."
+          },
+          {
+            "type": "p",
+            "html": "5.3. Vous êtes responsable de la confidentialité de vos identifiants et des activités réalisées sur votre compte."
+          },
+          {
+            "type": "p",
+            "html": "5.4. Si vous soupçonnez une utilisation non autorisée, informez-nous immédiatement via les canaux de contact de Biblia Crux."
+          },
+          {
+            "type": "p",
+            "html": "5.5. Nous pouvons suspendre ou clôturer des comptes en cas de violation de ces Conditions, de soupçon de fraude, de risque de sécurité ou d’exigence légale."
+          }
+        ]
+      },
+      {
+        "title": "6. Plans, abonnements, paiements et annulation",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "6.1. Biblia Crux peut proposer des plans payants (mensuels, annuels ou autres formats), avec des fonctionnalités premium décrites dans l’application elle-même."
+          },
+          {
+            "type": "p",
+            "html": "6.2. Le traitement des paiements est effectué par des tiers (par exemple Google Play, App Store et/ou passerelles partenaires), selon la plateforme utilisée."
+          },
+          {
+            "type": "p",
+            "html": "6.3. En souscrivant un abonnement, vous autorisez la facturation des montants, frais et taxes applicables selon les règles de la boutique/plateforme de paiement."
+          },
+          {
+            "type": "p",
+            "html": "6.4. Sauf disposition légale obligatoire contraire, les paiements sont non remboursables et non transférables."
+          },
+          {
+            "type": "p",
+            "html": "6.5. Les annulations et le renouvellement automatique suivent les règles de la boutique/plateforme où l’achat a été effectué. Vous êtes responsable de gérer l’annulation via le canal approprié (Google Play, App Store, etc.)."
+          },
+          {
+            "type": "p",
+            "html": "6.6. Nous pouvons refuser, suspendre ou annuler des transactions en cas de soupçon de fraude, d’incohérence de paiement ou d’exigence de conformité."
+          }
+        ]
+      },
+      {
+        "title": "7. Annonces et contenu sponsorisé",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "7.1. Les utilisateurs non premium peuvent voir des annonces."
+          },
+          {
+            "type": "p",
+            "html": "7.2. Biblia Crux peut utiliser des partenaires publicitaires tiers pour l’affichage et la mesure des annonces."
+          },
+          {
+            "type": "p",
+            "html": "7.3. L’interaction avec des annonces et sites tiers relève de la responsabilité de l’utilisateur et peut être soumise aux conditions et politiques de ces tiers."
+          },
+          {
+            "type": "p",
+            "html": "7.4. La présence d’annonces n’implique pas l’approbation par Biblia Crux des produits, services ou contenus annoncés."
+          }
+        ]
+      },
+      {
+        "title": "8. Liens et services tiers",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "8.1. Les Services peuvent contenir des liens vers des sites, services ou contenus tiers."
+          },
+          {
+            "type": "p",
+            "html": "8.2. Nous ne contrôlons ni ne garantissons le contenu, la disponibilité, la sécurité ou les politiques de tiers."
+          },
+          {
+            "type": "p",
+            "html": "8.3. L’utilisation de services tiers se fait à vos propres risques et peut être soumise à leurs propres conditions."
+          }
+        ]
+      },
+      {
+        "title": "9. Contenu, propriété intellectuelle et licences",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "9.1. Biblia Crux et ses concédants détiennent les droits sur l’application, la marque, la mise en page, le logiciel et les autres éléments protégés par la propriété intellectuelle, sauf indication contraire."
+          },
+          {
+            "type": "p",
+            "html": "9.2. Vous recevez une licence limitée, non exclusive, non transférable et révocable pour un usage personnel et non commercial des Services, conformément à ces Conditions."
+          },
+          {
+            "type": "p",
+            "html": "9.3. Il est interdit de copier, distribuer, sous-licencier, vendre, exploiter commercialement ou créer des œuvres dérivées sans autorisation préalable, sauf hypothèses légalement permises."
+          },
+          {
+            "type": "p",
+            "html": "9.4. Si vous envoyez du contenu à Biblia Crux (ex.: retours, suggestions, corrections, commentaires), vous nous accordez une licence non exclusive, mondiale, gratuite et sous-licenciable pour utiliser ce contenu dans l’exploitation, l’amélioration et la promotion des Services, dans le respect de la législation applicable."
+          }
+        ]
+      },
+      {
+        "title": "10. Exclusions de garantie",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "10.1. Les Services sont fournis « en l’état » et « selon disponibilité »."
+          },
+          {
+            "type": "p",
+            "html": "10.2. Nous ne garantissons pas que les Services répondront à toutes les attentes, fonctionneront sans interruption, seront totalement exempts de défauts ou que tout contenu sera toujours exact et à jour."
+          },
+          {
+            "type": "p",
+            "html": "10.3. Dans les limites légales, nous rejetons les garanties expresses ou implicites, y compris l’adéquation à une finalité particulière, la disponibilité continue et l’absence de violation."
+          }
+        ]
+      },
+      {
+        "title": "11. Limitation de responsabilité",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "11.1. Dans toute la mesure permise par la loi, Biblia Crux n’est pas responsable des dommages indirects, accessoires, spéciaux, punitifs, pertes de profits, pertes de données, pertes d’opportunité ou dommages consécutifs découlant de l’utilisation ou de l’impossibilité d’utiliser les Services."
+          },
+          {
+            "type": "p",
+            "html": "11.2. Lorsque la loi le permet, la responsabilité totale de Biblia Crux pour toute réclamation liée aux Services est limitée au montant effectivement payé par vous à Biblia Crux au cours des 12 (douze) mois précédant l’événement ayant donné lieu à la réclamation."
+          },
+          {
+            "type": "p",
+            "html": "11.3. Certaines juridictions ne permettent pas certaines limitations; dans ces cas, les limites maximales permises par la loi locale s’appliquent."
+          }
+        ]
+      },
+      {
+        "title": "12. Indemnisation",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "Vous acceptez d’indemniser et de dégager Biblia Crux, ses administrateurs, collaborateurs et partenaires de toute responsabilité pour pertes, dommages, coûts et dépenses (y compris honoraires raisonnables d’avocat) découlant de:"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "la violation de ces Conditions;",
+              "l’utilisation abusive des Services;",
+              "la violation de droits de tiers;",
+              "le contenu envoyé par vous."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "13. Suspension et résiliation",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "13.1. Nous pouvons suspendre ou résilier votre accès, totalement ou partiellement, à tout moment, pour des raisons de sécurité, fraude, violation de ces Conditions, exigence légale ou interruption de services."
+          },
+          {
+            "type": "p",
+            "html": "13.2. Vous pouvez cesser d’utiliser les Services à tout moment et demander la clôture de votre compte selon les canaux de support disponibles."
+          },
+          {
+            "type": "p",
+            "html": "13.3. La résiliation n’affecte pas les clauses qui, par leur nature, doivent rester valides (ex.: propriété intellectuelle, limitations de responsabilité, juridiction, indemnisation)."
+          }
+        ]
+      },
+      {
+        "title": "14. Confidentialité et protection des données",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "14.1. Le traitement des données personnelles suit la Politique de confidentialité de Biblia Crux."
+          },
+          {
+            "type": "p",
+            "html": "14.2. En utilisant les Services, vous reconnaissez que certaines données techniques et opérationnelles peuvent être traitées pour l’authentification, la sécurité, la maintenance, les analytics, la personnalisation et le fonctionnement des fonctionnalités."
+          },
+          {
+            "type": "p",
+            "html": "14.3. Les fonctionnalités de tiers (ex.: connexion sociale, abonnement, annonces) peuvent traiter des données conformément à leurs propres politiques."
+          }
+        ]
+      },
+      {
+        "title": "15. Modifications des Services et de ces Conditions",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "15.1. Nous pouvons modifier les Services et ces Conditions afin de refléter des changements techniques, juridiques, commerciaux, de sécurité ou réglementaires."
+          },
+          {
+            "type": "p",
+            "html": "15.2. La poursuite de l’utilisation après la publication des modifications implique l’acceptation de la version en vigueur des Conditions."
+          }
+        ]
+      },
+      {
+        "title": "16. Loi applicable et juridiction",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "16.1. Ces Conditions sont régies par les lois du pays/de l’État d’établissement de l’opérateur de Biblia Crux, sauf dispositions obligatoires de protection des consommateurs applicables à votre lieu de résidence."
+          },
+          {
+            "type": "p",
+            "html": "16.2. Le tribunal de la circonscription de [indiquer ville/État/pays] est élu, avec renonciation à tout autre, sauf règle légale obligatoire contraire."
+          }
+        ]
+      },
+      {
+        "title": "17. Contact",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "Les questions concernant ces Conditions peuvent être envoyées à:"
+          },
+          {
+            "type": "p",
+            "className": "contact",
+            "html": "{{emailLabel}} [indiquer l’e-mail officiel du support juridique]<br>{{responsibleLabel}} Biblia Crux"
+          }
+        ]
+      }
+    ]
+  },
+  "it": {
+    "htmlLang": "it",
+    "documentTitle": "Termini di Utilizzo — Biblia Crux",
+    "metaDescription": "Termini di Utilizzo di Biblia Crux.",
+    "pageTitle": "Termini di Utilizzo — Biblia Crux",
+    "lastUpdatedLabel": "Ultimo aggiornamento:",
+    "lastUpdated": "[inserire data]",
+    "settingsTitle": "Preferenze",
+    "labelAppLanguage": "Lingua principale dell’app",
+    "settingsUiLanguageHint": "Menu, pulsanti ed elenchi dei libri",
+    "languageEnglish": "Inglese",
+    "languagePortuguese": "Portoghese",
+    "languageSpanish": "Spagnolo",
+    "languageFrench": "Francese",
+    "languageItalian": "Italiano",
+    "languageTagalog": "Tagalog",
+    "emailLabel": "E-mail:",
+    "responsibleLabel": "Responsabile:",
+    "intro": [
+      "Leggi attentamente questi Termini di Utilizzo. Contengono informazioni importanti sui tuoi diritti e doveri, limitazioni di responsabilità, regole d’uso della piattaforma e modalità di risoluzione delle controversie.",
+      "Usando l’applicazione, il sito e i servizi di Biblia Crux (“Servizi”), dichiari di aver letto, compreso e accettato questi Termini. Se non sei d’accordo, non utilizzare i Servizi.",
+      "In questi Termini, “Biblia Crux”, “noi” o “nostro” si riferisce all’operatore dell’applicazione Biblia Crux."
+    ],
+    "sections": [
+      {
+        "title": "1. Accettazione dei Termini",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "1.1. L’accesso e l’uso dei Servizi di Biblia Crux sono soggetti a questi Termini e alla nostra Informativa sulla privacy."
+          },
+          {
+            "type": "p",
+            "html": "1.2. Continuando a usare i Servizi, confermi di aver letto e accettato questi Termini."
+          },
+          {
+            "type": "p",
+            "html": "1.3. Dichiari di avere la capacità legale per accettare questi Termini. Se sei minorenne secondo la legge locale, devi utilizzare i Servizi con autorizzazione e supervisione dei responsabili legali."
+          },
+          {
+            "type": "p",
+            "html": "1.4. Possiamo aggiornare periodicamente questi Termini. La versione aggiornata diventa valida dopo la pubblicazione nei canali ufficiali di Biblia Crux. L’uso continuato dei Servizi dopo l’aggiornamento rappresenta la tua accettazione dei nuovi Termini."
+          }
+        ]
+      },
+      {
+        "title": "2. Descrizione dei Servizi",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "2.1. Biblia Crux è un’applicazione per la lettura e lo studio di contenuti religiosi (inclusi la Bibbia e contenuti correlati), con funzionalità che possono includere:"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "lettura online e/o offline di contenuti;",
+              "account utente (facoltativo per alcune funzionalità);",
+              "funzionalità premium in abbonamento;",
+              "visualizzazione di annunci per utenti non premium;",
+              "integrazione con servizi di terzi."
+            ]
+          },
+          {
+            "type": "p",
+            "html": "2.2. Biblia Crux non offre consulenza medica, psicologica, finanziaria, legale o professionale di alcun tipo."
+          },
+          {
+            "type": "p",
+            "html": "2.3. I contenuti generati o assistiti da tecnologia IA sono informativi e possono contenere imprecisioni. Usa sempre discernimento e, quando necessario, consulta fonti ufficiali."
+          }
+        ]
+      },
+      {
+        "title": "3. Accesso, disponibilità e modifiche",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "3.1. La disponibilità dei Servizi dipende da infrastruttura tecnica, connettività, store di applicazioni e servizi di terzi, e possono verificarsi interruzioni, lentezza, manutenzione o indisponibilità temporanea."
+          },
+          {
+            "type": "p",
+            "html": "3.2. Non garantiamo un funzionamento continuo, ininterrotto o privo di errori."
+          },
+          {
+            "type": "p",
+            "html": "3.3. Possiamo modificare, sospendere o interrompere funzionalità, piani, risorse o parti dei Servizi, con o senza preavviso, anche per motivi tecnici, legali, di sicurezza o commerciali."
+          }
+        ]
+      },
+      {
+        "title": "4. Regole d’uso",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "Usando i Servizi, accetti di:"
+          },
+          {
+            "type": "p",
+            "html": "4.1. Rispettare leggi e regolamenti applicabili."
+          },
+          {
+            "type": "p",
+            "html": "4.2. Non usare i Servizi per finalità illecite, fraudolente, abusive o malevole."
+          },
+          {
+            "type": "p",
+            "html": "4.3. Non tentare di accedere senza autorizzazione a sistemi, dati, account o informazioni."
+          },
+          {
+            "type": "p",
+            "html": "4.4. Non praticare reverse engineering indebito, scraping abusivo, attacchi, iniezione di codice malevolo, distribuzione di virus, bot dannosi o qualsiasi azione che comprometta i Servizi."
+          },
+          {
+            "type": "p",
+            "html": "4.5. Non pubblicare o trasmettere contenuti illegali, diffamatori, discriminatori, violenti, osceni, fraudolenti o che violino diritti di terzi."
+          },
+          {
+            "type": "p",
+            "html": "4.6. Non violare diritti d’autore, marchi, segreti commerciali o qualsiasi diritto di proprietà intellettuale."
+          },
+          {
+            "type": "p",
+            "html": "4.7. Non interferire con il funzionamento della piattaforma, dei server, del database, della sicurezza o dell’esperienza di altri utenti."
+          },
+          {
+            "type": "p",
+            "html": "4.8. In caso di violazione, possiamo sospendere o chiudere il tuo accesso, senza pregiudizio delle misure legali applicabili."
+          }
+        ]
+      },
+      {
+        "title": "5. Account utente",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "5.1. Alcune funzionalità possono richiedere la registrazione di un account."
+          },
+          {
+            "type": "p",
+            "html": "5.2. Sei responsabile di fornire dati veritieri, completi e aggiornati."
+          },
+          {
+            "type": "p",
+            "html": "5.3. Sei responsabile di mantenere la riservatezza delle tue credenziali e delle attività svolte nel tuo account."
+          },
+          {
+            "type": "p",
+            "html": "5.4. Se sospetti un uso non autorizzato, informa immediatamente tramite i canali di contatto di Biblia Crux."
+          },
+          {
+            "type": "p",
+            "html": "5.5. Possiamo sospendere o chiudere account in caso di violazione di questi Termini, sospetto di frode, rischio di sicurezza o requisito legale."
+          }
+        ]
+      },
+      {
+        "title": "6. Piani, abbonamenti, pagamenti e cancellazione",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "6.1. Biblia Crux può offrire piani a pagamento (mensili, annuali o altri formati), con funzionalità premium descritte nell’applicazione stessa."
+          },
+          {
+            "type": "p",
+            "html": "6.2. L’elaborazione dei pagamenti è effettuata da terzi (ad esempio Google Play, App Store e/o gateway partner), secondo la piattaforma utilizzata."
+          },
+          {
+            "type": "p",
+            "html": "6.3. Sottoscrivendo un abbonamento, autorizzi l’addebito di importi, commissioni e imposte applicabili secondo le regole dello store/piattaforma di pagamento."
+          },
+          {
+            "type": "p",
+            "html": "6.4. Salvo disposizione legale obbligatoria contraria, i pagamenti non sono rimborsabili né trasferibili."
+          },
+          {
+            "type": "p",
+            "html": "6.5. Cancellazioni e rinnovo automatico seguono le regole dello store/piattaforma dove è stato effettuato l’acquisto. Sei responsabile di gestire la cancellazione nel canale corretto (Google Play, App Store ecc.)."
+          },
+          {
+            "type": "p",
+            "html": "6.6. Possiamo rifiutare, sospendere o cancellare transazioni in caso di sospetto di frode, incoerenza di pagamento o requisito di conformità."
+          }
+        ]
+      },
+      {
+        "title": "7. Annunci e contenuti sponsorizzati",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "7.1. Gli utenti non premium possono visualizzare annunci."
+          },
+          {
+            "type": "p",
+            "html": "7.2. Biblia Crux può usare partner pubblicitari di terzi per visualizzare e misurare annunci."
+          },
+          {
+            "type": "p",
+            "html": "7.3. L’interazione con annunci e siti di terzi è responsabilità dell’utente e può essere soggetta ai termini e alle politiche di tali terzi."
+          },
+          {
+            "type": "p",
+            "html": "7.4. La presenza di annunci non implica approvazione da parte di Biblia Crux di prodotti, servizi o contenuti annunciati."
+          }
+        ]
+      },
+      {
+        "title": "8. Link e servizi di terzi",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "8.1. I Servizi possono contenere link a siti, servizi o contenuti di terzi."
+          },
+          {
+            "type": "p",
+            "html": "8.2. Non controlliamo né garantiamo contenuto, disponibilità, sicurezza o politiche di terzi."
+          },
+          {
+            "type": "p",
+            "html": "8.3. L’uso di servizi di terzi è a tuo rischio e può essere soggetto a termini propri."
+          }
+        ]
+      },
+      {
+        "title": "9. Contenuto, proprietà intellettuale e licenze",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "9.1. Biblia Crux e i suoi licenzianti detengono i diritti sull’applicazione, marchio, layout, software e altri elementi protetti da proprietà intellettuale, salvo diversa indicazione."
+          },
+          {
+            "type": "p",
+            "html": "9.2. Ricevi una licenza limitata, non esclusiva, non trasferibile e revocabile per uso personale e non commerciale dei Servizi, secondo questi Termini."
+          },
+          {
+            "type": "p",
+            "html": "9.3. È vietato copiare, distribuire, sublicenziare, vendere, sfruttare commercialmente o creare opere derivate senza previa autorizzazione, salvo casi legalmente consentiti."
+          },
+          {
+            "type": "p",
+            "html": "9.4. Se invii contenuti a Biblia Crux (es.: feedback, suggerimenti, correzioni, commenti), ci concedi una licenza non esclusiva, mondiale, gratuita e sublicenziabile per usare tali contenuti nell’operazione, miglioramento e promozione dei Servizi, nel rispetto della legge applicabile."
+          }
+        ]
+      },
+      {
+        "title": "10. Esclusioni di garanzia",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "10.1. I Servizi sono forniti “così come sono” e “secondo disponibilità”."
+          },
+          {
+            "type": "p",
+            "html": "10.2. Non garantiamo che i Servizi soddisfino tutte le aspettative, funzionino senza interruzioni, siano completamente privi di errori o che ogni contenuto sia sempre esatto e aggiornato."
+          },
+          {
+            "type": "p",
+            "html": "10.3. Entro i limiti legali, escludiamo garanzie espresse o implicite, inclusa idoneità a uno scopo specifico, disponibilità continua e non violazione."
+          }
+        ]
+      },
+      {
+        "title": "11. Limitazione di responsabilità",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "11.1. Nella massima misura consentita dalla legge, Biblia Crux non è responsabile per danni indiretti, incidentali, speciali, punitivi, lucro cessante, perdita di dati, perdita di opportunità o danni consequenziali derivanti dall’uso o dall’impossibilità di usare i Servizi."
+          },
+          {
+            "type": "p",
+            "html": "11.2. Quando consentito dalla legge, la responsabilità totale di Biblia Crux per qualsiasi reclamo relativo ai Servizi è limitata all’importo effettivamente pagato da te a Biblia Crux nei 12 (dodici) mesi precedenti l’evento che ha originato il reclamo."
+          },
+          {
+            "type": "p",
+            "html": "11.3. Alcune giurisdizioni non consentono certe limitazioni; in tali casi si applicano i limiti massimi consentiti dalla legge locale."
+          }
+        ]
+      },
+      {
+        "title": "12. Indennizzo",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "Accetti di indennizzare e mantenere Biblia Crux, i suoi amministratori, collaboratori e partner indenni da responsabilità per perdite, danni, costi e spese (inclusi ragionevoli onorari legali) derivanti da:"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "violazione di questi Termini;",
+              "uso improprio dei Servizi;",
+              "violazione di diritti di terzi;",
+              "contenuto inviato da te."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "13. Sospensione e chiusura",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "13.1. Possiamo sospendere o chiudere il tuo accesso, totalmente o parzialmente, in qualsiasi momento, per motivi di sicurezza, frode, violazione di questi Termini, requisito legale o interruzione di servizi."
+          },
+          {
+            "type": "p",
+            "html": "13.2. Puoi smettere di usare i Servizi in qualsiasi momento e richiedere la chiusura dell’account secondo i canali di supporto disponibili."
+          },
+          {
+            "type": "p",
+            "html": "13.3. La chiusura non influisce sulle clausole che, per loro natura, devono rimanere valide (es.: proprietà intellettuale, limitazioni di responsabilità, foro, indennizzo)."
+          }
+        ]
+      },
+      {
+        "title": "14. Privacy e protezione dei dati",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "14.1. Il trattamento dei dati personali segue l’Informativa sulla privacy di Biblia Crux."
+          },
+          {
+            "type": "p",
+            "html": "14.2. Usando i Servizi, riconosci che determinati dati tecnici e operativi possono essere trattati per autenticazione, sicurezza, manutenzione, analytics, personalizzazione e funzionamento delle funzionalità."
+          },
+          {
+            "type": "p",
+            "html": "14.3. Funzionalità di terzi (es.: login social, abbonamento, annunci) possono trattare dati secondo le proprie politiche."
+          }
+        ]
+      },
+      {
+        "title": "15. Modifiche ai Servizi e a questi Termini",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "15.1. Possiamo modificare i Servizi e questi Termini per riflettere cambiamenti tecnici, legali, commerciali, di sicurezza o regolatori."
+          },
+          {
+            "type": "p",
+            "html": "15.2. La continuazione dell’uso dopo la pubblicazione delle modifiche implica accettazione della versione vigente dei Termini."
+          }
+        ]
+      },
+      {
+        "title": "16. Legge applicabile e foro",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "16.1. Questi Termini sono regolati dalle leggi del paese/stato di stabilimento dell’operatore di Biblia Crux, salvo disposizioni obbligatorie di protezione del consumatore applicabili al tuo luogo di residenza."
+          },
+          {
+            "type": "p",
+            "html": "16.2. È eletto il foro della circoscrizione di [inserire città/stato/paese], con rinuncia a qualsiasi altro, salvo norma legale obbligatoria contraria."
+          }
+        ]
+      },
+      {
+        "title": "17. Contatto",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "Domande su questi Termini possono essere inviate a:"
+          },
+          {
+            "type": "p",
+            "className": "contact",
+            "html": "{{emailLabel}} [inserire e-mail ufficiale del supporto legale]<br>{{responsibleLabel}} Biblia Crux"
+          }
+        ]
+      }
+    ]
+  },
+  "tl": {
+    "htmlLang": "tl",
+    "documentTitle": "Mga Tuntunin sa Paggamit — Biblia Crux",
+    "metaDescription": "Mga Tuntunin sa Paggamit ng Biblia Crux.",
+    "pageTitle": "Mga Tuntunin sa Paggamit — Biblia Crux",
+    "lastUpdatedLabel": "Huling na-update:",
+    "lastUpdated": "[ilagay ang petsa]",
+    "settingsTitle": "Mga kagustuhan",
+    "labelAppLanguage": "Pangunahing wika ng app",
+    "settingsUiLanguageHint": "Mga menu, button, at listahan ng mga aklat",
+    "languageEnglish": "Ingles",
+    "languagePortuguese": "Portuges",
+    "languageSpanish": "Espanyol",
+    "languageFrench": "Pranses",
+    "languageItalian": "Italyano",
+    "languageTagalog": "Tagalog",
+    "emailLabel": "E-mail:",
+    "responsibleLabel": "Responsable:",
+    "intro": [
+      "Basahin nang mabuti ang Mga Tuntunin sa Paggamit na ito. Naglalaman ang mga ito ng mahalagang impormasyon tungkol sa iyong mga karapatan at tungkulin, limitasyon ng pananagutan, mga patakaran sa paggamit ng platform, at paraan ng pagresolba ng mga alitan.",
+      "Sa paggamit ng application, website, at services ng Biblia Crux (“Services”), ipinapahayag mong nabasa, naunawaan, at sinasang-ayunan mo ang mga Tuntuning ito. Kung hindi ka sumasang-ayon, huwag gamitin ang Services.",
+      "Sa mga Tuntuning ito, ang “Biblia Crux”, “kami”, o “amin” ay tumutukoy sa operator ng Biblia Crux application."
+    ],
+    "sections": [
+      {
+        "title": "1. Pagtanggap sa mga Tuntunin",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "1.1. Ang access at paggamit ng Services ng Biblia Crux ay sakop ng mga Tuntuning ito at ng aming Patakaran sa Privacy."
+          },
+          {
+            "type": "p",
+            "html": "1.2. Sa patuloy na paggamit ng Services, kinukumpirma mong nabasa at tinanggap mo ang mga Tuntuning ito."
+          },
+          {
+            "type": "p",
+            "html": "1.3. Ipinapahayag mong mayroon kang legal na kakayahang tanggapin ang mga Tuntuning ito. Kung ikaw ay menor de edad ayon sa lokal na batas, dapat mong gamitin ang Services na may pahintulot at gabay ng iyong legal guardians."
+          },
+          {
+            "type": "p",
+            "html": "1.4. Maaari naming i-update ang mga Tuntuning ito paminsan-minsan. Magiging epektibo ang na-update na bersyon matapos itong ilathala sa opisyal na channels ng Biblia Crux. Ang patuloy na paggamit ng Services pagkatapos ng update ay nangangahulugan ng iyong pagsang-ayon sa bagong Tuntunin."
+          }
+        ]
+      },
+      {
+        "title": "2. Paglalarawan ng Services",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "2.1. Ang Biblia Crux ay isang application para sa pagbabasa at pag-aaral ng religious content (kabilang ang Bibliya at kaugnay na nilalaman), na maaaring may kasamang features tulad ng:"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "online at/o offline na pagbabasa ng content;",
+              "user account (opsyonal para sa ilang features);",
+              "premium subscription features;",
+              "pagpapakita ng ads para sa non-premium users;",
+              "integration sa third-party services."
+            ]
+          },
+          {
+            "type": "p",
+            "html": "2.2. Hindi nagbibigay ang Biblia Crux ng medical, psychological, financial, legal, o professional advice ng anumang uri."
+          },
+          {
+            "type": "p",
+            "html": "2.3. Ang content na ginawa o tinulungan ng AI technology ay impormatibo at maaaring may inaccuracies. Laging gumamit ng discernment at, kung kinakailangan, sumangguni sa official sources."
+          }
+        ]
+      },
+      {
+        "title": "3. Access, availability, at mga pagbabago",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "3.1. Ang availability ng Services ay nakadepende sa technical infrastructure, connectivity, app stores, at third-party services, kaya maaaring magkaroon ng interruptions, bagal, maintenance, o temporary unavailability."
+          },
+          {
+            "type": "p",
+            "html": "3.2. Hindi namin ginagarantiya ang tuloy-tuloy, walang patid, o error-free na operasyon."
+          },
+          {
+            "type": "p",
+            "html": "3.3. Maaari naming baguhin, suspendihin, o ihinto ang features, plans, resources, o bahagi ng Services, may abiso man o wala, kabilang ang dahil sa technical, legal, security, o commercial reasons."
+          }
+        ]
+      },
+      {
+        "title": "4. Mga patakaran sa paggamit",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "Sa paggamit ng Services, sumasang-ayon kang:"
+          },
+          {
+            "type": "p",
+            "html": "4.1. Sumunod sa naaangkop na laws at regulations."
+          },
+          {
+            "type": "p",
+            "html": "4.2. Huwag gamitin ang Services para sa illegal, fraudulent, abusive, o malicious purposes."
+          },
+          {
+            "type": "p",
+            "html": "4.3. Huwag subukang i-access ang systems, data, accounts, o information nang walang authorization."
+          },
+          {
+            "type": "p",
+            "html": "4.4. Huwag magsagawa ng improper reverse engineering, abusive scraping, attack, malicious code injection, virus distribution, harmful bots, o anumang aksyon na makakapinsala sa Services."
+          },
+          {
+            "type": "p",
+            "html": "4.5. Huwag mag-publish o magpadala ng illegal, defamatory, discriminatory, violent, obscene, fraudulent content, o content na lumalabag sa rights ng third parties."
+          },
+          {
+            "type": "p",
+            "html": "4.6. Huwag lumabag sa copyrights, trademarks, trade secrets, o anumang intellectual property rights."
+          },
+          {
+            "type": "p",
+            "html": "4.7. Huwag gambalain ang operasyon ng platform, servers, database, security, o karanasan ng ibang users."
+          },
+          {
+            "type": "p",
+            "html": "4.8. Sa kaso ng paglabag, maaari naming suspendihin o wakasan ang iyong access, nang hindi naapektuhan ang anumang legal measures na maaari naming gawin."
+          }
+        ]
+      },
+      {
+        "title": "5. User account",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "5.1. Maaaring kailanganin ng ilang features ang account registration."
+          },
+          {
+            "type": "p",
+            "html": "5.2. Responsable kang magbigay ng totoo, kumpleto, at updated na data."
+          },
+          {
+            "type": "p",
+            "html": "5.3. Responsable kang panatilihing confidential ang iyong credentials at sa activities na ginagawa sa iyong account."
+          },
+          {
+            "type": "p",
+            "html": "5.4. Kung may hinala kang unauthorized use, agad na ipaalam sa contact channels ng Biblia Crux."
+          },
+          {
+            "type": "p",
+            "html": "5.5. Maaari naming suspendihin o isara ang accounts kung may paglabag sa mga Tuntuning ito, hinalang fraud, security risk, o legal requirement."
+          }
+        ]
+      },
+      {
+        "title": "6. Plans, subscriptions, payments, at cancellation",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "6.1. Maaaring mag-alok ang Biblia Crux ng paid plans (monthly, annual, o iba pang format), na may premium features na inilalarawan sa mismong application."
+          },
+          {
+            "type": "p",
+            "html": "6.2. Ang payment processing ay ginagawa ng third parties (halimbawa, Google Play, App Store, at/o partner gateways), ayon sa platform na ginamit."
+          },
+          {
+            "type": "p",
+            "html": "6.3. Sa pagkuha ng subscription, pinapayagan mo ang pagsingil ng applicable amounts, fees, at taxes ayon sa rules ng store/payment platform."
+          },
+          {
+            "type": "p",
+            "html": "6.4. Maliban kung may mandatory legal provision na salungat, ang payments ay non-refundable at non-transferable."
+          },
+          {
+            "type": "p",
+            "html": "6.5. Ang cancellations at automatic renewal ay sumusunod sa rules ng store/platform kung saan ginawa ang purchase. Responsable kang pamahalaan ang cancellation sa tamang channel (Google Play, App Store, atbp.)."
+          },
+          {
+            "type": "p",
+            "html": "6.6. Maaari naming tanggihan, suspendihin, o kanselahin ang transactions kung may hinalang fraud, payment inconsistency, o compliance requirement."
+          }
+        ]
+      },
+      {
+        "title": "7. Ads at sponsored content",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "7.1. Maaaring makakita ng ads ang non-premium users."
+          },
+          {
+            "type": "p",
+            "html": "7.2. Maaaring gumamit ang Biblia Crux ng third-party advertising partners para sa pagpapakita at pagsukat ng ads."
+          },
+          {
+            "type": "p",
+            "html": "7.3. Ang interaction sa ads at third-party websites ay responsibilidad ng user at maaaring sakop ng terms at policies ng mga third party na iyon."
+          },
+          {
+            "type": "p",
+            "html": "7.4. Ang pagkakaroon ng ads ay hindi nangangahulugan ng endorsement ng Biblia Crux sa products, services, o content na ina-advertise."
+          }
+        ]
+      },
+      {
+        "title": "8. Third-party links at services",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "8.1. Maaaring maglaman ang Services ng links papunta sa third-party websites, services, o content."
+          },
+          {
+            "type": "p",
+            "html": "8.2. Hindi namin kontrolado o ginagarantiya ang third-party content, availability, security, o policies."
+          },
+          {
+            "type": "p",
+            "html": "8.3. Ang paggamit ng third-party services ay sariling risk mo at maaaring sakop ng sarili nilang terms."
+          }
+        ]
+      },
+      {
+        "title": "9. Content, intellectual property, at licenses",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "9.1. Ang Biblia Crux at mga licensor nito ay may rights sa application, brand, layout, software, at iba pang elements na protektado ng intellectual property, maliban kung iba ang nakasaad."
+          },
+          {
+            "type": "p",
+            "html": "9.2. Binibigyan ka ng limited, non-exclusive, non-transferable, at revocable license para sa personal at non-commercial na paggamit ng Services, ayon sa mga Tuntuning ito."
+          },
+          {
+            "type": "p",
+            "html": "9.3. Ipinagbabawal ang pagkopya, pamamahagi, sublicensing, pagbebenta, commercial exploitation, o paggawa ng derivative works nang walang prior authorization, maliban kung pinapayagan ng batas."
+          },
+          {
+            "type": "p",
+            "html": "9.4. Kung magpapadala ka ng content sa Biblia Crux (hal.: feedback, suggestions, corrections, comments), binibigyan mo kami ng non-exclusive, worldwide, free, at sublicensable license para gamitin ang content na iyon sa operation, improvement, at promotion ng Services, habang sumusunod sa applicable law."
+          }
+        ]
+      },
+      {
+        "title": "10. Warranty disclaimers",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "10.1. Ang Services ay ibinibigay “as is” at “as available”."
+          },
+          {
+            "type": "p",
+            "html": "10.2. Hindi namin ginagarantiya na matutugunan ng Services ang lahat ng expectations, gagana nang walang interruptions, magiging ganap na free of failures, o laging exact at updated ang lahat ng content."
+          },
+          {
+            "type": "p",
+            "html": "10.3. Sa loob ng legal limits, tinatanggihan namin ang express o implied warranties, kabilang ang fitness for a particular purpose, continuous availability, at non-infringement."
+          }
+        ]
+      },
+      {
+        "title": "11. Limitasyon ng pananagutan",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "11.1. Sa pinakamalawak na pinapayagan ng batas, hindi mananagot ang Biblia Crux para sa indirect, incidental, special, punitive damages, lost profits, data loss, loss of opportunity, o consequential damages na nagmumula sa paggamit o kawalan ng kakayahang gamitin ang Services."
+          },
+          {
+            "type": "p",
+            "html": "11.2. Kapag pinapayagan ng batas, ang kabuuang pananagutan ng Biblia Crux para sa anumang claims kaugnay ng Services ay limitado sa halagang aktwal mong binayaran sa Biblia Crux sa loob ng 12 (labindalawang) buwan bago ang event na naging sanhi ng claim."
+          },
+          {
+            "type": "p",
+            "html": "11.3. May ilang jurisdictions na hindi pumapayag sa ilang limitations; sa mga kasong iyon, ang pinakamataas na limits na pinapayagan ng lokal na batas ang ilalapat."
+          }
+        ]
+      },
+      {
+        "title": "12. Indemnification",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "Sumasang-ayon kang indemnify at panatilihing walang pananagutan ang Biblia Crux, mga administrator, collaborators, at partners nito mula sa losses, damages, costs, at expenses (kabilang ang reasonable attorneys’ fees) na nagmumula sa:"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "paglabag sa mga Tuntuning ito;",
+              "maling paggamit ng Services;",
+              "paglabag sa rights ng third parties;",
+              "content na ipinadala mo."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "13. Suspension at termination",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "13.1. Maaari naming suspendihin o wakasan ang iyong access, buo man o bahagi, anumang oras, dahil sa security, fraud, paglabag sa mga Tuntuning ito, legal requirement, o discontinuation ng services."
+          },
+          {
+            "type": "p",
+            "html": "13.2. Maaari kang tumigil sa paggamit ng Services anumang oras at humiling ng account closure ayon sa available support channels."
+          },
+          {
+            "type": "p",
+            "html": "13.3. Hindi naaapektuhan ng termination ang clauses na, dahil sa kanilang nature, dapat manatiling valid (hal.: intellectual property, limitations of liability, venue, indemnification)."
+          }
+        ]
+      },
+      {
+        "title": "14. Privacy at data protection",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "14.1. Ang pagproseso ng personal data ay sumusunod sa Privacy Policy ng Biblia Crux."
+          },
+          {
+            "type": "p",
+            "html": "14.2. Sa paggamit ng Services, kinikilala mong maaaring iproseso ang ilang technical at operational data para sa authentication, security, maintenance, analytics, personalization, at operation ng features."
+          },
+          {
+            "type": "p",
+            "html": "14.3. Ang third-party features (hal.: social login, subscription, ads) ay maaaring magproseso ng data ayon sa sarili nilang policies."
+          }
+        ]
+      },
+      {
+        "title": "15. Mga pagbabago sa Services at sa mga Tuntuning ito",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "15.1. Maaari naming baguhin ang Services at ang mga Tuntuning ito upang ipakita ang technical, legal, commercial, security, o regulatory changes."
+          },
+          {
+            "type": "p",
+            "html": "15.2. Ang patuloy na paggamit pagkatapos mailathala ang changes ay nangangahulugan ng pagtanggap sa kasalukuyang bersyon ng Terms."
+          }
+        ]
+      },
+      {
+        "title": "16. Applicable law at venue",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "16.1. Ang mga Tuntuning ito ay pinamamahalaan ng laws ng country/state kung saan naka-establish ang operator ng Biblia Crux, maliban sa mandatory consumer protection provisions na naaangkop sa iyong lugar ng tirahan."
+          },
+          {
+            "type": "p",
+            "html": "16.2. Pinipili ang venue ng district ng [ilagay ang city/state/country], na may waiver sa iba pa, maliban kung may mandatory legal rule na salungat."
+          }
+        ]
+      },
+      {
+        "title": "17. Contact",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "Ang mga tanong tungkol sa mga Tuntuning ito ay maaaring ipadala sa:"
+          },
+          {
+            "type": "p",
+            "className": "contact",
+            "html": "{{emailLabel}} [ilagay ang official legal support email]<br>{{responsibleLabel}} Biblia Crux"
+          }
+        ]
+      }
+    ]
+  }
+};
+
+    const languageNameKeys = {
+      en: "languageEnglish",
+      pt: "languagePortuguese",
+      es: "languageSpanish",
+      fr: "languageFrench",
+      it: "languageItalian",
+      tl: "languageTagalog"
+    };
+
+    let uiLocale = getInitialLocale();
+
+    const els = {
+      pageTitle: document.getElementById("pageTitle"),
+      lastUpdatedLabel: document.getElementById("lastUpdatedLabel"),
+      lastUpdated: document.getElementById("lastUpdated"),
+      settingsTitle: document.getElementById("settingsTitle"),
+      languageSelectLabel: document.getElementById("languageSelectLabel"),
+      languageSelectHint: document.getElementById("languageSelectHint"),
+      languageSelect: document.getElementById("languageSelect"),
+      introContent: document.getElementById("introContent"),
+      termsContent: document.getElementById("termsContent")
+    };
+
+    function getInitialLocale() {
+      const stored = localStorage.getItem(storageKey);
+      if (supportedLocales.includes(stored)) return stored;
+
+      const browserLocale = (navigator.language || "pt").slice(0, 2).toLowerCase();
+      if (supportedLocales.includes(browserLocale)) return browserLocale;
+
+      return "pt";
+    }
+
+    function t(key) {
+      return translations[uiLocale]?.[key] ?? translations.en[key] ?? key;
+    }
+
+    function localizedLanguageName(localeCode) {
+      const key = languageNameKeys[localeCode];
+      return key ? t(key) : localeCode;
+    }
+
+    function interpolate(html) {
+      return html
+        .replaceAll("{{emailLabel}}", t("emailLabel"))
+        .replaceAll("{{responsibleLabel}}", t("responsibleLabel"));
+    }
+
+    function renderLanguageOptions() {
+      els.languageSelect.innerHTML = "";
+
+      supportedLocales.forEach((localeCode) => {
+        const option = document.createElement("option");
+        option.value = localeCode;
+        option.textContent = localizedLanguageName(localeCode);
+        option.selected = localeCode === uiLocale;
+        els.languageSelect.appendChild(option);
+      });
+    }
+
+    function renderIntro() {
+      els.introContent.innerHTML = "";
+      const intro = translations[uiLocale]?.intro ?? translations.en.intro;
+
+      intro.forEach((paragraphText) => {
+        const p = document.createElement("p");
+        p.textContent = paragraphText;
+        els.introContent.appendChild(p);
+      });
+    }
+
+    function renderBlocks(blocks, parent) {
+      blocks.forEach((block) => {
+        if (block.type === "p") {
+          const p = document.createElement("p");
+          if (block.className) p.className = block.className;
+          p.innerHTML = interpolate(block.html);
+          parent.appendChild(p);
+          return;
+        }
+
+        if (block.type === "ul") {
+          const ul = document.createElement("ul");
+          block.items.forEach((item) => {
+            const li = document.createElement("li");
+            li.innerHTML = interpolate(item);
+            ul.appendChild(li);
+          });
+          parent.appendChild(ul);
+        }
+      });
+    }
+
+    function renderTermsContent() {
+      els.termsContent.innerHTML = "";
+
+      const localeSections = translations[uiLocale]?.sections ?? translations.en.sections;
+
+      localeSections.forEach((section) => {
+        const sectionElement = document.createElement("section");
+        const h2 = document.createElement("h2");
+        h2.textContent = section.title;
+        sectionElement.appendChild(h2);
+        renderBlocks(section.blocks, sectionElement);
+        els.termsContent.appendChild(sectionElement);
+      });
+    }
+
+    function render() {
+      document.documentElement.lang = t("htmlLang");
+      document.title = t("documentTitle");
+
+      const description = document.querySelector('meta[name="description"]');
+      if (description) description.setAttribute("content", t("metaDescription"));
+
+      els.pageTitle.textContent = t("pageTitle");
+      els.lastUpdatedLabel.textContent = t("lastUpdatedLabel");
+      els.lastUpdated.textContent = t("lastUpdated");
+      els.settingsTitle.textContent = t("settingsTitle");
+      els.languageSelectLabel.textContent = t("labelAppLanguage");
+      els.languageSelectHint.textContent = t("settingsUiLanguageHint");
+      els.languageSelect.setAttribute("aria-label", t("labelAppLanguage"));
+
+      renderLanguageOptions();
+      renderIntro();
+      renderTermsContent();
+    }
+
+    els.languageSelect.addEventListener("change", (event) => {
+      uiLocale = event.target.value;
+      localStorage.setItem(storageKey, uiLocale);
+      render();
+    });
+
+    render();
+  </script>
+</body>
+</html>
