@@ -73,6 +73,42 @@
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
+    .preferences-card {
+      margin-top: 30px;
+      padding: clamp(18px, 4vw, 28px);
+      border: 1px solid var(--border);
+      border-radius: calc(var(--radius) - 6px);
+      background: #fffaf4;
+      text-align: left;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .preferences-card h2 {
+      margin: 0 0 18px;
+      font-size: clamp(1.2rem, 2.8vw, 1.65rem);
+      color: var(--accent-dark);
+    }
+
+    .setting-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .setting-copy {
+      min-width: 0;
+    }
+
+    .setting-copy p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-family: inherit;
+      font-size: 0.95rem;
+      line-height: 1.45;
+      text-align: left;
+    }
+
     label {
       color: var(--muted);
       font-size: 0.98rem;
@@ -163,7 +199,8 @@
         border-radius: 18px;
       }
 
-      .language-panel {
+      .language-panel,
+      .setting-row {
         align-items: stretch;
         flex-direction: column;
       }
@@ -181,17 +218,16 @@
       <p class="app-kicker">Biblia Crux</p>
       <h1 id="pageTitle">About Biblia Crux</h1>
 
-      <div class="language-panel">
-        <label id="languageLabel" for="languageSelect">Choose language</label>
-        <select id="languageSelect" aria-label="Choose language">
-          <option value="en" selected>English</option>
-          <option value="pt">Português</option>
-          <option value="fr">Français</option>
-          <option value="it">Italiano</option>
-          <option value="es">Español</option>
-          <option value="tl">Tagalog</option>
-        </select>
-      </div>
+      <section class="preferences-card" aria-labelledby="preferencesTitle">
+        <h2 id="preferencesTitle">Preferences</h2>
+        <div class="setting-row">
+          <div class="setting-copy">
+            <label id="languageLabel" for="languageSelect">App primary language</label>
+            <p id="languageHint">Menus, buttons, and book lists</p>
+          </div>
+          <select id="languageSelect" aria-labelledby="languageLabel" autocomplete="off"></select>
+        </div>
+      </section>
     </header>
 
     <article id="aboutContent" class="content-card"></article>
@@ -727,28 +763,120 @@
   }
 };
 
-    const languageLabels = {
-      en: "Choose language",
-      pt: "Escolha o idioma",
-      fr: "Choisir la langue",
-      it: "Scegli la lingua",
-      es: "Elige el idioma",
-      tl: "Pumili ng wika"
+    const supportedLocales = ["en", "pt", "es", "fr", "it", "tl"];
+    const storageKey = "uiLocale";
+
+    const translations = {
+      en: {
+        preferencesTitle: "Preferences",
+        labelAppLanguage: "App primary language",
+        settingsUiLanguageHint: "Menus, buttons, and book lists",
+        languageEnglish: "English",
+        languagePortuguese: "Portuguese",
+        languageSpanish: "Spanish",
+        languageFrench: "French",
+        languageItalian: "Italian",
+        languageTagalog: "Tagalog"
+      },
+      pt: {
+        preferencesTitle: "Preferências",
+        labelAppLanguage: "Idioma principal do app",
+        settingsUiLanguageHint: "Menus, botões e listas de livros",
+        languageEnglish: "Inglês",
+        languagePortuguese: "Português",
+        languageSpanish: "Espanhol",
+        languageFrench: "Francês",
+        languageItalian: "Italiano",
+        languageTagalog: "Tagalo"
+      },
+      es: {
+        preferencesTitle: "Preferencias",
+        labelAppLanguage: "Idioma principal de la app",
+        settingsUiLanguageHint: "Menús, botones y listas de libros",
+        languageEnglish: "Inglés",
+        languagePortuguese: "Portugués",
+        languageSpanish: "Español",
+        languageFrench: "Francés",
+        languageItalian: "Italiano",
+        languageTagalog: "Tagalo"
+      },
+      fr: {
+        preferencesTitle: "Préférences",
+        labelAppLanguage: "Langue principale de l’app",
+        settingsUiLanguageHint: "Menus, boutons et listes de livres",
+        languageEnglish: "Anglais",
+        languagePortuguese: "Portugais",
+        languageSpanish: "Espagnol",
+        languageFrench: "Français",
+        languageItalian: "Italien",
+        languageTagalog: "Tagalog"
+      },
+      it: {
+        preferencesTitle: "Preferenze",
+        labelAppLanguage: "Lingua principale dell’app",
+        settingsUiLanguageHint: "Menu, pulsanti ed elenchi dei libri",
+        languageEnglish: "Inglese",
+        languagePortuguese: "Portoghese",
+        languageSpanish: "Spagnolo",
+        languageFrench: "Francese",
+        languageItalian: "Italiano",
+        languageTagalog: "Tagalog"
+      },
+      tl: {
+        preferencesTitle: "Mga kagustuhan",
+        labelAppLanguage: "Pangunahing wika ng app",
+        settingsUiLanguageHint: "Mga menu, button, at listahan ng mga aklat",
+        languageEnglish: "Ingles",
+        languagePortuguese: "Portuges",
+        languageSpanish: "Espanyol",
+        languageFrench: "Pranses",
+        languageItalian: "Italyano",
+        languageTagalog: "Tagalog"
+      }
+    };
+
+    const languageNameKeys = {
+      en: "languageEnglish",
+      pt: "languagePortuguese",
+      es: "languageSpanish",
+      fr: "languageFrench",
+      it: "languageItalian",
+      tl: "languageTagalog"
     };
 
     const htmlLangMap = {
       en: "en",
       pt: "pt-BR",
+      es: "es",
       fr: "fr",
       it: "it",
-      es: "es",
       tl: "tl"
     };
 
+    let uiLocale = getInitialLocale();
+
     const languageSelect = document.getElementById("languageSelect");
     const pageTitle = document.getElementById("pageTitle");
+    const preferencesTitle = document.getElementById("preferencesTitle");
     const languageLabel = document.getElementById("languageLabel");
+    const languageHint = document.getElementById("languageHint");
     const aboutContent = document.getElementById("aboutContent");
+
+    function getInitialLocale() {
+      const savedLocale = localStorage.getItem(storageKey);
+      if (supportedLocales.includes(savedLocale)) return savedLocale;
+      if (supportedLocales.includes(aboutData.defaultLanguage)) return aboutData.defaultLanguage;
+      return "en";
+    }
+
+    function t(key) {
+      return translations[uiLocale]?.[key] ?? translations.en[key] ?? key;
+    }
+
+    function localizedLanguageName(localeCode) {
+      const key = languageNameKeys[localeCode];
+      return key ? t(key) : localeCode;
+    }
 
     function createParagraph(text) {
       const paragraph = document.createElement("p");
@@ -756,13 +884,27 @@
       return paragraph;
     }
 
-    function renderAbout(languageCode) {
-      const selectedLanguage = aboutData.languages[languageCode] || aboutData.languages[aboutData.defaultLanguage];
+    function renderLanguageOptions() {
+      languageSelect.innerHTML = "";
 
-      document.documentElement.lang = htmlLangMap[languageCode] || languageCode;
+      supportedLocales.forEach((localeCode) => {
+        const option = document.createElement("option");
+        option.value = localeCode;
+        option.textContent = localizedLanguageName(localeCode);
+        option.selected = localeCode === uiLocale;
+        languageSelect.appendChild(option);
+      });
+    }
+
+    function renderAbout() {
+      const selectedLanguage = aboutData.languages[uiLocale] || aboutData.languages.en || aboutData.languages[aboutData.defaultLanguage];
+
+      document.documentElement.lang = htmlLangMap[uiLocale] || uiLocale;
       document.title = selectedLanguage.title;
       pageTitle.textContent = selectedLanguage.title;
-      languageLabel.textContent = languageLabels[languageCode] || languageLabels.en;
+      preferencesTitle.textContent = t("preferencesTitle");
+      languageLabel.textContent = t("labelAppLanguage");
+      languageHint.textContent = t("settingsUiLanguageHint");
 
       aboutContent.innerHTML = "";
 
@@ -783,11 +925,18 @@
       });
     }
 
+    function render() {
+      renderLanguageOptions();
+      renderAbout();
+    }
+
     languageSelect.addEventListener("change", (event) => {
-      renderAbout(event.target.value);
+      uiLocale = event.target.value;
+      localStorage.setItem(storageKey, uiLocale);
+      render();
     });
 
-    renderAbout("en");
+    render();
   </script>
 </body>
 </html>
