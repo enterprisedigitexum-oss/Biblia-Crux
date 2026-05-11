@@ -1,0 +1,722 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Account Deletion — Biblia Crux</title>
+  <meta name="description" content="Account and data deletion instructions for Biblia Crux." />
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #ffffff;
+      --text: #1f2937;
+      --muted: #4b5563;
+      --card: #f8fafc;
+      --border: #e5e7eb;
+      --accent: #7c2d12;
+      --focus: rgba(124, 45, 18, 0.18);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b0f17;
+        --text: #e5e7eb;
+        --muted: #9ca3af;
+        --card: #111827;
+        --border: #1f2937;
+        --accent: #f59e0b;
+        --focus: rgba(245, 158, 11, 0.20);
+      }
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+    }
+    .wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 24px 16px 56px;
+    }
+    header,
+    .preferences-card,
+    .appendix {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 1.8rem;
+      line-height: 1.25;
+    }
+    h2 {
+      margin-top: 28px;
+      font-size: 1.2rem;
+      color: var(--accent);
+    }
+    h3 {
+      margin: 18px 0 8px;
+      font-size: 1rem;
+      color: var(--accent);
+    }
+    .preferences-card h2,
+    .appendix h2 {
+      margin-top: 0;
+    }
+    p, li {
+      color: var(--text);
+    }
+    #content p,
+    #content li,
+    .appendix li {
+      text-align: justify;
+      text-justify: inter-word;
+      hyphens: auto;
+    }
+    .meta {
+      color: var(--muted);
+      margin: 2px 0;
+      font-size: 0.95rem;
+    }
+    ul, ol {
+      padding-left: 1.1rem;
+    }
+    .contact {
+      font-weight: 600;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .language-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(210px, 280px);
+      gap: 16px;
+      align-items: center;
+    }
+    .language-label {
+      display: block;
+      color: var(--text);
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+    select {
+      width: 100%;
+      min-height: 44px;
+      color: var(--text);
+      background-color: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 12px;
+      font: inherit;
+    }
+    select:focus {
+      outline: 3px solid var(--focus);
+      border-color: var(--accent);
+    }
+    @media (max-width: 640px) {
+      .language-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <h1 id="pageTitle"></h1>
+      <p class="meta"><strong id="effectiveDateLabel"></strong> <span id="effectiveDate"></span></p>
+      <p class="meta"><strong id="lastUpdatedLabel"></strong> <span id="lastUpdated"></span></p>
+      <p class="meta"><strong id="applicationLabel"></strong> <span id="applicationName"></span></p>
+      <p class="meta"><strong id="developerLabel"></strong> <span id="developerName"></span></p>
+      <p class="meta"><strong id="contactLabel"></strong> <a href="mailto:enterprisedigitexum@gmail.com">enterprisedigitexum@gmail.com</a></p>
+    </header>
+
+    <section class="preferences-card" aria-labelledby="settingsTitle">
+      <h2 id="settingsTitle"></h2>
+      <div class="language-row">
+        <label id="languageSelectLabel" class="language-label" for="languageSelect"></label>
+        <select id="languageSelect"></select>
+      </div>
+    </section>
+
+    <article id="content"></article>
+
+    <section class="appendix" aria-labelledby="appendixTitle">
+      <h2 id="appendixTitle"></h2>
+      <ul id="appendixLinks"></ul>
+    </section>
+  </main>
+
+  <script>
+    const supportedLocales = ["en", "pt", "es", "fr", "it", "tl"];
+    const storageKey = "uiLocaleAccountDeletion";
+
+    const translations = {
+      en: {
+        htmlLang: "en",
+        documentTitle: "Account Deletion — Biblia Crux",
+        metaDescription: "How to request account and data deletion in Biblia Crux.",
+        pageTitle: "Account and Data Deletion — Biblia Crux",
+        effectiveDateLabel: "Effective date:",
+        lastUpdatedLabel: "Last updated:",
+        applicationLabel: "Application:",
+        developerLabel: "Developer:",
+        contactLabel: "Privacy contact:",
+        effectiveDate: "May 10, 2026",
+        lastUpdated: "May 10, 2026",
+        applicationName: "Biblia Crux (Android)",
+        developerName: "Enterprisedigitexum OSS",
+        settingsTitle: "Preferences",
+        labelAppLanguage: "Choose your language",
+        languageEnglish: "English",
+        languagePortuguese: "Portuguese",
+        languageSpanish: "Spanish",
+        languageFrench: "French",
+        languageItalian: "Italian",
+        languageTagalog: "Tagalog",
+        appendixTitle: "Appendix — Related links",
+        links: {
+          privacyPolicy: "Privacy Policy",
+          terms: "Terms of Use",
+          subscriptions: "Google Play subscriptions"
+        },
+        sections: [
+          { title: "1. Purpose of this page", blocks: [
+            { type: "p", html: "This page explains, in simple terms, how users of Biblia Crux can request account deletion and what happens to personal data." }
+          ]},
+          { title: "2. How to delete your account in the app", blocks: [
+            { type: "ol", items: [
+              "Open <strong>Biblia Crux</strong>.",
+              "Go to <strong>Account</strong>.",
+              "Sign in to your account, if needed.",
+              "Tap <strong>Delete account</strong> and confirm.",
+              "If the app asks for a recent login, sign out, sign in again, and repeat the deletion."
+            ] }
+          ]},
+          { title: "3. Alternative deletion request (if you cannot access the app)", blocks: [
+            { type: "p", html: "If you cannot access the app, send an email to {{emailLink}} with the subject <strong>\"Account Deletion Request — Biblia Crux\"</strong> and include the email address used in your account." }
+          ]},
+          { title: "4. What data is deleted", blocks: [
+            { type: "ul", items: [
+              "Authentication account data (login account used in Biblia Crux).",
+              "Data linked to your user profile in app services, when applicable."
+            ] },
+            { type: "p", html: "We process the request and delete applicable account-linked data within a reasonable period, except where retention is legally required." }
+          ]},
+          { title: "5. What may be retained and why", blocks: [
+            { type: "ul", items: [
+              "Data required by law, regulation, fraud prevention, security, or dispute resolution.",
+              "Technical logs kept for limited periods for security and operational integrity.",
+              "Purchase/subscription records required by stores or financial/legal obligations."
+            ] }
+          ]},
+          { title: "6. Subscription notice", blocks: [
+            { type: "p", html: "Deleting your account in Biblia Crux <strong>does not automatically cancel</strong> your Google Play subscription. You must cancel it in Google Play subscriptions." }
+          ]},
+          { title: "7. Contact", blocks: [
+            { type: "p", className: "contact", html: "Email: {{emailLink}}" }
+          ]}
+        ]
+      },
+      pt: {
+        htmlLang: "pt-BR",
+        documentTitle: "Exclusão de Conta — Biblia Crux",
+        metaDescription: "Como solicitar exclusão de conta e dados no Biblia Crux.",
+        pageTitle: "Exclusão de Conta e Dados — Biblia Crux",
+        effectiveDateLabel: "Vigência:",
+        lastUpdatedLabel: "Última atualização:",
+        applicationLabel: "Aplicativo:",
+        developerLabel: "Desenvolvedor:",
+        contactLabel: "Contato de privacidade:",
+        effectiveDate: "10 de maio de 2026",
+        lastUpdated: "10 de maio de 2026",
+        applicationName: "Biblia Crux (Android)",
+        developerName: "Enterprisedigitexum OSS",
+        settingsTitle: "Preferências",
+        labelAppLanguage: "Escolha seu idioma",
+        languageEnglish: "Inglês",
+        languagePortuguese: "Português",
+        languageSpanish: "Espanhol",
+        languageFrench: "Francês",
+        languageItalian: "Italiano",
+        languageTagalog: "Tagalo",
+        appendixTitle: "Anexo — Links relacionados",
+        links: {
+          privacyPolicy: "Política de Privacidade",
+          terms: "Termos de Uso",
+          subscriptions: "Assinaturas da Google Play"
+        },
+        sections: [
+          { title: "1. Finalidade desta página", blocks: [
+            { type: "p", html: "Esta página explica, de forma simples, como os usuários do Biblia Crux podem solicitar a exclusão da conta e o que acontece com os dados pessoais." }
+          ]},
+          { title: "2. Como excluir sua conta no aplicativo", blocks: [
+            { type: "ol", items: [
+              "Abra o <strong>Biblia Crux</strong>.",
+              "Vá em <strong>Conta</strong>.",
+              "Faça login, se necessário.",
+              "Toque em <strong>Excluir conta</strong> e confirme.",
+              "Se o app pedir login recente, saia da conta, entre novamente e repita a exclusão."
+            ] }
+          ]},
+          { title: "3. Solicitação alternativa (se não conseguir entrar no app)", blocks: [
+            { type: "p", html: "Se você não conseguir acessar o app, envie e-mail para {{emailLink}} com o assunto <strong>\"Solicitação de Exclusão de Conta — Biblia Crux\"</strong> e informe o e-mail da conta." }
+          ]},
+          { title: "4. Quais dados são excluídos", blocks: [
+            { type: "ul", items: [
+              "Dados da conta de autenticação (conta de login usada no Biblia Crux).",
+              "Dados vinculados ao seu perfil de usuário nos serviços do app, quando aplicável."
+            ] },
+            { type: "p", html: "Processamos a solicitação e excluímos os dados de conta aplicáveis em prazo razoável, exceto quando houver obrigação legal de retenção." }
+          ]},
+          { title: "5. O que pode ser mantido e por quê", blocks: [
+            { type: "ul", items: [
+              "Dados exigidos por lei, regulação, prevenção de fraude, segurança ou resolução de disputas.",
+              "Logs técnicos mantidos por período limitado para segurança e integridade operacional.",
+              "Registros de compra/assinatura exigidos por lojas ou obrigações financeiras/legais."
+            ] }
+          ]},
+          { title: "6. Aviso sobre assinatura", blocks: [
+            { type: "p", html: "Excluir sua conta no Biblia Crux <strong>não cancela automaticamente</strong> sua assinatura da Google Play. O cancelamento deve ser feito na área de assinaturas da Google Play." }
+          ]},
+          { title: "7. Contato", blocks: [
+            { type: "p", className: "contact", html: "E-mail: {{emailLink}}" }
+          ]}
+        ]
+      },
+      es: {
+        htmlLang: "es",
+        documentTitle: "Eliminación de Cuenta — Biblia Crux",
+        metaDescription: "Cómo solicitar la eliminación de cuenta y datos en Biblia Crux.",
+        pageTitle: "Eliminación de Cuenta y Datos — Biblia Crux",
+        effectiveDateLabel: "Vigencia:",
+        lastUpdatedLabel: "Última actualización:",
+        applicationLabel: "Aplicación:",
+        developerLabel: "Desarrollador:",
+        contactLabel: "Contacto de privacidad:",
+        effectiveDate: "10 de mayo de 2026",
+        lastUpdated: "10 de mayo de 2026",
+        applicationName: "Biblia Crux (Android)",
+        developerName: "Enterprisedigitexum OSS",
+        settingsTitle: "Preferencias",
+        labelAppLanguage: "Elige tu idioma",
+        languageEnglish: "Inglés",
+        languagePortuguese: "Portugués",
+        languageSpanish: "Español",
+        languageFrench: "Francés",
+        languageItalian: "Italiano",
+        languageTagalog: "Tagalo",
+        appendixTitle: "Anexo — Enlaces relacionados",
+        links: {
+          privacyPolicy: "Política de Privacidad",
+          terms: "Términos de Uso",
+          subscriptions: "Suscripciones de Google Play"
+        },
+        sections: [
+          { title: "1. Finalidad de esta página", blocks: [
+            { type: "p", html: "Esta página explica, de forma sencilla, cómo los usuarios de Biblia Crux pueden solicitar la eliminación de la cuenta y qué ocurre con los datos personales." }
+          ]},
+          { title: "2. Cómo eliminar tu cuenta en la app", blocks: [
+            { type: "ol", items: [
+              "Abre <strong>Biblia Crux</strong>.",
+              "Ve a <strong>Cuenta</strong>.",
+              "Inicia sesión si es necesario.",
+              "Pulsa <strong>Eliminar cuenta</strong> y confirma.",
+              "Si la app pide inicio de sesión reciente, cierra sesión, vuelve a iniciar sesión y repite la eliminación."
+            ] }
+          ]},
+          { title: "3. Solicitud alternativa (si no puedes entrar a la app)", blocks: [
+            { type: "p", html: "Si no puedes acceder a la app, envía un correo a {{emailLink}} con el asunto <strong>\"Solicitud de Eliminación de Cuenta — Biblia Crux\"</strong> e incluye el correo de tu cuenta." }
+          ]},
+          { title: "4. Qué datos se eliminan", blocks: [
+            { type: "ul", items: [
+              "Datos de autenticación de la cuenta (cuenta de acceso usada en Biblia Crux).",
+              "Datos vinculados a tu perfil de usuario en servicios de la app, cuando corresponda."
+            ] },
+            { type: "p", html: "Procesamos la solicitud y eliminamos los datos de cuenta aplicables en un plazo razonable, salvo obligación legal de conservación." }
+          ]},
+          { title: "5. Qué puede conservarse y por qué", blocks: [
+            { type: "ul", items: [
+              "Datos exigidos por ley, regulación, prevención de fraude, seguridad o resolución de disputas.",
+              "Registros técnicos conservados por tiempo limitado para seguridad e integridad operativa.",
+              "Registros de compra/suscripción exigidos por tiendas u obligaciones financieras/legales."
+            ] }
+          ]},
+          { title: "6. Aviso sobre suscripción", blocks: [
+            { type: "p", html: "Eliminar tu cuenta en Biblia Crux <strong>no cancela automáticamente</strong> tu suscripción de Google Play. Debes cancelarla en Google Play." }
+          ]},
+          { title: "7. Contacto", blocks: [
+            { type: "p", className: "contact", html: "Correo: {{emailLink}}" }
+          ]}
+        ]
+      },
+      fr: {
+        htmlLang: "fr",
+        documentTitle: "Suppression de Compte — Biblia Crux",
+        metaDescription: "Comment demander la suppression du compte et des données dans Biblia Crux.",
+        pageTitle: "Suppression de Compte et de Données — Biblia Crux",
+        effectiveDateLabel: "Entrée en vigueur:",
+        lastUpdatedLabel: "Dernière mise à jour:",
+        applicationLabel: "Application:",
+        developerLabel: "Développeur:",
+        contactLabel: "Contact confidentialité:",
+        effectiveDate: "10 mai 2026",
+        lastUpdated: "10 mai 2026",
+        applicationName: "Biblia Crux (Android)",
+        developerName: "Enterprisedigitexum OSS",
+        settingsTitle: "Préférences",
+        labelAppLanguage: "Choisissez votre langue",
+        languageEnglish: "Anglais",
+        languagePortuguese: "Portugais",
+        languageSpanish: "Espagnol",
+        languageFrench: "Français",
+        languageItalian: "Italien",
+        languageTagalog: "Tagalog",
+        appendixTitle: "Annexe — Liens associés",
+        links: {
+          privacyPolicy: "Politique de confidentialité",
+          terms: "Conditions d'utilisation",
+          subscriptions: "Abonnements Google Play"
+        },
+        sections: [
+          { title: "1. Objet de cette page", blocks: [
+            { type: "p", html: "Cette page explique simplement comment les utilisateurs de Biblia Crux peuvent demander la suppression du compte et ce qu’il advient des données personnelles." }
+          ]},
+          { title: "2. Comment supprimer votre compte dans l’app", blocks: [
+            { type: "ol", items: [
+              "Ouvrez <strong>Biblia Crux</strong>.",
+              "Allez dans <strong>Compte</strong>.",
+              "Connectez-vous si nécessaire.",
+              "Appuyez sur <strong>Supprimer le compte</strong> et confirmez.",
+              "Si l’app demande une connexion récente, déconnectez-vous, reconnectez-vous, puis recommencez."
+            ] }
+          ]},
+          { title: "3. Demande alternative (si vous ne pouvez pas accéder à l’app)", blocks: [
+            { type: "p", html: "Si vous ne pouvez pas accéder à l’app, envoyez un e-mail à {{emailLink}} avec l’objet <strong>\"Demande de Suppression de Compte — Biblia Crux\"</strong> et indiquez l’e-mail du compte." }
+          ]},
+          { title: "4. Quelles données sont supprimées", blocks: [
+            { type: "ul", items: [
+              "Données du compte d’authentification (compte de connexion utilisé dans Biblia Crux).",
+              "Données liées à votre profil utilisateur dans les services de l’app, le cas échéant."
+            ] },
+            { type: "p", html: "Nous traitons la demande et supprimons les données de compte applicables dans un délai raisonnable, sauf obligation légale de conservation." }
+          ]},
+          { title: "5. Quelles données peuvent être conservées et pourquoi", blocks: [
+            { type: "ul", items: [
+              "Données requises par la loi, la réglementation, la prévention de la fraude, la sécurité ou la résolution de litiges.",
+              "Journaux techniques conservés pour une durée limitée à des fins de sécurité et d’intégrité opérationnelle.",
+              "Historique d’achat/abonnement requis par les stores ou obligations financières/légales."
+            ] }
+          ]},
+          { title: "6. Information sur l’abonnement", blocks: [
+            { type: "p", html: "La suppression du compte dans Biblia Crux <strong>n’annule pas automatiquement</strong> l’abonnement Google Play. L’annulation doit être faite dans Google Play." }
+          ]},
+          { title: "7. Contact", blocks: [
+            { type: "p", className: "contact", html: "E-mail: {{emailLink}}" }
+          ]}
+        ]
+      },
+      it: {
+        htmlLang: "it",
+        documentTitle: "Eliminazione Account — Biblia Crux",
+        metaDescription: "Come richiedere l'eliminazione di account e dati in Biblia Crux.",
+        pageTitle: "Eliminazione di Account e Dati — Biblia Crux",
+        effectiveDateLabel: "Decorrenza:",
+        lastUpdatedLabel: "Ultimo aggiornamento:",
+        applicationLabel: "Applicazione:",
+        developerLabel: "Sviluppatore:",
+        contactLabel: "Contatto privacy:",
+        effectiveDate: "10 maggio 2026",
+        lastUpdated: "10 maggio 2026",
+        applicationName: "Biblia Crux (Android)",
+        developerName: "Enterprisedigitexum OSS",
+        settingsTitle: "Preferenze",
+        labelAppLanguage: "Scegli la tua lingua",
+        languageEnglish: "Inglese",
+        languagePortuguese: "Portoghese",
+        languageSpanish: "Spagnolo",
+        languageFrench: "Francese",
+        languageItalian: "Italiano",
+        languageTagalog: "Tagalog",
+        appendixTitle: "Appendice — Link correlati",
+        links: {
+          privacyPolicy: "Informativa sulla privacy",
+          terms: "Termini di utilizzo",
+          subscriptions: "Abbonamenti Google Play"
+        },
+        sections: [
+          { title: "1. Scopo di questa pagina", blocks: [
+            { type: "p", html: "Questa pagina spiega in modo semplice come gli utenti di Biblia Crux possono richiedere l’eliminazione dell’account e cosa accade ai dati personali." }
+          ]},
+          { title: "2. Come eliminare l’account nell’app", blocks: [
+            { type: "ol", items: [
+              "Apri <strong>Biblia Crux</strong>.",
+              "Vai su <strong>Account</strong>.",
+              "Accedi, se necessario.",
+              "Tocca <strong>Elimina account</strong> e conferma.",
+              "Se l’app richiede un accesso recente, esci, rientra e ripeti l’eliminazione."
+            ] }
+          ]},
+          { title: "3. Richiesta alternativa (se non riesci ad accedere all’app)", blocks: [
+            { type: "p", html: "Se non riesci ad accedere all’app, invia un’e-mail a {{emailLink}} con oggetto <strong>\"Richiesta Eliminazione Account — Biblia Crux\"</strong> e indica l’e-mail dell’account." }
+          ]},
+          { title: "4. Quali dati vengono eliminati", blocks: [
+            { type: "ul", items: [
+              "Dati dell’account di autenticazione (account usato per accedere a Biblia Crux).",
+              "Dati collegati al tuo profilo utente nei servizi dell’app, quando applicabile."
+            ] },
+            { type: "p", html: "Elaboriamo la richiesta ed eliminiamo i dati di account applicabili entro un periodo ragionevole, salvo obblighi legali di conservazione." }
+          ]},
+          { title: "5. Cosa può essere conservato e perché", blocks: [
+            { type: "ul", items: [
+              "Dati richiesti da legge, regolamenti, prevenzione frodi, sicurezza o gestione contenziosi.",
+              "Log tecnici conservati per periodi limitati per sicurezza e integrità operativa.",
+              "Registri di acquisto/abbonamento richiesti dagli store o da obblighi finanziari/legali."
+            ] }
+          ]},
+          { title: "6. Nota sull’abbonamento", blocks: [
+            { type: "p", html: "Eliminare l’account in Biblia Crux <strong>non annulla automaticamente</strong> l’abbonamento Google Play. Devi annullarlo in Google Play." }
+          ]},
+          { title: "7. Contatto", blocks: [
+            { type: "p", className: "contact", html: "E-mail: {{emailLink}}" }
+          ]}
+        ]
+      },
+      tl: {
+        htmlLang: "tl",
+        documentTitle: "Pag-delete ng Account — Biblia Crux",
+        metaDescription: "Paano humiling ng pag-delete ng account at data sa Biblia Crux.",
+        pageTitle: "Pag-delete ng Account at Data — Biblia Crux",
+        effectiveDateLabel: "Bisa mula:",
+        lastUpdatedLabel: "Huling na-update:",
+        applicationLabel: "Aplikasyon:",
+        developerLabel: "Developer:",
+        contactLabel: "Kontak sa privacy:",
+        effectiveDate: "Mayo 10, 2026",
+        lastUpdated: "Mayo 10, 2026",
+        applicationName: "Biblia Crux (Android)",
+        developerName: "Enterprisedigitexum OSS",
+        settingsTitle: "Mga kagustuhan",
+        labelAppLanguage: "Piliin ang iyong wika",
+        languageEnglish: "Ingles",
+        languagePortuguese: "Portuges",
+        languageSpanish: "Espanyol",
+        languageFrench: "Pranses",
+        languageItalian: "Italyano",
+        languageTagalog: "Tagalog",
+        appendixTitle: "Apendise — Kaugnay na links",
+        links: {
+          privacyPolicy: "Patakaran sa Privacy",
+          terms: "Mga Tuntunin ng Paggamit",
+          subscriptions: "Google Play subscriptions"
+        },
+        sections: [
+          { title: "1. Layunin ng pahinang ito", blocks: [
+            { type: "p", html: "Ipinaliliwanag ng pahinang ito nang simple kung paano humiling ng pag-delete ng account sa Biblia Crux at ano ang mangyayari sa personal na data." }
+          ]},
+          { title: "2. Paano i-delete ang account sa app", blocks: [
+            { type: "ol", items: [
+              "Buksan ang <strong>Biblia Crux</strong>.",
+              "Pumunta sa <strong>Account</strong>.",
+              "Mag-sign in kung kailangan.",
+              "I-tap ang <strong>Delete account</strong> at i-confirm.",
+              "Kung humingi ng recent login ang app, mag-sign out, mag-sign in ulit, at ulitin ang pag-delete."
+            ] }
+          ]},
+          { title: "3. Alternatibong request (kung hindi ma-access ang app)", blocks: [
+            { type: "p", html: "Kung hindi mo ma-access ang app, mag-email sa {{emailLink}} na may subject na <strong>\"Account Deletion Request — Biblia Crux\"</strong> at ilagay ang email ng account." }
+          ]},
+          { title: "4. Anong data ang dine-delete", blocks: [
+            { type: "ul", items: [
+              "Authentication account data (login account na gamit sa Biblia Crux).",
+              "Data na naka-link sa user profile mo sa services ng app, kung naaangkop."
+            ] },
+            { type: "p", html: "Poprosesuhin namin ang request at ide-delete ang naaangkop na account-linked data sa makatwirang panahon, maliban kung may legal na requirement na itago ito." }
+          ]},
+          { title: "5. Ano ang maaaring manatili at bakit", blocks: [
+            { type: "ul", items: [
+              "Data na kailangan ayon sa batas, regulasyon, fraud prevention, security, o dispute resolution.",
+              "Technical logs na iniingatan nang limitadong panahon para sa security at operational integrity.",
+              "Purchase/subscription records na kailangan ng stores o legal/financial obligations."
+            ] }
+          ]},
+          { title: "6. Paalala sa subscription", blocks: [
+            { type: "p", html: "Ang pag-delete ng account sa Biblia Crux ay <strong>hindi awtomatikong nagkakansela</strong> ng Google Play subscription. Kailangan mo itong i-cancel sa Google Play." }
+          ]},
+          { title: "7. Kontak", blocks: [
+            { type: "p", className: "contact", html: "E-mail: {{emailLink}}" }
+          ]}
+        ]
+      }
+    };
+
+    const languageNameKeys = {
+      en: "languageEnglish",
+      pt: "languagePortuguese",
+      es: "languageSpanish",
+      fr: "languageFrench",
+      it: "languageItalian",
+      tl: "languageTagalog"
+    };
+
+    const appendixUrls = {
+      privacyPolicy: "https://enterprisedigitexum-oss.github.io/Biblia-Crux/privacy-policy/",
+      terms: "https://enterprisedigitexum-oss.github.io/Biblia-Crux/terms-of-use/",
+      subscriptions: "https://play.google.com/store/account/subscriptions"
+    };
+
+    const els = {
+      pageTitle: document.getElementById("pageTitle"),
+      effectiveDateLabel: document.getElementById("effectiveDateLabel"),
+      effectiveDate: document.getElementById("effectiveDate"),
+      lastUpdatedLabel: document.getElementById("lastUpdatedLabel"),
+      lastUpdated: document.getElementById("lastUpdated"),
+      applicationLabel: document.getElementById("applicationLabel"),
+      applicationName: document.getElementById("applicationName"),
+      developerLabel: document.getElementById("developerLabel"),
+      developerName: document.getElementById("developerName"),
+      contactLabel: document.getElementById("contactLabel"),
+      settingsTitle: document.getElementById("settingsTitle"),
+      languageSelectLabel: document.getElementById("languageSelectLabel"),
+      languageSelect: document.getElementById("languageSelect"),
+      content: document.getElementById("content"),
+      appendixTitle: document.getElementById("appendixTitle"),
+      appendixLinks: document.getElementById("appendixLinks")
+    };
+
+    let uiLocale = getInitialLocale();
+
+    function getInitialLocale() {
+      const stored = localStorage.getItem(storageKey);
+      if (supportedLocales.includes(stored)) return stored;
+      return "pt";
+    }
+
+    function t(key) {
+      return translations[uiLocale]?.[key] ?? translations.en[key] ?? key;
+    }
+
+    function localizedLanguageName(localeCode) {
+      const key = languageNameKeys[localeCode];
+      return key ? t(key) : localeCode;
+    }
+
+    function interpolate(html) {
+      const emailLink = '<a href="mailto:enterprisedigitexum@gmail.com">enterprisedigitexum@gmail.com</a>';
+      return html.replaceAll("{{emailLink}}", emailLink);
+    }
+
+    function renderLanguageOptions() {
+      els.languageSelect.innerHTML = "";
+      supportedLocales.forEach((localeCode) => {
+        const option = document.createElement("option");
+        option.value = localeCode;
+        option.textContent = localizedLanguageName(localeCode);
+        option.selected = localeCode === uiLocale;
+        els.languageSelect.appendChild(option);
+      });
+    }
+
+    function renderBlocks(blocks, parent) {
+      blocks.forEach((block) => {
+        if (block.type === "p") {
+          const p = document.createElement("p");
+          if (block.className) p.className = block.className;
+          p.innerHTML = interpolate(block.html);
+          parent.appendChild(p);
+          return;
+        }
+
+        if (block.type === "h3") {
+          const h3 = document.createElement("h3");
+          h3.innerHTML = interpolate(block.html);
+          parent.appendChild(h3);
+          return;
+        }
+
+        if (block.type === "ul" || block.type === "ol") {
+          const list = document.createElement(block.type);
+          block.items.forEach((item) => {
+            const li = document.createElement("li");
+            li.innerHTML = interpolate(item);
+            list.appendChild(li);
+          });
+          parent.appendChild(list);
+        }
+      });
+    }
+
+    function renderContent() {
+      els.content.innerHTML = "";
+      const localeSections = translations[uiLocale]?.sections ?? translations.en.sections;
+      localeSections.forEach((section) => {
+        const sectionElement = document.createElement("section");
+        const h2 = document.createElement("h2");
+        h2.textContent = section.title;
+        sectionElement.appendChild(h2);
+        renderBlocks(section.blocks, sectionElement);
+        els.content.appendChild(sectionElement);
+      });
+    }
+
+    function renderAppendix() {
+      els.appendixTitle.textContent = t("appendixTitle");
+      els.appendixLinks.innerHTML = "";
+      const labels = translations[uiLocale]?.links ?? translations.en.links;
+
+      Object.entries(appendixUrls).forEach(([key, url]) => {
+        const li = document.createElement("li");
+        const link = document.createElement("a");
+        link.href = url;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.textContent = labels[key] || key;
+        li.appendChild(link);
+        els.appendixLinks.appendChild(li);
+      });
+    }
+
+    function render() {
+      document.documentElement.lang = t("htmlLang");
+      document.title = t("documentTitle");
+      const description = document.querySelector('meta[name="description"]');
+      if (description) description.setAttribute("content", t("metaDescription"));
+
+      els.pageTitle.textContent = t("pageTitle");
+      els.effectiveDateLabel.textContent = t("effectiveDateLabel");
+      els.effectiveDate.textContent = t("effectiveDate");
+      els.lastUpdatedLabel.textContent = t("lastUpdatedLabel");
+      els.lastUpdated.textContent = t("lastUpdated");
+      els.applicationLabel.textContent = t("applicationLabel");
+      els.applicationName.textContent = t("applicationName");
+      els.developerLabel.textContent = t("developerLabel");
+      els.developerName.textContent = t("developerName");
+      els.contactLabel.textContent = t("contactLabel");
+      els.settingsTitle.textContent = t("settingsTitle");
+      els.languageSelectLabel.textContent = t("labelAppLanguage");
+      els.languageSelect.setAttribute("aria-label", t("labelAppLanguage"));
+
+      renderLanguageOptions();
+      renderContent();
+      renderAppendix();
+    }
+
+    els.languageSelect.addEventListener("change", (event) => {
+      uiLocale = event.target.value;
+      localStorage.setItem(storageKey, uiLocale);
+      render();
+    });
+
+    render();
+  </script>
+</body>
+</html>
