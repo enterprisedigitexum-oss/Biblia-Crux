@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Privacy Policy — Biblia Crux</title>
-  <meta name="description" content="Privacy Policy for the Biblia Crux Android application." />
+  <meta name="description" content="Privacy Policy for the Biblia Crux application." />
   <style>
     :root {
       color-scheme: light dark;
@@ -32,88 +32,39 @@
       padding: 0;
       background: var(--bg);
       color: var(--text);
-      font-family: -google-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, "Helvetica Neue", Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, "Helvetica Neue", Arial, sans-serif;
       line-height: 1.6;
     }
-    .wrap {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 24px 16px 56px;
-    }
-    header,
-    .preferences-card,
-    .appendix {
+    .wrap { max-width: 900px; margin: 0 auto; padding: 24px 16px 56px; }
+    header, .preferences-card, .appendix {
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: 12px;
       padding: 20px;
       margin-bottom: 24px;
     }
-    h1 {
-      margin: 0 0 8px;
-      font-size: 1.8rem;
-      line-height: 1.25;
-    }
-    h2 {
-      margin-top: 28px;
-      font-size: 1.2rem;
-      color: var(--accent);
-    }
-    h3 {
-      margin: 18px 0 8px;
-      font-size: 1rem;
-      color: var(--accent);
-    }
-    .preferences-card h2,
-    .appendix h2 {
-      margin-top: 0;
-    }
-    p, li {
-      color: var(--text);
-    }
-
-    #policyContent p,
-    #policyContent li,
-    .appendix li {
+    h1 { margin: 0 0 8px; font-size: 1.8rem; line-height: 1.25; }
+    h2 { margin-top: 28px; font-size: 1.2rem; color: var(--accent); }
+    h3 { margin: 18px 0 8px; font-size: 1rem; color: var(--accent); }
+    .preferences-card h2, .appendix h2 { margin-top: 0; }
+    p, li { color: var(--text); }
+    #policyContent p, #policyContent li, .appendix li {
       text-align: justify;
       text-justify: inter-word;
       hyphens: auto;
     }
-    .meta {
-      color: var(--muted);
-      margin: 2px 0;
-      font-size: 0.95rem;
-    }
-    ul, ol {
-      padding-left: 1.1rem;
-    }
-    .contact {
-      font-weight: 600;
-    }
-    a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
+    .meta { color: var(--muted); margin: 2px 0; font-size: 0.95rem; }
+    ul, ol { padding-left: 1.1rem; }
+    .contact { font-weight: 600; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
     .language-row {
       display: grid;
       grid-template-columns: minmax(0, 1fr) minmax(210px, 280px);
       gap: 16px;
       align-items: center;
     }
-    .language-label {
-      display: block;
-      color: var(--text);
-      font-weight: 700;
-      margin-bottom: 2px;
-    }
-    .language-hint {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
+    .language-label { display: block; color: var(--text); font-weight: 700; margin-bottom: 2px; }
     select {
       width: 100%;
       min-height: 44px;
@@ -124,15 +75,8 @@
       padding: 10px 12px;
       font: inherit;
     }
-    select:focus {
-      outline: 3px solid var(--focus);
-      border-color: var(--accent);
-    }
-    @media (max-width: 640px) {
-      .language-row {
-        grid-template-columns: 1fr;
-      }
-    }
+    select:focus { outline: 3px solid var(--focus); border-color: var(--accent); }
+    @media (max-width: 640px) { .language-row { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -144,501 +88,36 @@
       <p class="meta"><strong id="applicationLabel"></strong> <span id="applicationName"></span></p>
       <p class="meta"><strong id="privacyContactLabel"></strong> <a href="mailto:enterprisedigitexum@gmail.com">enterprisedigitexum@gmail.com</a></p>
     </header>
-
     <section class="preferences-card" aria-labelledby="settingsTitle">
       <h2 id="settingsTitle"></h2>
       <div class="language-row">
-        <div>
-          <label id="languageSelectLabel" class="language-label" for="languageSelect"></label>
-        </div>
+        <label id="languageSelectLabel" class="language-label" for="languageSelect"></label>
         <select id="languageSelect"></select>
       </div>
     </section>
-
     <article id="policyContent"></article>
-
     <section class="appendix" aria-labelledby="appendixTitle">
       <h2 id="appendixTitle"></h2>
       <ul id="appendixLinks"></ul>
     </section>
   </main>
-
   <script>
     const supportedLocales = ["en", "pt", "es", "fr", "it", "tl"];
-    const storageKey = "uiLocale";
+    const storageKey = "uiLocalePrivacyPolicy";
+    const defaultLocale = "en";
     const translations = {
-  "pt": {
-    "htmlLang": "pt-BR",
-    "documentTitle": "Política de Privacidade — Biblia Crux",
-    "metaDescription": "Política de Privacidade do aplicativo Biblia Crux para Android.",
-    "pageTitle": "Política de Privacidade — Biblia Crux",
-    "effectiveDateLabel": "Vigência:",
-    "lastUpdatedLabel": "Última atualização:",
-    "applicationLabel": "Aplicativo:",
-    "privacyContactLabel": "Contato de privacidade:",
-    "effectiveDate": "24 de abril de 2026",
-    "lastUpdated": "9 de maio de 2026",
-    "applicationName": "Biblia Crux (Android)",
-    "settingsTitle": "Preferências",
-    "labelAppLanguage": "Escolha o idioma para sua leitura",
-    "settingsUiLanguageHint": "",
-    "languageEnglish": "Inglês",
-    "languagePortuguese": "Português",
-    "languageSpanish": "Espanhol",
-    "languageFrench": "Francês",
-    "languageItalian": "Italiano",
-    "languageTagalog": "Tagalo",
-    "officialReferenceLabel": "Referência oficial:",
-    "suggestedSubjectLabel": "Assunto sugerido:",
-    "emailLabel": "E-mail:",
-    "appendixTitle": "Anexo — Provedores comuns no ecossistema do App (referências)",
-    "links": {
-      "googlePrivacy": "Google Privacy Policy",
-      "firebase": "Firebase",
-      "revenueCat": "RevenueCat",
-      "googlePlay": "Google Play"
-    },
-    "sections": [
-      {
-        "title": "1. Quem somos",
-        "blocks": [
-          {
-            "type": "p",
-            "html": "A presente Política de Privacidade explica como o Biblia Crux (“App”, “nós”, “nosso”) coleta, utiliza, compartilha, protege e retém dados pessoais de usuários em âmbito global, em conformidade com as leis aplicáveis de proteção de dados."
-          }
-        ]
-      },
-      {
-        "title": "2. Escopo desta Política",
-        "blocks": [
-          {
-            "type": "p",
-            "html": "Esta Política se aplica ao uso do App Biblia Crux, incluindo:"
-          },
-          {
-            "type": "ul",
-            "items": [
-              "uso sem conta;",
-              "uso com conta (e-mail/senha e login social, quando disponível);",
-              "sincronização/backup em nuvem;",
-              "assinaturas premium;",
-              "anúncios na versão gratuita;",
-              "recursos online e offline do App."
-            ]
-          },
-          {
-            "type": "p",
-            "html": "Se você usar serviços de terceiros integrados ao App, também se aplicam os termos e políticas desses terceiros."
-          }
-        ]
-      },
-      {
-        "title": "3. Consentimento e aceite",
-        "blocks": [
-          {
-            "type": "p",
-            "html": "Ao instalar, acessar ou usar o App, você declara que leu e concorda com esta Política."
-          },
-          {
-            "type": "p",
-            "html": "Se você (ou seu responsável legal, quando aplicável) não concordar com esta Política, não instale nem utilize o App."
-          }
-        ]
-      },
-      {
-        "title": "4. Público do App (13 anos ou mais)",
-        "blocks": [
-          {
-            "type": "p",
-            "html": "O App oferece conteúdo bíblico e é destinado a pessoas com 13 anos ou mais, incluindo adolescentes e adultos."
-          },
-          {
-            "type": "p",
-            "html": "Recomendamos supervisão de pais ou responsáveis legais para uso por adolescentes menores de idade. Quando exigido por lei local, adotamos medidas adicionais de proteção a menores."
-          },
-          {
-            "type": "p",
-            "html": "Se você for responsável legal e identificar uso indevido de dados de menor, entre em contato por: {{emailLink}}."
-          }
-        ]
-      },
-      {
-        "title": "5. Quais dados tratamos",
-        "blocks": [
-          {
-            "type": "p",
-            "html": "Dependendo da forma de uso do App, podemos tratar:"
-          },
-          {
-            "type": "h3",
-            "html": "5.1 Dados de conta e autenticação"
-          },
-          {
-            "type": "ul",
-            "items": [
-              "e-mail;",
-              "identificador de usuário (UID);",
-              "dados básicos do provedor de login (ex.: Google), quando aplicável."
-            ]
-          },
-          {
-            "type": "h3",
-            "html": "5.2 Dados de uso e preferências"
-          },
-          {
-            "type": "ul",
-            "items": [
-              "idioma da interface;",
-              "tema, tamanho/família de fonte, preferências de leitura;",
-              "estado de configurações e metadados técnicos necessários para funcionamento."
-            ]
-          },
-          {
-            "type": "h3",
-            "html": "5.3 Conteúdo salvo/sincronizado"
-          },
-          {
-            "type": "ul",
-            "items": [
-              "marcadores e referências salvas;",
-              "configurações sincronizadas entre dispositivos;",
-              "metadados de sessão ativa para proteção da conta em múltiplos dispositivos."
-            ]
-          },
-          {
-            "type": "h3",
-            "html": "5.4 Dados de assinatura"
-          },
-          {
-            "type": "ul",
-            "items": [
-              "status premium (ativo/inativo);",
-              "dados técnicos de assinatura processados por loja/RevenueCat."
-            ]
-          },
-          {
-            "type": "h3",
-            "html": "5.5 Dados de anúncios (versão gratuita)"
-          },
-          {
-            "type": "ul",
-            "items": [
-              "dados necessários para exibição e medição de anúncios (AdMob);",
-              "preferências/estados de consentimento de privacidade (UMP), quando aplicável."
-            ]
-          },
-          {
-            "type": "h3",
-            "html": "5.6 Dados técnicos e de segurança"
-          },
-          {
-            "type": "ul",
-            "items": [
-              "logs técnicos, falhas, eventos de conectividade e validações antiabuso (ex.: App Check);",
-              "endereço IP e identificadores técnicos podem ser tratados por provedores de infraestrutura."
-            ]
-          },
-          {
-            "type": "p",
-            "html": "Não solicitamos intencionalmente dados pessoais sensíveis além do estritamente necessário para operar os Serviços."
-          }
-        ]
-      },
-      {
-        "title": "6. Finalidades do tratamento",
-        "blocks": [
-          {
-            "type": "p",
-            "html": "Tratamos dados para:"
-          },
-          {
-            "type": "ul",
-            "items": [
-              "operar o App e entregar funcionalidades;",
-              "autenticar usuários e proteger sessões;",
-              "sincronizar backup/restauração entre dispositivos;",
-              "prover e gerenciar assinatura premium;",
-              "exibir anúncios na versão gratuita;",
-              "cumprir obrigações legais/regulatórias;",
-              "prevenir fraude, abuso e acesso não autorizado;",
-              "melhorar estabilidade, segurança e desempenho."
-            ]
-          }
-        ]
-      },
-      {
-        "title": "7. Bases legais de tratamento (LGPD/GDPR e equivalentes)",
-        "blocks": [
-          {
-            "type": "p",
-            "html": "Quando aplicável, tratamos dados com base em:"
-          },
-          {
-            "type": "ul",
-            "items": [
-              "execução de contrato (funcionalidades do App);",
-              "legítimo interesse (segurança, prevenção de fraude, manutenção técnica);",
-              "consentimento (quando exigido para publicidade/privacidade);",
-              "cumprimento de obrigação legal/regulatória."
-            ]
-          }
-        ]
-      },
-      {
-        "title": "8. Anúncios, consentimento e preferências (AdMob/UMP)",
-        "blocks": [
-          {
-            "type": "p",
-            "html": "A versão gratuita pode exibir anúncios."
-          },
-          {
-            "type": "p",
-            "html": "Quando aplicável por região, usamos o fluxo de consentimento do Google (UMP). O formato e a disponibilidade das opções podem variar por país/estado."
-          },
-          {
-            "type": "ul",
-            "items": [
-              "Usuários premium, pelas regras do App, não devem receber anúncios.",
-              "Mesmo sem consentimento para personalização, podem ser exibidos anúncios não personalizados/limitados, quando permitido por lei e pela plataforma de anúncios.",
-              "Você pode revisar/alterar preferências na entrada de privacidade dentro do App."
-            ]
-          },
-          {
-            "type": "p",
-            "html": "{{officialReference}} {{umpLink}}"
-          }
-        ]
-      },
-      {
-        "title": "9. Compartilhamento com terceiros (operadores e parceiros essenciais)",
-        "blocks": [
-          {
-            "type": "p",
-            "html": "Podemos compartilhar dados com provedores que viabilizam o funcionamento do App, por exemplo:"
-          },
-          {
-            "type": "ul",
-            "items": [
-              "Google Firebase (autenticação, banco em nuvem, functions, segurança);",
-              "Google AdMob / UMP (publicidade e gestão de privacidade);",
-              "RevenueCat (gestão de assinaturas);",
-              "Google Play (compra e cobrança);",
-              "provedores de infraestrutura, armazenamento e suporte técnico."
-            ]
-          },
-          {
-            "type": "p",
-            "html": "Esses terceiros tratam dados conforme suas próprias políticas e termos."
-          }
-        ]
-      },
-      {
-        "title": "10. Transferências internacionais",
-        "blocks": [
-          {
-            "type": "p",
-            "html": "Se você estiver fora do país de hospedagem dos sistemas, seus dados podem ser processados em outras jurisdições."
-          },
-          {
-            "type": "p",
-            "html": "Adotamos salvaguardas razoáveis para transferências internacionais de dados, conforme a legislação aplicável."
-          }
-        ]
-      },
-      {
-        "title": "11. Retenção e descarte",
-        "blocks": [
-          {
-            "type": "p",
-            "html": "Mantemos dados pelo tempo necessário para:"
-          },
-          {
-            "type": "ul",
-            "items": [
-              "entregar funcionalidades do App;",
-              "cumprir obrigações legais, contábeis e de segurança;",
-              "prevenir fraude e resolver disputas."
-            ]
-          },
-          {
-            "type": "p",
-            "html": "Quando possível e aplicável, dados são excluídos, anonimizados ou minimizados após deixarem de ser necessários."
-          }
-        ]
-      },
-      {
-        "title": "12. Seus direitos de privacidade",
-        "blocks": [
-          {
-            "type": "p",
-            "html": "Dependendo da sua região (ex.: LGPD, GDPR, CCPA/CPRA, VCDPA), você pode ter direito a:"
-          },
-          {
-            "type": "ul",
-            "items": [
-              "confirmar e acessar dados;",
-              "corrigir dados incompletos/inexatos;",
-              "solicitar exclusão;",
-              "solicitar anonimização/bloqueio/restrição;",
-              "solicitar portabilidade;",
-              "se opor a certos tratamentos;",
-              "retirar consentimento (quando esta for a base legal);",
-              "solicitar revisão de decisões automatizadas, quando aplicável;",
-              "apresentar reclamação à autoridade competente."
-            ]
-          },
-          {
-            "type": "p",
-            "html": "Para exercer direitos: {{emailLink}}<br>{{suggestedSubject}} “Solicitação de Dados Pessoais — Biblia Crux”"
-          },
-          {
-            "type": "p",
-            "html": "Podemos solicitar comprovação de identidade antes de atender ao pedido."
-          }
-        ]
-      },
-      {
-        "title": "13. Exclusão de conta e dados",
-        "blocks": [
-          {
-            "type": "p",
-            "html": "Quando disponível no App, você pode solicitar/executar exclusão da conta."
-          },
-          {
-            "type": "p",
-            "html": "Alguns dados podem ser mantidos por período limitado para:"
-          },
-          {
-            "type": "ul",
-            "items": [
-              "obrigação legal;",
-              "segurança;",
-              "prevenção de fraude;",
-              "defesa em processos judiciais/administrativos."
-            ]
-          }
-        ]
-      },
-      {
-        "title": "14. Segurança da informação",
-        "blocks": [
-          {
-            "type": "p",
-            "html": "Adotamos medidas técnicas e organizacionais razoáveis para reduzir risco de acesso não autorizado, alteração indevida, divulgação ou destruição de dados."
-          },
-          {
-            "type": "p",
-            "html": "Nenhum método de transmissão/armazenamento é 100% invulnerável, mas aplicamos controles proporcionais de segurança e monitoramento."
-          }
-        ]
-      },
-      {
-        "title": "15. Cookies e tecnologias similares",
-        "blocks": [
-          {
-            "type": "p",
-            "html": "Em componentes web e/ou SDKs integrados, podemos usar tecnologias como cookies, identificadores de dispositivo, tags, scripts e armazenamento local para:"
-          },
-          {
-            "type": "ul",
-            "items": [
-              "autenticação e sessão;",
-              "medição de performance;",
-              "segurança;",
-              "prevenção de fraude;",
-              "análise de uso;",
-              "publicidade (quando aplicável)."
-            ]
-          },
-          {
-            "type": "p",
-            "html": "Você pode limitar rastreamento e personalização por configurações do dispositivo/plataforma."
-          }
-        ]
-      },
-      {
-        "title": "16. Notas para residentes de regiões específicas (resumo)",
-        "blocks": [
-          {
-            "type": "h3",
-            "html": "16.1 Brasil (LGPD)"
-          },
-          {
-            "type": "p",
-            "html": "Base legal, finalidade, necessidade, segurança e direitos do titular são observados conforme a LGPD. Solicitações podem ser enviadas para o contato desta Política."
-          },
-          {
-            "type": "h3",
-            "html": "16.2 EEE/Reino Unido/Suíça (GDPR/UK GDPR)"
-          },
-          {
-            "type": "p",
-            "html": "Você pode exercer direitos previstos nos arts. 15 a 22 do GDPR/UK GDPR, conforme aplicável."
-          },
-          {
-            "type": "h3",
-            "html": "16.3 Califórnia (CCPA/CPRA) e Virgínia (VCDPA)"
-          },
-          {
-            "type": "p",
-            "html": "Usuários elegíveis podem exercer direitos de acesso, exclusão, correção, opt-out de certas finalidades e não discriminação, conforme lei local."
-          }
-        ]
-      },
-      {
-        "title": "17. Serviços e links de terceiros",
-        "blocks": [
-          {
-            "type": "p",
-            "html": "O App pode conter links/integrações de terceiros. Não controlamos integralmente esses ambientes e recomendamos leitura das políticas próprias de cada fornecedor."
-          }
-        ]
-      },
-      {
-        "title": "18. Alterações desta Política",
-        "blocks": [
-          {
-            "type": "p",
-            "html": "Podemos atualizar esta Política periodicamente."
-          },
-          {
-            "type": "p",
-            "html": "A versão vigente será sempre a mais recente publicada no canal oficial informado no App/loja. Em mudanças relevantes, poderemos destacar aviso no App."
-          }
-        ]
-      },
-      {
-        "title": "19. Contato e reclamações",
-        "blocks": [
-          {
-            "type": "p",
-            "html": "Para dúvidas, solicitações de direitos ou reclamações sobre privacidade:"
-          },
-          {
-            "type": "p",
-            "className": "contact",
-            "html": "{{emailLabel}} {{emailLink}}"
-          },
-          {
-            "type": "p",
-            "html": "Se você não estiver satisfeito com nossa resposta, poderá acionar a autoridade de proteção de dados competente na sua jurisdição."
-          }
-        ]
-      }
-    ]
-  },
   "en": {
     "htmlLang": "en",
     "documentTitle": "Privacy Policy — Biblia Crux",
-    "metaDescription": "Privacy Policy for the Biblia Crux Android application.",
+    "metaDescription": "Privacy Policy for the Biblia Crux application (Android and iOS).",
     "pageTitle": "Privacy Policy — Biblia Crux",
     "effectiveDateLabel": "Effective date:",
     "lastUpdatedLabel": "Last updated:",
     "applicationLabel": "Application:",
     "privacyContactLabel": "Privacy contact:",
     "effectiveDate": "April 24, 2026",
-    "lastUpdated": "May 9, 2026",
-    "applicationName": "Biblia Crux (Android)",
+    "lastUpdated": "May 15, 2026",
+    "applicationName": "Biblia Crux (Android / iOS)",
     "settingsTitle": "Preferences",
     "labelAppLanguage": "Choose the language for your reading",
     "settingsUiLanguageHint": "",
@@ -656,7 +135,9 @@
       "googlePrivacy": "Google Privacy Policy",
       "firebase": "Firebase",
       "revenueCat": "RevenueCat",
-      "googlePlay": "Google Play"
+      "googlePlay": "Google Play",
+      "appStore": "Apple App Store",
+      "accountDeletion": "Account and data deletion"
     },
     "sections": [
       {
@@ -683,6 +164,7 @@
               "cloud sync/backup;",
               "premium subscriptions;",
               "ads in the free version;",
+              "verse correction reports submitted while logged in;",
               "online and offline App features."
             ]
           },
@@ -738,7 +220,7 @@
             "items": [
               "email;",
               "user identifier (UID);",
-              "basic login provider data (e.g., Google), when applicable."
+              "basic login provider data (e.g., Google or Apple Sign-In), when applicable."
             ]
           },
           {
@@ -773,7 +255,7 @@
             "type": "ul",
             "items": [
               "premium status (active/inactive);",
-              "technical subscription data processed by store/RevenueCat."
+              "technical subscription data processed by the store/RevenueCat."
             ]
           },
           {
@@ -799,6 +281,18 @@
             ]
           },
           {
+            "type": "h3",
+            "html": "5.7 Verse comments and correction reports"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "text of comments or correction suggestions you submit about Bible verses while logged in;",
+              "verse reference, Bible version, and technical metadata needed to process the report;",
+              "we do not intentionally collect sensitive categories beyond what you choose to write in the report."
+            ]
+          },
+          {
             "type": "p",
             "html": "We do not intentionally request sensitive personal data beyond what is strictly necessary to operate the Services."
           }
@@ -819,6 +313,7 @@
               "sync backup/restore across devices;",
               "provide and manage premium subscriptions;",
               "display ads in the free version;",
+              "review verse correction reports and improve biblical text quality;",
               "comply with legal/regulatory obligations;",
               "prevent fraud, abuse, and unauthorized access;",
               "improve stability, security, and performance."
@@ -837,7 +332,7 @@
             "type": "ul",
             "items": [
               "contract performance (App features);",
-              "legitimate interest (security, fraud prevention, technical maintenance);",
+              "legitimate interest (security, fraud prevention, technical maintenance, quality review of reports);",
               "consent (when required for advertising/privacy);",
               "compliance with legal/regulatory obligations."
             ]
@@ -882,7 +377,7 @@
               "Google Firebase (authentication, cloud database, functions, security);",
               "Google AdMob / UMP (advertising and privacy management);",
               "RevenueCat (subscription management);",
-              "Google Play (purchase and billing);",
+              "Google Play and Apple App Store (purchase and billing);",
               "infrastructure, storage, and technical support providers."
             ]
           },
@@ -922,7 +417,19 @@
           },
           {
             "type": "p",
-            "html": "Where possible and applicable, data is deleted, anonymized, or minimized after it is no longer necessary."
+            "html": "In particular:"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "<strong>Cloud backup and active session:</strong> stored while your account exists; automatically deleted from our servers shortly after you delete your account in the App.",
+              "<strong>Verse correction reports:</strong> may be kept after account deletion to review and improve the biblical text; they are no longer linked to an active account. We may <strong>manually remove them from our systems within up to 5 years</strong> from the date they were last updated.",
+              "<strong>Technical logs and store records:</strong> kept for limited periods as required for security, operations, or legal/financial obligations."
+            ]
+          },
+          {
+            "type": "p",
+            "html": "Where possible and applicable, other data is deleted, anonymized, or minimized after it is no longer necessary."
           }
         ]
       },
@@ -962,20 +469,48 @@
         "blocks": [
           {
             "type": "p",
-            "html": "When available in the App, you may request/perform account deletion."
+            "html": "You can delete your account in the App under <strong>Account</strong> → <strong>Delete account</strong> (after signing in). If you cannot access the App, email {{emailLink}} with the subject “Account Deletion Request — Biblia Crux”."
+          },
+          {
+            "type": "ol",
+            "items": [
+              "Open <strong>Biblia Crux</strong>.",
+              "Go to <strong>Account</strong>.",
+              "Sign in if needed.",
+              "Tap <strong>Delete account</strong> and confirm."
+            ]
           },
           {
             "type": "p",
-            "html": "Some data may be retained for a limited period for:"
+            "html": "When you delete your account:"
           },
           {
             "type": "ul",
             "items": [
-              "legal obligation;",
-              "security;",
-              "fraud prevention;",
-              "defense in judicial/administrative proceedings."
+              "your authentication account is permanently removed;",
+              "local session-related data on the device is cleared;",
+              "your cloud settings backup and active session record are automatically deleted from our servers."
             ]
+          },
+          {
+            "type": "p",
+            "html": "The following may be retained for limited periods:"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "verse correction reports you submitted (no longer linked to an active account; manual removal within up to 5 years from last update, as described in section 11);",
+              "data required by law, security, fraud prevention, or dispute resolution;",
+              "purchase/subscription records held by app stores or required by law."
+            ]
+          },
+          {
+            "type": "p",
+            "html": "Deleting your account <strong>does not cancel</strong> a paid subscription. Cancel in <strong>Google Play</strong> or the <strong>App Store</strong> as applicable."
+          },
+          {
+            "type": "p",
+            "html": "More details: {{accountDeletionLink}}."
           }
         ]
       },
@@ -1087,18 +622,534 @@
       }
     ]
   },
+  "pt": {
+    "htmlLang": "pt-BR",
+    "documentTitle": "Política de Privacidade — Biblia Crux",
+    "metaDescription": "Política de Privacidade do aplicativo Biblia Crux (Android e iOS).",
+    "pageTitle": "Política de Privacidade — Biblia Crux",
+    "effectiveDateLabel": "Vigência:",
+    "lastUpdatedLabel": "Última atualização:",
+    "applicationLabel": "Aplicativo:",
+    "privacyContactLabel": "Contato de privacidade:",
+    "effectiveDate": "24 de abril de 2026",
+    "lastUpdated": "15 de maio de 2026",
+    "applicationName": "Biblia Crux (Android / iOS)",
+    "settingsTitle": "Preferências",
+    "labelAppLanguage": "Escolha o idioma para sua leitura",
+    "settingsUiLanguageHint": "",
+    "languageEnglish": "Inglês",
+    "languagePortuguese": "Português",
+    "languageSpanish": "Espanhol",
+    "languageFrench": "Francês",
+    "languageItalian": "Italiano",
+    "languageTagalog": "Tagalo",
+    "officialReferenceLabel": "Referência oficial:",
+    "suggestedSubjectLabel": "Assunto sugerido:",
+    "emailLabel": "E-mail:",
+    "appendixTitle": "Anexo — Provedores comuns no ecossistema do App (referências)",
+    "links": {
+      "googlePrivacy": "Política de Privacidade do Google",
+      "firebase": "Firebase",
+      "revenueCat": "RevenueCat",
+      "googlePlay": "Google Play",
+      "appStore": "Apple App Store",
+      "accountDeletion": "Exclusão de conta e dados"
+    },
+    "sections": [
+      {
+        "title": "1. Quem somos",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "A presente Política de Privacidade explica como o Biblia Crux (“App”, “nós”, “nosso”) coleta, utiliza, compartilha, protege e retém dados pessoais de usuários em âmbito global, em conformidade com as leis aplicáveis de proteção de dados."
+          }
+        ]
+      },
+      {
+        "title": "2. Escopo desta Política",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "Esta Política se aplica ao uso do App Biblia Crux, incluindo:"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "uso sem conta;",
+              "uso com conta (e-mail/senha e login social, quando disponível);",
+              "sincronização/backup em nuvem;",
+              "assinaturas premium;",
+              "anúncios na versão gratuita;",
+              "relatórios de correção de versículo enviados com login;",
+              "recursos online e offline do App."
+            ]
+          },
+          {
+            "type": "p",
+            "html": "Se você usar serviços de terceiros integrados ao App, também se aplicam os termos e políticas desses terceiros."
+          }
+        ]
+      },
+      {
+        "title": "3. Consentimento e aceite",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "Ao instalar, acessar ou usar o App, você declara que leu e concorda com esta Política."
+          },
+          {
+            "type": "p",
+            "html": "Se você (ou seu responsável legal, quando aplicável) não concordar com esta Política, não instale nem utilize o App."
+          }
+        ]
+      },
+      {
+        "title": "4. Público do App (13 anos ou mais)",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "O App oferece conteúdo bíblico e é destinado a pessoas com 13 anos ou mais, incluindo adolescentes e adultos."
+          },
+          {
+            "type": "p",
+            "html": "Recomendamos supervisão de pais ou responsáveis legais para uso por adolescentes menores de idade. Quando exigido por lei local, adotamos medidas adicionais de proteção a menores."
+          },
+          {
+            "type": "p",
+            "html": "Se você for responsável legal e identificar uso indevido de dados de menor, entre em contato por: {{emailLink}}."
+          }
+        ]
+      },
+      {
+        "title": "5. Quais dados tratamos",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "Dependendo da forma de uso do App, podemos tratar:"
+          },
+          {
+            "type": "h3",
+            "html": "5.1 Dados de conta e autenticação"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "e-mail;",
+              "identificador de usuário (UID);",
+              "dados básicos do provedor de login (ex.: Google ou Apple), quando aplicável."
+            ]
+          },
+          {
+            "type": "h3",
+            "html": "5.2 Dados de uso e preferências"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "idioma da interface;",
+              "tema, tamanho/família de fonte, preferências de leitura;",
+              "estado de configurações e metadados técnicos necessários para funcionamento."
+            ]
+          },
+          {
+            "type": "h3",
+            "html": "5.3 Conteúdo salvo/sincronizado"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "marcadores e referências salvas;",
+              "configurações sincronizadas entre dispositivos;",
+              "metadados de sessão ativa para proteção da conta em múltiplos dispositivos."
+            ]
+          },
+          {
+            "type": "h3",
+            "html": "5.4 Dados de assinatura"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "status premium (ativo/inativo);",
+              "dados técnicos de assinatura processados por loja/RevenueCat."
+            ]
+          },
+          {
+            "type": "h3",
+            "html": "5.5 Dados de anúncios (versão gratuita)"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "dados necessários para exibição e medição de anúncios (AdMob);",
+              "preferências/estados de consentimento de privacidade (UMP), quando aplicável."
+            ]
+          },
+          {
+            "type": "h3",
+            "html": "5.6 Dados técnicos e de segurança"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "logs técnicos, falhas, eventos de conectividade e validações antiabuso (ex.: App Check);",
+              "endereço IP e identificadores técnicos podem ser tratados por provedores de infraestrutura."
+            ]
+          },
+          {
+            "type": "h3",
+            "html": "5.7 Comentários e relatórios de correção de versículo"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "texto de comentários ou sugestões de correção sobre versículos bíblicos enviados com login;",
+              "referência do versículo, versão da Bíblia e metadados técnicos necessários ao processamento;",
+              "não coletamos intencionalmente categorias sensíveis além do que você escrever no relatório."
+            ]
+          },
+          {
+            "type": "p",
+            "html": "Não solicitamos intencionalmente dados pessoais sensíveis além do estritamente necessário para operar os Serviços."
+          }
+        ]
+      },
+      {
+        "title": "6. Finalidades do tratamento",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "Tratamos dados para:"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "operar o App e entregar funcionalidades;",
+              "autenticar usuários e proteger sessões;",
+              "sincronizar backup/restauração entre dispositivos;",
+              "prover e gerenciar assinatura premium;",
+              "exibir anúncios na versão gratuita;",
+              "revisar relatórios de correção de versículo e melhorar a qualidade do texto bíblico;",
+              "cumprir obrigações legais/regulatórias;",
+              "prevenir fraude, abuso e acesso não autorizado;",
+              "melhorar estabilidade, segurança e desempenho."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "7. Bases legais de tratamento (LGPD/GDPR e equivalentes)",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "Quando aplicável, tratamos dados com base em:"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "execução de contrato (funcionalidades do App);",
+              "legítimo interesse (segurança, prevenção de fraude, manutenção técnica, revisão de relatórios);",
+              "consentimento (quando exigido para publicidade/privacidade);",
+              "cumprimento de obrigação legal/regulatória."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "8. Anúncios, consentimento e preferências (AdMob/UMP)",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "A versão gratuita pode exibir anúncios."
+          },
+          {
+            "type": "p",
+            "html": "Quando aplicável por região, usamos o fluxo de consentimento do Google (UMP). O formato e a disponibilidade das opções podem variar por país/estado."
+          },
+          {
+            "type": "ul",
+            "items": [
+              "Usuários premium, pelas regras do App, não devem receber anúncios.",
+              "Mesmo sem consentimento para personalização, podem ser exibidos anúncios não personalizados/limitados, quando permitido por lei e pela plataforma de anúncios.",
+              "Você pode revisar/alterar preferências na entrada de privacidade dentro do App."
+            ]
+          },
+          {
+            "type": "p",
+            "html": "{{officialReference}} {{umpLink}}"
+          }
+        ]
+      },
+      {
+        "title": "9. Compartilhamento com terceiros (operadores e parceiros essenciais)",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "Podemos compartilhar dados com provedores que viabilizam o funcionamento do App, por exemplo:"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "Google Firebase (autenticação, banco em nuvem, functions, segurança);",
+              "Google AdMob / UMP (publicidade e gestão de privacidade);",
+              "RevenueCat (gestão de assinaturas);",
+              "Google Play e Apple App Store (compra e cobrança);",
+              "provedores de infraestrutura, armazenamento e suporte técnico."
+            ]
+          },
+          {
+            "type": "p",
+            "html": "Esses terceiros tratam dados conforme suas próprias políticas e termos."
+          }
+        ]
+      },
+      {
+        "title": "10. Transferências internacionais",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "Se você estiver fora do país de hospedagem dos sistemas, seus dados podem ser processados em outras jurisdições."
+          },
+          {
+            "type": "p",
+            "html": "Adotamos salvaguardas razoáveis para transferências internacionais de dados, conforme a legislação aplicável."
+          }
+        ]
+      },
+      {
+        "title": "11. Retenção e descarte",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "Mantemos dados pelo tempo necessário para:"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "entregar funcionalidades do App;",
+              "cumprir obrigações legais, contábeis e de segurança;",
+              "prevenir fraude e resolver disputas."
+            ]
+          },
+          {
+            "type": "p",
+            "html": "Em particular:"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "<strong>Backup na nuvem e sessão ativa:</strong> armazenados enquanto sua conta existir; excluídos automaticamente de nossos servidores logo após você excluir a conta no App.",
+              "<strong>Relatórios de correção de versículo:</strong> podem ser mantidos após a exclusão da conta para revisar e melhorar o texto bíblico; deixam de estar ligados a uma conta ativa. Podemos <strong>removê-los manualmente de nossos sistemas em até 5 anos</strong> a contar da última atualização.",
+              "<strong>Logs técnicos e registros de lojas:</strong> mantidos por períodos limitados conforme segurança, operação ou obrigações legais/financeiras."
+            ]
+          },
+          {
+            "type": "p",
+            "html": "Quando possível e aplicável, outros dados são excluídos, anonimizados ou minimizados após deixarem de ser necessários."
+          }
+        ]
+      },
+      {
+        "title": "12. Seus direitos de privacidade",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "Dependendo da sua região (ex.: LGPD, GDPR, CCPA/CPRA, VCDPA), você pode ter direito a:"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "confirmar e acessar dados;",
+              "corrigir dados incompletos/inexatos;",
+              "solicitar exclusão;",
+              "solicitar anonimização/bloqueio/restrição;",
+              "solicitar portabilidade;",
+              "se opor a certos tratamentos;",
+              "retirar consentimento (quando esta for a base legal);",
+              "solicitar revisão de decisões automatizadas, quando aplicável;",
+              "apresentar reclamação à autoridade competente."
+            ]
+          },
+          {
+            "type": "p",
+            "html": "Para exercer direitos: {{emailLink}}<br>{{suggestedSubject}} “Solicitação de Dados Pessoais — Biblia Crux”"
+          },
+          {
+            "type": "p",
+            "html": "Podemos solicitar comprovação de identidade antes de atender ao pedido."
+          }
+        ]
+      },
+      {
+        "title": "13. Exclusão de conta e dados",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "Você pode excluir sua conta no App em <strong>Conta</strong> → <strong>Excluir conta</strong> (após entrar). Se não conseguir acessar o App, envie e-mail para {{emailLink}} com o assunto “Solicitação de Exclusão de Conta — Biblia Crux”."
+          },
+          {
+            "type": "ol",
+            "items": [
+              "Abra o <strong>Biblia Crux</strong>.",
+              "Vá em <strong>Conta</strong>.",
+              "Faça login, se necessário.",
+              "Toque em <strong>Excluir conta</strong> e confirme."
+            ]
+          },
+          {
+            "type": "p",
+            "html": "Ao excluir sua conta:"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "sua conta de autenticação é removida permanentemente;",
+              "dados locais ligados à sessão no aparelho são apagados;",
+              "seu backup de preferências na nuvem e o registro de sessão ativa são excluídos automaticamente de nossos servidores."
+            ]
+          },
+          {
+            "type": "p",
+            "html": "O seguinte pode ser mantido por períodos limitados:"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "relatórios de correção de versículo que você enviou (sem vínculo com conta ativa; remoção manual em até 5 anos da última atualização, conforme seção 11);",
+              "dados exigidos por lei, segurança, prevenção de fraude ou resolução de disputas;",
+              "registros de compra/assinatura mantidos pelas lojas ou exigidos por lei."
+            ]
+          },
+          {
+            "type": "p",
+            "html": "Excluir sua conta <strong>não cancela</strong> assinatura paga. Cancele na <strong>Google Play</strong> ou na <strong>App Store</strong>, conforme o caso."
+          },
+          {
+            "type": "p",
+            "html": "Mais detalhes: {{accountDeletionLink}}."
+          }
+        ]
+      },
+      {
+        "title": "14. Segurança da informação",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "Adotamos medidas técnicas e organizacionais razoáveis para reduzir risco de acesso não autorizado, alteração indevida, divulgação ou destruição de dados."
+          },
+          {
+            "type": "p",
+            "html": "Nenhum método de transmissão/armazenamento é 100% invulnerável, mas aplicamos controles proporcionais de segurança e monitoramento."
+          }
+        ]
+      },
+      {
+        "title": "15. Cookies e tecnologias similares",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "Em componentes web e/ou SDKs integrados, podemos usar tecnologias como cookies, identificadores de dispositivo, tags, scripts e armazenamento local para:"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "autenticação e sessão;",
+              "medição de performance;",
+              "segurança;",
+              "prevenção de fraude;",
+              "análise de uso;",
+              "publicidade (quando aplicável)."
+            ]
+          },
+          {
+            "type": "p",
+            "html": "Você pode limitar rastreamento e personalização por configurações do dispositivo/plataforma."
+          }
+        ]
+      },
+      {
+        "title": "16. Notas para residentes de regiões específicas (resumo)",
+        "blocks": [
+          {
+            "type": "h3",
+            "html": "16.1 Brasil (LGPD)"
+          },
+          {
+            "type": "p",
+            "html": "Base legal, finalidade, necessidade, segurança e direitos do titular são observados conforme a LGPD. Solicitações podem ser enviadas para o contato desta Política."
+          },
+          {
+            "type": "h3",
+            "html": "16.2 EEE/Reino Unido/Suíça (GDPR/UK GDPR)"
+          },
+          {
+            "type": "p",
+            "html": "Você pode exercer direitos previstos nos arts. 15 a 22 do GDPR/UK GDPR, conforme aplicável."
+          },
+          {
+            "type": "h3",
+            "html": "16.3 Califórnia (CCPA/CPRA) e Virgínia (VCDPA)"
+          },
+          {
+            "type": "p",
+            "html": "Usuários elegíveis podem exercer direitos de acesso, exclusão, correção, opt-out de certas finalidades e não discriminação, conforme lei local."
+          }
+        ]
+      },
+      {
+        "title": "17. Serviços e links de terceiros",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "O App pode conter links/integrações de terceiros. Não controlamos integralmente esses ambientes e recomendamos leitura das políticas próprias de cada fornecedor."
+          }
+        ]
+      },
+      {
+        "title": "18. Alterações desta Política",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "Podemos atualizar esta Política periodicamente."
+          },
+          {
+            "type": "p",
+            "html": "A versão vigente será sempre a mais recente publicada no canal oficial informado no App/loja. Em mudanças relevantes, poderemos destacar aviso no App."
+          }
+        ]
+      },
+      {
+        "title": "19. Contato e reclamações",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "Para dúvidas, solicitações de direitos ou reclamações sobre privacidade:"
+          },
+          {
+            "type": "p",
+            "className": "contact",
+            "html": "{{emailLabel}} {{emailLink}}"
+          },
+          {
+            "type": "p",
+            "html": "Se você não estiver satisfeito com nossa resposta, poderá acionar a autoridade de proteção de dados competente na sua jurisdição."
+          }
+        ]
+      }
+    ]
+  },
   "es": {
     "htmlLang": "es",
     "documentTitle": "Política de Privacidad — Biblia Crux",
-    "metaDescription": "Política de Privacidad de la aplicación Biblia Crux para Android.",
+    "metaDescription": "Política de Privacidad de la aplicación Biblia Crux (Android e iOS).",
     "pageTitle": "Política de Privacidad — Biblia Crux",
     "effectiveDateLabel": "Vigencia:",
     "lastUpdatedLabel": "Última actualización:",
     "applicationLabel": "Aplicación:",
     "privacyContactLabel": "Contacto de privacidad:",
     "effectiveDate": "24 de abril de 2026",
-    "lastUpdated": "9 de mayo de 2026",
-    "applicationName": "Biblia Crux (Android)",
+    "lastUpdated": "15 de mayo de 2026",
+    "applicationName": "Biblia Crux (Android / iOS)",
     "settingsTitle": "Preferencias",
     "labelAppLanguage": "Elige el idioma para tu lectura",
     "settingsUiLanguageHint": "",
@@ -1113,10 +1164,12 @@
     "emailLabel": "Correo electrónico:",
     "appendixTitle": "Anexo — Proveedores comunes en el ecosistema de la App (referencias)",
     "links": {
-      "googlePrivacy": "Google Privacy Policy",
+      "googlePrivacy": "Política de Privacidad de Google",
       "firebase": "Firebase",
       "revenueCat": "RevenueCat",
-      "googlePlay": "Google Play"
+      "googlePlay": "Google Play",
+      "appStore": "Apple App Store",
+      "accountDeletion": "Eliminación de cuenta y datos"
     },
     "sections": [
       {
@@ -1143,30 +1196,31 @@
               "sincronización/copia de seguridad en la nube;",
               "suscripciones premium;",
               "anuncios en la versión gratuita;",
+              "informes de corrección de versículo enviados con sesión iniciada;",
               "recursos online y offline de la App."
             ]
           },
           {
             "type": "p",
-            "html": "Si utilizas servicios de terceros integrados en la App, también se aplican los términos y políticas de esos terceros."
+            "html": "If you use third-party services integrated with the App, those third parties’ terms and policies also apply."
           }
         ]
       },
       {
-        "title": "3. Consentimiento y aceptación",
+        "title": "3. Consent and acceptance",
         "blocks": [
           {
             "type": "p",
-            "html": "Al instalar, acceder o usar la App, declaras que has leído y aceptas esta Política."
+            "html": "By installing, accessing, or using the App, you state that you have read and agree to this Policy."
           },
           {
             "type": "p",
-            "html": "Si tú (o tu representante legal, cuando corresponda) no estás de acuerdo con esta Política, no instales ni utilices la App."
+            "html": "If you (or your legal guardian, where applicable) do not agree with this Policy, do not install or use the App."
           }
         ]
       },
       {
-        "title": "4. Público de la App (13 años o más)",
+        "title": "4. App audience (ages 13 and older)",
         "blocks": [
           {
             "type": "p",
@@ -1174,102 +1228,114 @@
           },
           {
             "type": "p",
-            "html": "Recomendamos supervisión de padres o representantes legales para adolescentes menores de edad. Cuando lo exija la ley local, adoptamos medidas adicionales de protección a menores."
+            "html": "We recommend parental or legal guardian supervision for adolescents who are minors. Where required by local law, we adopt additional measures to protect minors."
           },
           {
             "type": "p",
-            "html": "Si eres representante legal e identificas un uso indebido de datos de un menor, ponte en contacto en: {{emailLink}}."
+            "html": "If you are a legal guardian and identify misuse of a minor’s data, contact us at: {{emailLink}}."
           }
         ]
       },
       {
-        "title": "5. Qué datos tratamos",
+        "title": "5. What data we process",
         "blocks": [
           {
             "type": "p",
-            "html": "Dependiendo de la forma de uso de la App, podemos tratar:"
+            "html": "Depending on how the App is used, we may process:"
           },
           {
             "type": "h3",
-            "html": "5.1 Datos de cuenta y autenticación"
+            "html": "5.1 Account and authentication data"
           },
           {
             "type": "ul",
             "items": [
               "correo electrónico;",
               "identificador de usuario (UID);",
-              "datos básicos del proveedor de inicio de sesión (ej.: Google), cuando corresponda."
+              "datos básicos del proveedor de inicio de sesión (ej.: Google o Apple), cuando corresponda."
             ]
           },
           {
             "type": "h3",
-            "html": "5.2 Datos de uso y preferencias"
+            "html": "5.2 Usage and preference data"
           },
           {
             "type": "ul",
             "items": [
-              "idioma de la interfaz;",
-              "tema, tamaño/familia de fuente, preferencias de lectura;",
-              "estado de configuraciones y metadatos técnicos necesarios para el funcionamiento."
+              "interface language;",
+              "theme, font size/family, reading preferences;",
+              "settings state and technical metadata required for operation."
             ]
           },
           {
             "type": "h3",
-            "html": "5.3 Contenido guardado/sincronizado"
+            "html": "5.3 Saved/synced content"
           },
           {
             "type": "ul",
             "items": [
-              "marcadores y referencias guardadas;",
-              "configuraciones sincronizadas entre dispositivos;",
-              "metadatos de sesión activa para proteger la cuenta en múltiples dispositivos."
+              "saved bookmarks and references;",
+              "settings synced across devices;",
+              "active session metadata for account protection across multiple devices."
             ]
           },
           {
             "type": "h3",
-            "html": "5.4 Datos de suscripción"
+            "html": "5.4 Subscription data"
           },
           {
             "type": "ul",
             "items": [
-              "estado premium (activo/inactivo);",
-              "datos técnicos de suscripción procesados por tienda/RevenueCat."
+              "premium status (active/inactive);",
+              "technical subscription data processed by the store/RevenueCat."
             ]
           },
           {
             "type": "h3",
-            "html": "5.5 Datos de anuncios (versión gratuita)"
+            "html": "5.5 Advertising data (free version)"
           },
           {
             "type": "ul",
             "items": [
-              "datos necesarios para la visualización y medición de anuncios (AdMob);",
-              "preferencias/estados de consentimiento de privacidad (UMP), cuando corresponda."
+              "data required to display and measure ads (AdMob);",
+              "privacy consent preferences/statuses (UMP), when applicable."
             ]
           },
           {
             "type": "h3",
-            "html": "5.6 Datos técnicos y de seguridad"
+            "html": "5.6 Technical and security data"
           },
           {
             "type": "ul",
             "items": [
-              "registros técnicos, fallos, eventos de conectividad y validaciones antiabuso (ej.: App Check);",
-              "la dirección IP y los identificadores técnicos pueden ser tratados por proveedores de infraestructura."
+              "technical logs, failures, connectivity events, and anti-abuse validations (e.g., App Check);",
+              "IP address and technical identifiers may be processed by infrastructure providers."
+            ]
+          },
+          {
+            "type": "h3",
+            "html": "5.7 Comentarios e informes de corrección de versículo"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "texto de comentarios o sugerencias de corrección sobre versículos bíblicos enviados con sesión iniciada;",
+              "referencia del versículo, versión de la Biblia y metadatos técnicos necesarios para el procesamiento;",
+              "no recopilamos intencionalmente categorías sensibles más allá de lo que escribas en el informe."
             ]
           },
           {
             "type": "p",
-            "html": "No solicitamos intencionalmente datos personales sensibles más allá de lo estrictamente necesario para operar los Servicios."
+            "html": "We do not intentionally request sensitive personal data beyond what is strictly necessary to operate the Services."
           }
         ]
       },
       {
-        "title": "6. Finalidades del tratamiento",
+        "title": "6. Purposes of processing",
         "blocks": [
           {
             "type": "p",
-            "html": "Tratamos datos para:"
+            "html": "We process data to:"
           },
           {
             "type": "ul",
@@ -1279,6 +1345,7 @@
               "sincronizar copia de seguridad/restauración entre dispositivos;",
               "proveer y gestionar la suscripción premium;",
               "mostrar anuncios en la versión gratuita;",
+              "revisar informes de corrección de versículo y mejorar la calidad del texto bíblico;",
               "cumplir obligaciones legales/regulatorias;",
               "prevenir fraude, abuso y acceso no autorizado;",
               "mejorar estabilidad, seguridad y rendimiento."
@@ -1287,40 +1354,40 @@
         ]
       },
       {
-        "title": "7. Bases legales de tratamiento (LGPD/GDPR y equivalentes)",
+        "title": "7. Legal bases for processing (LGPD/GDPR and equivalents)",
         "blocks": [
           {
             "type": "p",
-            "html": "Cuando corresponda, tratamos datos con base en:"
+            "html": "Where applicable, we process data based on:"
           },
           {
             "type": "ul",
             "items": [
-              "ejecución de contrato (funcionalidades de la App);",
-              "interés legítimo (seguridad, prevención de fraude, mantenimiento técnico);",
-              "consentimiento (cuando sea exigido para publicidad/privacidad);",
-              "cumplimiento de obligación legal/regulatoria."
+              "contract performance (App features);",
+              "legitimate interest (security, fraud prevention, technical maintenance, quality review of reports);",
+              "consent (when required for advertising/privacy);",
+              "compliance with legal/regulatory obligations."
             ]
           }
         ]
       },
       {
-        "title": "8. Anuncios, consentimiento y preferencias (AdMob/UMP)",
+        "title": "8. Ads, consent, and preferences (AdMob/UMP)",
         "blocks": [
           {
             "type": "p",
-            "html": "La versión gratuita puede mostrar anuncios."
+            "html": "The free version may display ads."
           },
           {
             "type": "p",
-            "html": "Cuando corresponda por región, usamos el flujo de consentimiento de Google (UMP). El formato y la disponibilidad de las opciones pueden variar por país/estado."
+            "html": "Where applicable by region, we use Google’s consent flow (UMP). The format and availability of options may vary by country/state."
           },
           {
             "type": "ul",
             "items": [
-              "Los usuarios premium, según las reglas de la App, no deben recibir anuncios.",
-              "Incluso sin consentimiento para personalización, pueden mostrarse anuncios no personalizados/limitados, cuando lo permita la ley y la plataforma publicitaria.",
-              "Puedes revisar/cambiar preferencias en la entrada de privacidad dentro de la App."
+              "Premium users, under the App’s rules, should not receive ads.",
+              "Even without consent for personalization, non-personalized/limited ads may be displayed when permitted by law and the advertising platform.",
+              "You can review/change preferences through the privacy entry point inside the App."
             ]
           },
           {
@@ -1330,11 +1397,11 @@
         ]
       },
       {
-        "title": "9. Compartición con terceros (operadores y socios esenciales)",
+        "title": "9. Sharing with third parties (operators and essential partners)",
         "blocks": [
           {
             "type": "p",
-            "html": "Podemos compartir datos con proveedores que viabilizan el funcionamiento de la App, por ejemplo:"
+            "html": "We may share data with providers that enable the App to operate, for example:"
           },
           {
             "type": "ul",
@@ -1342,78 +1409,90 @@
               "Google Firebase (autenticación, base de datos en la nube, functions, seguridad);",
               "Google AdMob / UMP (publicidad y gestión de privacidad);",
               "RevenueCat (gestión de suscripciones);",
-              "Google Play (compra y cobro);",
+              "Google Play y Apple App Store (compra y cobro);",
               "proveedores de infraestructura, almacenamiento y soporte técnico."
             ]
           },
           {
             "type": "p",
-            "html": "Estos terceros tratan datos conforme a sus propias políticas y términos."
+            "html": "These third parties process data according to their own policies and terms."
           }
         ]
       },
       {
-        "title": "10. Transferencias internacionales",
+        "title": "10. International transfers",
         "blocks": [
           {
             "type": "p",
-            "html": "Si estás fuera del país de alojamiento de los sistemas, tus datos pueden ser procesados en otras jurisdicciones."
+            "html": "If you are outside the country where the systems are hosted, your data may be processed in other jurisdictions."
           },
           {
             "type": "p",
-            "html": "Adoptamos salvaguardas razonables para transferencias internacionales de datos, conforme a la legislación aplicable."
+            "html": "We adopt reasonable safeguards for international data transfers, in accordance with applicable law."
           }
         ]
       },
       {
-        "title": "11. Retención y descarte",
+        "title": "11. Retention and disposal",
         "blocks": [
           {
             "type": "p",
-            "html": "Conservamos datos durante el tiempo necesario para:"
+            "html": "We retain data for as long as necessary to:"
           },
           {
             "type": "ul",
             "items": [
-              "entregar funcionalidades de la App;",
-              "cumplir obligaciones legales, contables y de seguridad;",
-              "prevenir fraude y resolver disputas."
+              "deliver App functionality;",
+              "comply with legal, accounting, and security obligations;",
+              "prevent fraud and resolve disputes."
             ]
           },
           {
             "type": "p",
-            "html": "Cuando sea posible y aplicable, los datos se eliminan, anonimizan o minimizan después de dejar de ser necesarios."
-          }
-        ]
-      },
-      {
-        "title": "12. Tus derechos de privacidad",
-        "blocks": [
-          {
-            "type": "p",
-            "html": "Dependiendo de tu región (ej.: LGPD, GDPR, CCPA/CPRA, VCDPA), puedes tener derecho a:"
+            "html": "In particular:"
           },
           {
             "type": "ul",
             "items": [
-              "confirmar y acceder a datos;",
-              "corregir datos incompletos/inexactos;",
-              "solicitar eliminación;",
-              "solicitar anonimización/bloqueo/restricción;",
-              "solicitar portabilidad;",
-              "oponerte a ciertos tratamientos;",
-              "retirar consentimiento (cuando esta sea la base legal);",
-              "solicitar revisión de decisiones automatizadas, cuando corresponda;",
-              "presentar reclamación ante la autoridad competente."
+              "<strong>Copia en la nube y sesión activa:</strong> almacenadas mientras exista tu cuenta; eliminadas automáticamente de nuestros servidores poco después de eliminar la cuenta en la App.",
+              "<strong>Informes de corrección de versículo:</strong> pueden conservarse tras eliminar la cuenta para revisar y mejorar el texto bíblico; dejan de estar vinculados a una cuenta activa. Podemos <strong>eliminarlos manualmente de nuestros sistemas en un plazo de hasta 5 años</strong> desde su última actualización.",
+              "<strong>Registros técnicos y de tiendas:</strong> conservados por períodos limitados por seguridad, operación u obligaciones legales/financieras."
             ]
           },
           {
             "type": "p",
-            "html": "Para ejercer derechos: {{emailLink}}<br>{{suggestedSubject}} “Solicitud de Datos Personales — Biblia Crux”"
+            "html": "Where possible and applicable, other data is deleted, anonymized, or minimized after it is no longer necessary."
+          }
+        ]
+      },
+      {
+        "title": "12. Your privacy rights",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "Depending on your region (e.g., LGPD, GDPR, CCPA/CPRA, VCDPA), you may have the right to:"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "confirm and access data;",
+              "correct incomplete/inaccurate data;",
+              "request deletion;",
+              "request anonymization/blocking/restriction;",
+              "request portability;",
+              "object to certain processing;",
+              "withdraw consent (when this is the legal basis);",
+              "request review of automated decisions, where applicable;",
+              "file a complaint with the competent authority."
+            ]
           },
           {
             "type": "p",
-            "html": "Podemos solicitar comprobación de identidad antes de atender la solicitud."
+            "html": "To exercise rights: {{emailLink}}<br>{{suggestedSubject}} “Personal Data Request — Biblia Crux”"
+          },
+          {
+            "type": "p",
+            "html": "We may request proof of identity before fulfilling the request."
           }
         ]
       },
@@ -1422,117 +1501,145 @@
         "blocks": [
           {
             "type": "p",
-            "html": "Cuando esté disponible en la App, puedes solicitar/ejecutar la eliminación de la cuenta."
+            "html": "Puedes eliminar tu cuenta en la App en <strong>Cuenta</strong> → <strong>Eliminar cuenta</strong> (tras iniciar sesión). Si no puedes acceder a la App, envía un correo a {{emailLink}} con el asunto “Solicitud de Eliminación de Cuenta — Biblia Crux”."
           },
           {
-            "type": "p",
-            "html": "Algunos datos pueden mantenerse por un período limitado para:"
-          },
-          {
-            "type": "ul",
+            "type": "ol",
             "items": [
-              "obligación legal;",
-              "seguridad;",
-              "prevención de fraude;",
-              "defensa en procesos judiciales/administrativos."
-            ]
-          }
-        ]
-      },
-      {
-        "title": "14. Seguridad de la información",
-        "blocks": [
-          {
-            "type": "p",
-            "html": "Adoptamos medidas técnicas y organizativas razonables para reducir el riesgo de acceso no autorizado, alteración indebida, divulgación o destrucción de datos."
-          },
-          {
-            "type": "p",
-            "html": "Ningún método de transmisión/almacenamiento es 100% invulnerable, pero aplicamos controles proporcionales de seguridad y monitoreo."
-          }
-        ]
-      },
-      {
-        "title": "15. Cookies y tecnologías similares",
-        "blocks": [
-          {
-            "type": "p",
-            "html": "En componentes web y/o SDKs integrados, podemos usar tecnologías como cookies, identificadores de dispositivo, etiquetas, scripts y almacenamiento local para:"
-          },
-          {
-            "type": "ul",
-            "items": [
-              "autenticación y sesión;",
-              "medición de rendimiento;",
-              "seguridad;",
-              "prevención de fraude;",
-              "análisis de uso;",
-              "publicidad (cuando corresponda)."
+              "Abre <strong>Biblia Crux</strong>.",
+              "Ve a <strong>Cuenta</strong>.",
+              "Inicia sesión si es necesario.",
+              "Pulsa <strong>Eliminar cuenta</strong> y confirma."
             ]
           },
           {
             "type": "p",
-            "html": "Puedes limitar el rastreo y la personalización mediante configuraciones del dispositivo/plataforma."
+            "html": "Al eliminar tu cuenta:"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "tu cuenta de autenticación se elimina de forma permanente;",
+              "se borran los datos locales vinculados a la sesión en el dispositivo;",
+              "tu copia de seguridad de preferencias en la nube y el registro de sesión activa se eliminan automáticamente de nuestros servidores."
+            ]
+          },
+          {
+            "type": "p",
+            "html": "Lo siguiente puede conservarse por períodos limitados:"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "informes de corrección de versículo que enviaste (sin vínculo con cuenta activa; eliminación manual en hasta 5 años desde la última actualización, según la sección 11);",
+              "datos exigidos por ley, seguridad, prevención de fraude o resolución de disputas;",
+              "registros de compra/suscripción mantenidos por las tiendas o exigidos por ley."
+            ]
+          },
+          {
+            "type": "p",
+            "html": "Eliminar tu cuenta <strong>no cancela</strong> una suscripción de pago. Cancélala en <strong>Google Play</strong> o en la <strong>App Store</strong>, según corresponda."
+          },
+          {
+            "type": "p",
+            "html": "Más detalles: {{accountDeletionLink}}."
           }
         ]
       },
       {
-        "title": "16. Notas para residentes de regiones específicas (resumen)",
+        "title": "14. Information security",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "We adopt reasonable technical and organizational measures to reduce the risk of unauthorized access, improper alteration, disclosure, or destruction of data."
+          },
+          {
+            "type": "p",
+            "html": "No transmission/storage method is 100% invulnerable, but we apply proportionate security and monitoring controls."
+          }
+        ]
+      },
+      {
+        "title": "15. Cookies and similar technologies",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "In web components and/or integrated SDKs, we may use technologies such as cookies, device identifiers, tags, scripts, and local storage for:"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "authentication and session;",
+              "performance measurement;",
+              "security;",
+              "fraud prevention;",
+              "usage analysis;",
+              "advertising (when applicable)."
+            ]
+          },
+          {
+            "type": "p",
+            "html": "You can limit tracking and personalization through device/platform settings."
+          }
+        ]
+      },
+      {
+        "title": "16. Notes for residents of specific regions (summary)",
         "blocks": [
           {
             "type": "h3",
-            "html": "16.1 Brasil (LGPD)"
+            "html": "16.1 Brazil (LGPD)"
           },
           {
             "type": "p",
-            "html": "La base legal, finalidad, necesidad, seguridad y derechos del titular se observan conforme a la LGPD. Las solicitudes pueden enviarse al contacto de esta Política."
-          },
-          {
-            "type": "h3",
-            "html": "16.2 EEE/Reino Unido/Suiza (GDPR/UK GDPR)"
-          },
-          {
-            "type": "p",
-            "html": "Puedes ejercer los derechos previstos en los arts. 15 a 22 del GDPR/UK GDPR, según corresponda."
+            "html": "Legal basis, purpose, necessity, security, and data subject rights are observed under the LGPD. Requests may be sent to the contact in this Policy."
           },
           {
             "type": "h3",
-            "html": "16.3 California (CCPA/CPRA) y Virginia (VCDPA)"
+            "html": "16.2 EEA/United Kingdom/Switzerland (GDPR/UK GDPR)"
           },
           {
             "type": "p",
-            "html": "Los usuarios elegibles pueden ejercer derechos de acceso, eliminación, corrección, opt-out de ciertas finalidades y no discriminación, conforme a la ley local."
-          }
-        ]
-      },
-      {
-        "title": "17. Servicios y enlaces de terceros",
-        "blocks": [
+            "html": "You may exercise the rights provided in arts. 15 to 22 of the GDPR/UK GDPR, as applicable."
+          },
           {
-            "type": "p",
-            "html": "La App puede contener enlaces/integraciones de terceros. No controlamos integralmente esos entornos y recomendamos leer las políticas propias de cada proveedor."
-          }
-        ]
-      },
-      {
-        "title": "18. Cambios en esta Política",
-        "blocks": [
-          {
-            "type": "p",
-            "html": "Podemos actualizar esta Política periódicamente."
+            "type": "h3",
+            "html": "16.3 California (CCPA/CPRA) and Virginia (VCDPA)"
           },
           {
             "type": "p",
-            "html": "La versión vigente será siempre la más reciente publicada en el canal oficial informado en la App/tienda. En cambios relevantes, podremos destacar un aviso en la App."
+            "html": "Eligible users may exercise rights of access, deletion, correction, opt-out of certain purposes, and non-discrimination, according to local law."
           }
         ]
       },
       {
-        "title": "19. Contacto y reclamaciones",
+        "title": "17. Third-party services and links",
         "blocks": [
           {
             "type": "p",
-            "html": "Para dudas, solicitudes de derechos o reclamaciones sobre privacidad:"
+            "html": "The App may contain third-party links/integrations. We do not fully control those environments and recommend reading each provider’s own policies."
+          }
+        ]
+      },
+      {
+        "title": "18. Changes to this Policy",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "We may update this Policy periodically."
+          },
+          {
+            "type": "p",
+            "html": "The version in force will always be the most recent version published through the official channel indicated in the App/store. For relevant changes, we may highlight a notice in the App."
+          }
+        ]
+      },
+      {
+        "title": "19. Contact and complaints",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "For questions, rights requests, or privacy complaints:"
           },
           {
             "type": "p",
@@ -1541,7 +1648,7 @@
           },
           {
             "type": "p",
-            "html": "Si no estás satisfecho con nuestra respuesta, podrás acudir a la autoridad de protección de datos competente en tu jurisdicción."
+            "html": "If you are not satisfied with our response, you may contact the competent data protection authority in your jurisdiction."
           }
         ]
       }
@@ -1550,15 +1657,15 @@
   "fr": {
     "htmlLang": "fr",
     "documentTitle": "Politique de confidentialité — Biblia Crux",
-    "metaDescription": "Politique de confidentialité de l’application Biblia Crux pour Android.",
+    "metaDescription": "Politique de confidentialité de l’application Biblia Crux (Android et iOS).",
     "pageTitle": "Politique de confidentialité — Biblia Crux",
     "effectiveDateLabel": "Entrée en vigueur:",
     "lastUpdatedLabel": "Dernière mise à jour:",
     "applicationLabel": "Application:",
     "privacyContactLabel": "Contact confidentialité:",
     "effectiveDate": "24 avril 2026",
-    "lastUpdated": "9 mai 2026",
-    "applicationName": "Biblia Crux (Android)",
+    "lastUpdated": "15 mai 2026",
+    "applicationName": "Biblia Crux (Android / iOS)",
     "settingsTitle": "Préférences",
     "labelAppLanguage": "Choisissez la langue pour votre lecture",
     "settingsUiLanguageHint": "",
@@ -1573,10 +1680,12 @@
     "emailLabel": "E-mail:",
     "appendixTitle": "Annexe — Fournisseurs courants dans l’écosystème de l’App (références)",
     "links": {
-      "googlePrivacy": "Google Privacy Policy",
+      "googlePrivacy": "Politique de confidentialité Google",
       "firebase": "Firebase",
       "revenueCat": "RevenueCat",
-      "googlePlay": "Google Play"
+      "googlePlay": "Google Play",
+      "appStore": "Apple App Store",
+      "accountDeletion": "Suppression de compte et de données"
     },
     "sections": [
       {
@@ -1603,30 +1712,31 @@
               "la synchronisation/sauvegarde dans le cloud;",
               "les abonnements premium;",
               "les annonces dans la version gratuite;",
+              "les signalements de correction de verset envoyés connecté;",
               "les fonctionnalités en ligne et hors ligne de l’App."
             ]
           },
           {
             "type": "p",
-            "html": "Si vous utilisez des services tiers intégrés à l’App, les conditions et politiques de ces tiers s’appliquent également."
+            "html": "If you use third-party services integrated with the App, those third parties’ terms and policies also apply."
           }
         ]
       },
       {
-        "title": "3. Consentement et acceptation",
+        "title": "3. Consent and acceptance",
         "blocks": [
           {
             "type": "p",
-            "html": "En installant, en accédant à l’App ou en l’utilisant, vous déclarez avoir lu et accepté cette Politique."
+            "html": "By installing, accessing, or using the App, you state that you have read and agree to this Policy."
           },
           {
             "type": "p",
-            "html": "Si vous (ou votre représentant légal, le cas échéant) n’acceptez pas cette Politique, n’installez pas et n’utilisez pas l’App."
+            "html": "If you (or your legal guardian, where applicable) do not agree with this Policy, do not install or use the App."
           }
         ]
       },
       {
-        "title": "4. Public de l’App (13 ans et plus)",
+        "title": "4. App audience (ages 13 and older)",
         "blocks": [
           {
             "type": "p",
@@ -1634,102 +1744,114 @@
           },
           {
             "type": "p",
-            "html": "Nous recommandons la supervision des parents ou représentants légaux pour les adolescents mineurs. Lorsque la loi locale l’exige, nous adoptons des mesures supplémentaires de protection des mineurs."
+            "html": "We recommend parental or legal guardian supervision for adolescents who are minors. Where required by local law, we adopt additional measures to protect minors."
           },
           {
             "type": "p",
-            "html": "Si vous êtes représentant légal et identifiez une utilisation abusive des données d’un mineur, contactez-nous à: {{emailLink}}."
+            "html": "If you are a legal guardian and identify misuse of a minor’s data, contact us at: {{emailLink}}."
           }
         ]
       },
       {
-        "title": "5. Données que nous traitons",
+        "title": "5. What data we process",
         "blocks": [
           {
             "type": "p",
-            "html": "Selon la manière dont l’App est utilisée, nous pouvons traiter:"
+            "html": "Depending on how the App is used, we may process:"
           },
           {
             "type": "h3",
-            "html": "5.1 Données de compte et d’authentification"
+            "html": "5.1 Account and authentication data"
           },
           {
             "type": "ul",
             "items": [
               "e-mail;",
               "identifiant utilisateur (UID);",
-              "données de base du fournisseur de connexion (ex.: Google), le cas échéant."
+              "données de base du fournisseur de connexion (ex.: Google ou Apple), le cas échéant."
             ]
           },
           {
             "type": "h3",
-            "html": "5.2 Données d’utilisation et de préférences"
+            "html": "5.2 Usage and preference data"
           },
           {
             "type": "ul",
             "items": [
-              "langue de l’interface;",
-              "thème, taille/famille de police, préférences de lecture;",
-              "état des paramètres et métadonnées techniques nécessaires au fonctionnement."
+              "interface language;",
+              "theme, font size/family, reading preferences;",
+              "settings state and technical metadata required for operation."
             ]
           },
           {
             "type": "h3",
-            "html": "5.3 Contenu enregistré/synchronisé"
+            "html": "5.3 Saved/synced content"
           },
           {
             "type": "ul",
             "items": [
-              "signets et références enregistrés;",
-              "paramètres synchronisés entre appareils;",
-              "métadonnées de session active pour la protection du compte sur plusieurs appareils."
+              "saved bookmarks and references;",
+              "settings synced across devices;",
+              "active session metadata for account protection across multiple devices."
             ]
           },
           {
             "type": "h3",
-            "html": "5.4 Données d’abonnement"
+            "html": "5.4 Subscription data"
           },
           {
             "type": "ul",
             "items": [
-              "statut premium (actif/inactif);",
-              "données techniques d’abonnement traitées par la boutique/RevenueCat."
+              "premium status (active/inactive);",
+              "technical subscription data processed by the store/RevenueCat."
             ]
           },
           {
             "type": "h3",
-            "html": "5.5 Données publicitaires (version gratuite)"
+            "html": "5.5 Advertising data (free version)"
           },
           {
             "type": "ul",
             "items": [
-              "données nécessaires à l’affichage et à la mesure des annonces (AdMob);",
-              "préférences/états de consentement à la confidentialité (UMP), le cas échéant."
+              "data required to display and measure ads (AdMob);",
+              "privacy consent preferences/statuses (UMP), when applicable."
             ]
           },
           {
             "type": "h3",
-            "html": "5.6 Données techniques et de sécurité"
+            "html": "5.6 Technical and security data"
           },
           {
             "type": "ul",
             "items": [
-              "journaux techniques, défaillances, événements de connectivité et validations anti-abus (ex.: App Check);",
-              "l’adresse IP et les identifiants techniques peuvent être traités par des fournisseurs d’infrastructure."
+              "technical logs, failures, connectivity events, and anti-abuse validations (e.g., App Check);",
+              "IP address and technical identifiers may be processed by infrastructure providers."
+            ]
+          },
+          {
+            "type": "h3",
+            "html": "5.7 Commentaires et signalements de correction de verset"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "texte de commentaires ou suggestions de correction sur des versets bibliques envoyés connecté;",
+              "référence du verset, version de la Bible et métadonnées techniques nécessaires au traitement;",
+              "nous ne collectons pas intentionnellement de catégories sensibles au-delà de ce que vous écrivez dans le signalement."
             ]
           },
           {
             "type": "p",
-            "html": "Nous ne demandons pas intentionnellement de données personnelles sensibles au-delà de ce qui est strictement nécessaire au fonctionnement des Services."
+            "html": "We do not intentionally request sensitive personal data beyond what is strictly necessary to operate the Services."
           }
         ]
       },
       {
-        "title": "6. Finalités du traitement",
+        "title": "6. Purposes of processing",
         "blocks": [
           {
             "type": "p",
-            "html": "Nous traitons les données pour:"
+            "html": "We process data to:"
           },
           {
             "type": "ul",
@@ -1739,6 +1861,7 @@
               "synchroniser la sauvegarde/restauration entre appareils;",
               "fournir et gérer l’abonnement premium;",
               "afficher des annonces dans la version gratuite;",
+              "examiner les signalements de correction de verset et améliorer la qualité du texte biblique;",
               "respecter les obligations légales/réglementaires;",
               "prévenir la fraude, les abus et les accès non autorisés;",
               "améliorer la stabilité, la sécurité et les performances."
@@ -1747,40 +1870,40 @@
         ]
       },
       {
-        "title": "7. Bases juridiques du traitement (LGPD/GDPR et équivalents)",
+        "title": "7. Legal bases for processing (LGPD/GDPR and equivalents)",
         "blocks": [
           {
             "type": "p",
-            "html": "Le cas échéant, nous traitons les données sur la base de:"
+            "html": "Where applicable, we process data based on:"
           },
           {
             "type": "ul",
             "items": [
-              "l’exécution du contrat (fonctionnalités de l’App);",
-              "l’intérêt légitime (sécurité, prévention de la fraude, maintenance technique);",
-              "le consentement (lorsqu’il est requis pour la publicité/confidentialité);",
-              "le respect d’une obligation légale/réglementaire."
+              "contract performance (App features);",
+              "legitimate interest (security, fraud prevention, technical maintenance, quality review of reports);",
+              "consent (when required for advertising/privacy);",
+              "compliance with legal/regulatory obligations."
             ]
           }
         ]
       },
       {
-        "title": "8. Annonces, consentement et préférences (AdMob/UMP)",
+        "title": "8. Ads, consent, and preferences (AdMob/UMP)",
         "blocks": [
           {
             "type": "p",
-            "html": "La version gratuite peut afficher des annonces."
+            "html": "The free version may display ads."
           },
           {
             "type": "p",
-            "html": "Lorsque cela s’applique selon la région, nous utilisons le flux de consentement de Google (UMP). Le format et la disponibilité des options peuvent varier selon le pays/l’État."
+            "html": "Where applicable by region, we use Google’s consent flow (UMP). The format and availability of options may vary by country/state."
           },
           {
             "type": "ul",
             "items": [
-              "Les utilisateurs premium, selon les règles de l’App, ne devraient pas recevoir d’annonces.",
-              "Même sans consentement à la personnalisation, des annonces non personnalisées/limitées peuvent être affichées lorsque la loi et la plateforme publicitaire le permettent.",
-              "Vous pouvez consulter/modifier vos préférences dans l’entrée de confidentialité de l’App."
+              "Premium users, under the App’s rules, should not receive ads.",
+              "Even without consent for personalization, non-personalized/limited ads may be displayed when permitted by law and the advertising platform.",
+              "You can review/change preferences through the privacy entry point inside the App."
             ]
           },
           {
@@ -1790,11 +1913,11 @@
         ]
       },
       {
-        "title": "9. Partage avec des tiers (opérateurs et partenaires essentiels)",
+        "title": "9. Sharing with third parties (operators and essential partners)",
         "blocks": [
           {
             "type": "p",
-            "html": "Nous pouvons partager des données avec des fournisseurs qui rendent possible le fonctionnement de l’App, par exemple:"
+            "html": "We may share data with providers that enable the App to operate, for example:"
           },
           {
             "type": "ul",
@@ -1802,78 +1925,90 @@
               "Google Firebase (authentification, base de données cloud, functions, sécurité);",
               "Google AdMob / UMP (publicité et gestion de la confidentialité);",
               "RevenueCat (gestion des abonnements);",
-              "Google Play (achat et facturation);",
+              "Google Play et Apple App Store (achat et facturation);",
               "fournisseurs d’infrastructure, de stockage et de support technique."
             ]
           },
           {
             "type": "p",
-            "html": "Ces tiers traitent les données conformément à leurs propres politiques et conditions."
+            "html": "These third parties process data according to their own policies and terms."
           }
         ]
       },
       {
-        "title": "10. Transferts internationaux",
+        "title": "10. International transfers",
         "blocks": [
           {
             "type": "p",
-            "html": "Si vous êtes hors du pays d’hébergement des systèmes, vos données peuvent être traitées dans d’autres juridictions."
+            "html": "If you are outside the country where the systems are hosted, your data may be processed in other jurisdictions."
           },
           {
             "type": "p",
-            "html": "Nous adoptons des garanties raisonnables pour les transferts internationaux de données, conformément à la législation applicable."
+            "html": "We adopt reasonable safeguards for international data transfers, in accordance with applicable law."
           }
         ]
       },
       {
-        "title": "11. Conservation et suppression",
+        "title": "11. Retention and disposal",
         "blocks": [
           {
             "type": "p",
-            "html": "Nous conservons les données pendant la durée nécessaire pour:"
+            "html": "We retain data for as long as necessary to:"
           },
           {
             "type": "ul",
             "items": [
-              "fournir les fonctionnalités de l’App;",
-              "respecter les obligations légales, comptables et de sécurité;",
-              "prévenir la fraude et résoudre les litiges."
+              "deliver App functionality;",
+              "comply with legal, accounting, and security obligations;",
+              "prevent fraud and resolve disputes."
             ]
           },
           {
             "type": "p",
-            "html": "Lorsque cela est possible et applicable, les données sont supprimées, anonymisées ou minimisées lorsqu’elles ne sont plus nécessaires."
-          }
-        ]
-      },
-      {
-        "title": "12. Vos droits en matière de confidentialité",
-        "blocks": [
-          {
-            "type": "p",
-            "html": "Selon votre région (ex.: LGPD, GDPR, CCPA/CPRA, VCDPA), vous pouvez avoir le droit de:"
+            "html": "In particular:"
           },
           {
             "type": "ul",
             "items": [
-              "confirmer et accéder aux données;",
-              "corriger les données incomplètes/inexactes;",
-              "demander la suppression;",
-              "demander l’anonymisation/le blocage/la restriction;",
-              "demander la portabilité;",
-              "vous opposer à certains traitements;",
-              "retirer le consentement (lorsque c’est la base juridique);",
-              "demander la révision de décisions automatisées, le cas échéant;",
-              "déposer une plainte auprès de l’autorité compétente."
+              "<strong>Sauvegarde cloud et session active :</strong> stockées tant que votre compte existe ; supprimées automatiquement de nos serveurs peu après la suppression du compte dans l’App.",
+              "<strong>Signalements de correction de verset :</strong> peuvent être conservés après suppression du compte pour examiner et améliorer le texte biblique ; ne sont plus liés à un compte actif. Nous pouvons les <strong>supprimer manuellement de nos systèmes dans un délai allant jusqu’à 5 ans</strong> après leur dernière mise à jour.",
+              "<strong>Journaux techniques et enregistrements des boutiques :</strong> conservés pour des durées limitées pour la sécurité, l’exploitation ou les obligations légales/financières."
             ]
           },
           {
             "type": "p",
-            "html": "Pour exercer vos droits: {{emailLink}}<br>{{suggestedSubject}} « Demande de données personnelles — Biblia Crux »"
+            "html": "Where possible and applicable, other data is deleted, anonymized, or minimized after it is no longer necessary."
+          }
+        ]
+      },
+      {
+        "title": "12. Your privacy rights",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "Depending on your region (e.g., LGPD, GDPR, CCPA/CPRA, VCDPA), you may have the right to:"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "confirm and access data;",
+              "correct incomplete/inaccurate data;",
+              "request deletion;",
+              "request anonymization/blocking/restriction;",
+              "request portability;",
+              "object to certain processing;",
+              "withdraw consent (when this is the legal basis);",
+              "request review of automated decisions, where applicable;",
+              "file a complaint with the competent authority."
+            ]
           },
           {
             "type": "p",
-            "html": "Nous pouvons demander une preuve d’identité avant de répondre à la demande."
+            "html": "Pour exercer vos droits : {{emailLink}}<br>{{suggestedSubject}} « Demande de données personnelles — Biblia Crux »"
+          },
+          {
+            "type": "p",
+            "html": "We may request proof of identity before fulfilling the request."
           }
         ]
       },
@@ -1882,117 +2017,145 @@
         "blocks": [
           {
             "type": "p",
-            "html": "Lorsque disponible dans l’App, vous pouvez demander/effectuer la suppression du compte."
+            "html": "Vous pouvez supprimer votre compte dans l’App sous <strong>Compte</strong> → <strong>Supprimer le compte</strong> (après connexion). Si vous ne pouvez pas accéder à l’App, envoyez un e-mail à {{emailLink}} avec l’objet « Demande de Suppression de Compte — Biblia Crux »."
           },
           {
-            "type": "p",
-            "html": "Certaines données peuvent être conservées pendant une période limitée pour:"
-          },
-          {
-            "type": "ul",
+            "type": "ol",
             "items": [
-              "obligation légale;",
-              "sécurité;",
-              "prévention de la fraude;",
-              "défense dans des procédures judiciaires/administratives."
-            ]
-          }
-        ]
-      },
-      {
-        "title": "14. Sécurité de l’information",
-        "blocks": [
-          {
-            "type": "p",
-            "html": "Nous adoptons des mesures techniques et organisationnelles raisonnables pour réduire le risque d’accès non autorisé, de modification indue, de divulgation ou de destruction des données."
-          },
-          {
-            "type": "p",
-            "html": "Aucune méthode de transmission/stockage n’est invulnérable à 100 %, mais nous appliquons des contrôles proportionnés de sécurité et de surveillance."
-          }
-        ]
-      },
-      {
-        "title": "15. Cookies et technologies similaires",
-        "blocks": [
-          {
-            "type": "p",
-            "html": "Dans les composants web et/ou SDK intégrés, nous pouvons utiliser des technologies comme les cookies, identifiants d’appareil, balises, scripts et stockage local pour:"
-          },
-          {
-            "type": "ul",
-            "items": [
-              "l’authentification et la session;",
-              "la mesure de performance;",
-              "la sécurité;",
-              "la prévention de la fraude;",
-              "l’analyse d’utilisation;",
-              "la publicité (le cas échéant)."
+              "Ouvrez <strong>Biblia Crux</strong>.",
+              "Allez dans <strong>Compte</strong>.",
+              "Connectez-vous si nécessaire.",
+              "Appuyez sur <strong>Supprimer le compte</strong> et confirmez."
             ]
           },
           {
             "type": "p",
-            "html": "Vous pouvez limiter le suivi et la personnalisation via les paramètres de l’appareil/de la plateforme."
+            "html": "Lorsque vous supprimez votre compte :"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "votre compte d’authentification est supprimé définitivement ;",
+              "les données locales liées à la session sur l’appareil sont effacées ;",
+              "votre sauvegarde cloud des préférences et l’enregistrement de session active sont supprimés automatiquement de nos serveurs."
+            ]
+          },
+          {
+            "type": "p",
+            "html": "Les éléments suivants peuvent être conservés pour des périodes limitées :"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "signalements de correction de verset que vous avez envoyés (plus liés à un compte actif ; suppression manuelle dans un délai allant jusqu’à 5 ans après la dernière mise à jour, voir section 11) ;",
+              "données requises par la loi, la sécurité, la prévention de la fraude ou la résolution de litiges ;",
+              "historique d’achat/abonnement détenu par les boutiques ou exigé par la loi."
+            ]
+          },
+          {
+            "type": "p",
+            "html": "La suppression du compte <strong>n’annule pas</strong> un abonnement payant. Annulez-le sur <strong>Google Play</strong> ou l’<strong>App Store</strong>, selon le cas."
+          },
+          {
+            "type": "p",
+            "html": "Plus de détails : {{accountDeletionLink}}."
           }
         ]
       },
       {
-        "title": "16. Notes pour les résidents de régions spécifiques (résumé)",
+        "title": "14. Information security",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "We adopt reasonable technical and organizational measures to reduce the risk of unauthorized access, improper alteration, disclosure, or destruction of data."
+          },
+          {
+            "type": "p",
+            "html": "No transmission/storage method is 100% invulnerable, but we apply proportionate security and monitoring controls."
+          }
+        ]
+      },
+      {
+        "title": "15. Cookies and similar technologies",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "In web components and/or integrated SDKs, we may use technologies such as cookies, device identifiers, tags, scripts, and local storage for:"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "authentication and session;",
+              "performance measurement;",
+              "security;",
+              "fraud prevention;",
+              "usage analysis;",
+              "advertising (when applicable)."
+            ]
+          },
+          {
+            "type": "p",
+            "html": "You can limit tracking and personalization through device/platform settings."
+          }
+        ]
+      },
+      {
+        "title": "16. Notes for residents of specific regions (summary)",
         "blocks": [
           {
             "type": "h3",
-            "html": "16.1 Brésil (LGPD)"
+            "html": "16.1 Brazil (LGPD)"
           },
           {
             "type": "p",
-            "html": "La base juridique, la finalité, la nécessité, la sécurité et les droits de la personne concernée sont observés conformément à la LGPD. Les demandes peuvent être envoyées au contact de cette Politique."
-          },
-          {
-            "type": "h3",
-            "html": "16.2 EEE/Royaume-Uni/Suisse (GDPR/UK GDPR)"
-          },
-          {
-            "type": "p",
-            "html": "Vous pouvez exercer les droits prévus aux art. 15 à 22 du GDPR/UK GDPR, le cas échéant."
+            "html": "Legal basis, purpose, necessity, security, and data subject rights are observed under the LGPD. Requests may be sent to the contact in this Policy."
           },
           {
             "type": "h3",
-            "html": "16.3 Californie (CCPA/CPRA) et Virginie (VCDPA)"
+            "html": "16.2 EEA/United Kingdom/Switzerland (GDPR/UK GDPR)"
           },
           {
             "type": "p",
-            "html": "Les utilisateurs éligibles peuvent exercer les droits d’accès, de suppression, de correction, d’opt-out de certaines finalités et de non-discrimination, conformément à la loi locale."
-          }
-        ]
-      },
-      {
-        "title": "17. Services et liens de tiers",
-        "blocks": [
+            "html": "You may exercise the rights provided in arts. 15 to 22 of the GDPR/UK GDPR, as applicable."
+          },
           {
-            "type": "p",
-            "html": "L’App peut contenir des liens/intégrations de tiers. Nous ne contrôlons pas entièrement ces environnements et recommandons de lire les politiques propres à chaque fournisseur."
-          }
-        ]
-      },
-      {
-        "title": "18. Modifications de cette Politique",
-        "blocks": [
-          {
-            "type": "p",
-            "html": "Nous pouvons mettre à jour cette Politique périodiquement."
+            "type": "h3",
+            "html": "16.3 California (CCPA/CPRA) and Virginia (VCDPA)"
           },
           {
             "type": "p",
-            "html": "La version en vigueur sera toujours la plus récente publiée sur le canal officiel indiqué dans l’App/la boutique. En cas de changements importants, nous pourrons afficher un avis dans l’App."
+            "html": "Eligible users may exercise rights of access, deletion, correction, opt-out of certain purposes, and non-discrimination, according to local law."
           }
         ]
       },
       {
-        "title": "19. Contact et réclamations",
+        "title": "17. Third-party services and links",
         "blocks": [
           {
             "type": "p",
-            "html": "Pour les questions, demandes relatives aux droits ou réclamations concernant la confidentialité:"
+            "html": "The App may contain third-party links/integrations. We do not fully control those environments and recommend reading each provider’s own policies."
+          }
+        ]
+      },
+      {
+        "title": "18. Changes to this Policy",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "We may update this Policy periodically."
+          },
+          {
+            "type": "p",
+            "html": "The version in force will always be the most recent version published through the official channel indicated in the App/store. For relevant changes, we may highlight a notice in the App."
+          }
+        ]
+      },
+      {
+        "title": "19. Contact and complaints",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "For questions, rights requests, or privacy complaints:"
           },
           {
             "type": "p",
@@ -2001,7 +2164,7 @@
           },
           {
             "type": "p",
-            "html": "Si vous n’êtes pas satisfait de notre réponse, vous pouvez saisir l’autorité de protection des données compétente dans votre juridiction."
+            "html": "If you are not satisfied with our response, you may contact the competent data protection authority in your jurisdiction."
           }
         ]
       }
@@ -2010,15 +2173,15 @@
   "it": {
     "htmlLang": "it",
     "documentTitle": "Informativa sulla privacy — Biblia Crux",
-    "metaDescription": "Informativa sulla privacy dell’applicazione Biblia Crux per Android.",
+    "metaDescription": "Informativa sulla privacy dell’applicazione Biblia Crux (Android e iOS).",
     "pageTitle": "Informativa sulla privacy — Biblia Crux",
     "effectiveDateLabel": "Decorrenza:",
     "lastUpdatedLabel": "Ultimo aggiornamento:",
     "applicationLabel": "Applicazione:",
     "privacyContactLabel": "Contatto privacy:",
     "effectiveDate": "24 aprile 2026",
-    "lastUpdated": "9 maggio 2026",
-    "applicationName": "Biblia Crux (Android)",
+    "lastUpdated": "15 maggio 2026",
+    "applicationName": "Biblia Crux (Android / iOS)",
     "settingsTitle": "Preferenze",
     "labelAppLanguage": "Scegli la lingua per la tua lettura",
     "settingsUiLanguageHint": "",
@@ -2033,10 +2196,12 @@
     "emailLabel": "E-mail:",
     "appendixTitle": "Allegato — Fornitori comuni nell’ecosistema dell’App (riferimenti)",
     "links": {
-      "googlePrivacy": "Google Privacy Policy",
+      "googlePrivacy": "Informativa sulla privacy di Google",
       "firebase": "Firebase",
       "revenueCat": "RevenueCat",
-      "googlePlay": "Google Play"
+      "googlePlay": "Google Play",
+      "appStore": "Apple App Store",
+      "accountDeletion": "Eliminazione di account e dati"
     },
     "sections": [
       {
@@ -2049,11 +2214,11 @@
         ]
       },
       {
-        "title": "2. Ambito di questa Informativa",
+        "title": "2. Scope of this Policy",
         "blocks": [
           {
             "type": "p",
-            "html": "Questa Informativa si applica all’uso dell’App Biblia Crux, inclusi:"
+            "html": "This Policy applies to the use of the Biblia Crux App, including:"
           },
           {
             "type": "ul",
@@ -2063,25 +2228,26 @@
               "sincronizzazione/backup cloud;",
               "abbonamenti premium;",
               "annunci nella versione gratuita;",
+              "segnalazioni di correzione dei versetti inviate con accesso effettuato;",
               "funzionalità online e offline dell’App."
             ]
           },
           {
             "type": "p",
-            "html": "Se utilizzi servizi di terze parti integrati nell’App, si applicano anche i termini e le politiche di tali terze parti."
+            "html": "If you use third-party services integrated with the App, those third parties’ terms and policies also apply."
           }
         ]
       },
       {
-        "title": "3. Consenso e accettazione",
+        "title": "3. Consent and acceptance",
         "blocks": [
           {
             "type": "p",
-            "html": "Installando, accedendo o usando l’App, dichiari di aver letto e accettato questa Informativa."
+            "html": "By installing, accessing, or using the App, you state that you have read and agree to this Policy."
           },
           {
             "type": "p",
-            "html": "Se tu (o il tuo tutore legale, quando applicabile) non accetti questa Informativa, non installare né utilizzare l’App."
+            "html": "If you (or your legal guardian, where applicable) do not agree with this Policy, do not install or use the App."
           }
         ]
       },
@@ -2090,106 +2256,118 @@
         "blocks": [
           {
             "type": "p",
-            "html": "L’App offre contenuti biblici e può essere utilizzata da persone di diverse fasce d’età, inclusi i minori."
+            "html": "L’App offre contenuti biblici ed è destinata a persone di 13 anni o più, inclusi adolescenti e adulti."
           },
           {
             "type": "p",
-            "html": "Raccomandiamo la supervisione di genitori o tutori legali per l’uso da parte di bambini e adolescenti. Quando richiesto dalla legge locale, adottiamo misure aggiuntive di protezione dei minori."
+            "html": "Raccomandiamo la supervisione di genitori o tutori legali per gli adolescenti minorenni. Quando richiesto dalla legge locale, adottiamo misure aggiuntive di protezione dei minori."
           },
           {
             "type": "p",
-            "html": "Se sei un tutore legale e identifichi un uso improprio dei dati di un minore, contattaci a: {{emailLink}}."
+            "html": "If you are a legal guardian and identify misuse of a minor’s data, contact us at: {{emailLink}}."
           }
         ]
       },
       {
-        "title": "5. Quali dati trattiamo",
+        "title": "5. What data we process",
         "blocks": [
           {
             "type": "p",
-            "html": "A seconda della modalità d’uso dell’App, possiamo trattare:"
+            "html": "Depending on how the App is used, we may process:"
           },
           {
             "type": "h3",
-            "html": "5.1 Dati di account e autenticazione"
+            "html": "5.1 Account and authentication data"
           },
           {
             "type": "ul",
             "items": [
               "e-mail;",
               "identificativo utente (UID);",
-              "dati di base del provider di accesso (es.: Google), quando applicabile."
+              "dati di base del provider di accesso (es.: Google o Apple), quando applicabile."
             ]
           },
           {
             "type": "h3",
-            "html": "5.2 Dati di utilizzo e preferenze"
+            "html": "5.2 Usage and preference data"
           },
           {
             "type": "ul",
             "items": [
-              "lingua dell’interfaccia;",
-              "tema, dimensione/famiglia del carattere, preferenze di lettura;",
-              "stato delle impostazioni e metadati tecnici necessari al funzionamento."
+              "interface language;",
+              "theme, font size/family, reading preferences;",
+              "settings state and technical metadata required for operation."
             ]
           },
           {
             "type": "h3",
-            "html": "5.3 Contenuto salvato/sincronizzato"
+            "html": "5.3 Saved/synced content"
           },
           {
             "type": "ul",
             "items": [
-              "segnalibri e riferimenti salvati;",
-              "impostazioni sincronizzate tra dispositivi;",
-              "metadati di sessione attiva per la protezione dell’account su più dispositivi."
+              "saved bookmarks and references;",
+              "settings synced across devices;",
+              "active session metadata for account protection across multiple devices."
             ]
           },
           {
             "type": "h3",
-            "html": "5.4 Dati di abbonamento"
+            "html": "5.4 Subscription data"
           },
           {
             "type": "ul",
             "items": [
-              "stato premium (attivo/inattivo);",
-              "dati tecnici di abbonamento trattati da store/RevenueCat."
+              "premium status (active/inactive);",
+              "technical subscription data processed by the store/RevenueCat."
             ]
           },
           {
             "type": "h3",
-            "html": "5.5 Dati degli annunci (versione gratuita)"
+            "html": "5.5 Advertising data (free version)"
           },
           {
             "type": "ul",
             "items": [
-              "dati necessari per la visualizzazione e misurazione degli annunci (AdMob);",
-              "preferenze/stati di consenso privacy (UMP), quando applicabile."
+              "data required to display and measure ads (AdMob);",
+              "privacy consent preferences/statuses (UMP), when applicable."
             ]
           },
           {
             "type": "h3",
-            "html": "5.6 Dati tecnici e di sicurezza"
+            "html": "5.6 Technical and security data"
           },
           {
             "type": "ul",
             "items": [
-              "log tecnici, errori, eventi di connettività e validazioni antiabuso (es.: App Check);",
-              "indirizzo IP e identificatori tecnici possono essere trattati da fornitori di infrastruttura."
+              "technical logs, failures, connectivity events, and anti-abuse validations (e.g., App Check);",
+              "IP address and technical identifiers may be processed by infrastructure providers."
+            ]
+          },
+          {
+            "type": "h3",
+            "html": "5.7 Commenti e segnalazioni di correzione dei versetti"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "testo di commenti o suggerimenti di correzione sui versetti biblici inviati con accesso effettuato;",
+              "riferimento del versetto, versione della Bibbia e metadati tecnici necessari all’elaborazione;",
+              "non raccogliamo intenzionalmente categorie sensibili oltre a quanto scrivi nella segnalazione."
             ]
           },
           {
             "type": "p",
-            "html": "Non richiediamo intenzionalmente dati personali sensibili oltre a quanto strettamente necessario per operare i Servizi."
+            "html": "We do not intentionally request sensitive personal data beyond what is strictly necessary to operate the Services."
           }
         ]
       },
       {
-        "title": "6. Finalità del trattamento",
+        "title": "6. Purposes of processing",
         "blocks": [
           {
             "type": "p",
-            "html": "Trattiamo i dati per:"
+            "html": "We process data to:"
           },
           {
             "type": "ul",
@@ -2199,6 +2377,7 @@
               "sincronizzare backup/ripristino tra dispositivi;",
               "fornire e gestire l’abbonamento premium;",
               "mostrare annunci nella versione gratuita;",
+              "esaminare le segnalazioni di correzione dei versetti e migliorare la qualità del testo biblico;",
               "adempiere obblighi legali/regolatori;",
               "prevenire frodi, abusi e accessi non autorizzati;",
               "migliorare stabilità, sicurezza e prestazioni."
@@ -2207,40 +2386,40 @@
         ]
       },
       {
-        "title": "7. Basi giuridiche del trattamento (LGPD/GDPR ed equivalenti)",
+        "title": "7. Legal bases for processing (LGPD/GDPR and equivalents)",
         "blocks": [
           {
             "type": "p",
-            "html": "Quando applicabile, trattiamo i dati sulla base di:"
+            "html": "Where applicable, we process data based on:"
           },
           {
             "type": "ul",
             "items": [
-              "esecuzione del contratto (funzionalità dell’App);",
-              "legittimo interesse (sicurezza, prevenzione frodi, manutenzione tecnica);",
-              "consenso (quando richiesto per pubblicità/privacy);",
-              "adempimento di obbligo legale/regolatorio."
+              "contract performance (App features);",
+              "legitimate interest (security, fraud prevention, technical maintenance, quality review of reports);",
+              "consent (when required for advertising/privacy);",
+              "compliance with legal/regulatory obligations."
             ]
           }
         ]
       },
       {
-        "title": "8. Annunci, consenso e preferenze (AdMob/UMP)",
+        "title": "8. Ads, consent, and preferences (AdMob/UMP)",
         "blocks": [
           {
             "type": "p",
-            "html": "La versione gratuita può mostrare annunci."
+            "html": "The free version may display ads."
           },
           {
             "type": "p",
-            "html": "Quando applicabile per regione, usiamo il flusso di consenso di Google (UMP). Il formato e la disponibilità delle opzioni possono variare per paese/stato."
+            "html": "Where applicable by region, we use Google’s consent flow (UMP). The format and availability of options may vary by country/state."
           },
           {
             "type": "ul",
             "items": [
-              "Gli utenti premium, secondo le regole dell’App, non dovrebbero ricevere annunci.",
-              "Anche senza consenso alla personalizzazione, possono essere mostrati annunci non personalizzati/limitati, quando consentito dalla legge e dalla piattaforma pubblicitaria.",
-              "Puoi rivedere/modificare le preferenze nell’area privacy dentro l’App."
+              "Premium users, under the App’s rules, should not receive ads.",
+              "Even without consent for personalization, non-personalized/limited ads may be displayed when permitted by law and the advertising platform.",
+              "You can review/change preferences through the privacy entry point inside the App."
             ]
           },
           {
@@ -2250,11 +2429,11 @@
         ]
       },
       {
-        "title": "9. Condivisione con terzi (operatori e partner essenziali)",
+        "title": "9. Sharing with third parties (operators and essential partners)",
         "blocks": [
           {
             "type": "p",
-            "html": "Possiamo condividere dati con fornitori che rendono possibile il funzionamento dell’App, ad esempio:"
+            "html": "We may share data with providers that enable the App to operate, for example:"
           },
           {
             "type": "ul",
@@ -2262,69 +2441,81 @@
               "Google Firebase (autenticazione, database cloud, functions, sicurezza);",
               "Google AdMob / UMP (pubblicità e gestione privacy);",
               "RevenueCat (gestione abbonamenti);",
-              "Google Play (acquisto e fatturazione);",
+              "Google Play e Apple App Store (acquisto e fatturazione);",
               "fornitori di infrastruttura, archiviazione e supporto tecnico."
             ]
           },
           {
             "type": "p",
-            "html": "Questi terzi trattano i dati secondo le proprie politiche e condizioni."
+            "html": "These third parties process data according to their own policies and terms."
           }
         ]
       },
       {
-        "title": "10. Trasferimenti internazionali",
+        "title": "10. International transfers",
         "blocks": [
           {
             "type": "p",
-            "html": "Se ti trovi fuori dal paese di hosting dei sistemi, i tuoi dati possono essere trattati in altre giurisdizioni."
+            "html": "If you are outside the country where the systems are hosted, your data may be processed in other jurisdictions."
           },
           {
             "type": "p",
-            "html": "Adottiamo salvaguardie ragionevoli per i trasferimenti internazionali di dati, secondo la legislazione applicabile."
+            "html": "We adopt reasonable safeguards for international data transfers, in accordance with applicable law."
           }
         ]
       },
       {
-        "title": "11. Conservazione ed eliminazione",
+        "title": "11. Retention and disposal",
         "blocks": [
           {
             "type": "p",
-            "html": "Conserviamo i dati per il tempo necessario a:"
+            "html": "We retain data for as long as necessary to:"
           },
           {
             "type": "ul",
             "items": [
-              "fornire le funzionalità dell’App;",
-              "adempiere obblighi legali, contabili e di sicurezza;",
-              "prevenire frodi e risolvere controversie."
+              "deliver App functionality;",
+              "comply with legal, accounting, and security obligations;",
+              "prevent fraud and resolve disputes."
             ]
           },
           {
             "type": "p",
-            "html": "Quando possibile e applicabile, i dati vengono eliminati, anonimizzati o minimizzati quando non sono più necessari."
-          }
-        ]
-      },
-      {
-        "title": "12. I tuoi diritti privacy",
-        "blocks": [
-          {
-            "type": "p",
-            "html": "A seconda della tua regione (es.: LGPD, GDPR, CCPA/CPRA, VCDPA), potresti avere diritto a:"
+            "html": "In particular:"
           },
           {
             "type": "ul",
             "items": [
-              "confermare e accedere ai dati;",
-              "correggere dati incompleti/inesatti;",
-              "richiedere eliminazione;",
-              "richiedere anonimizzazione/blocco/restrizione;",
-              "richiedere portabilità;",
-              "opporti a determinati trattamenti;",
-              "revocare il consenso (quando questa è la base giuridica);",
-              "richiedere revisione di decisioni automatizzate, quando applicabile;",
-              "presentare reclamo all’autorità competente."
+              "<strong>Backup cloud e sessione attiva:</strong> conservati finché l’account esiste; eliminati automaticamente dai nostri server poco dopo l’eliminazione dell’account nell’App.",
+              "<strong>Segnalazioni di correzione dei versetti:</strong> possono essere conservate dopo l’eliminazione dell’account per revisionare e migliorare il testo biblico; non restano collegate a un account attivo. Possiamo <strong>rimuoverle manualmente dai nostri sistemi entro un massimo di 5 anni</strong> dall’ultimo aggiornamento.",
+              "<strong>Log tecnici e registri degli store:</strong> conservati per periodi limitati per sicurezza, operazioni o obblighi legali/finanziari."
+            ]
+          },
+          {
+            "type": "p",
+            "html": "Where possible and applicable, other data is deleted, anonymized, or minimized after it is no longer necessary."
+          }
+        ]
+      },
+      {
+        "title": "12. Your privacy rights",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "Depending on your region (e.g., LGPD, GDPR, CCPA/CPRA, VCDPA), you may have the right to:"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "confirm and access data;",
+              "correct incomplete/inaccurate data;",
+              "request deletion;",
+              "request anonymization/blocking/restriction;",
+              "request portability;",
+              "object to certain processing;",
+              "withdraw consent (when this is the legal basis);",
+              "request review of automated decisions, where applicable;",
+              "file a complaint with the competent authority."
             ]
           },
           {
@@ -2333,7 +2524,7 @@
           },
           {
             "type": "p",
-            "html": "Possiamo richiedere prova d’identità prima di soddisfare la richiesta."
+            "html": "We may request proof of identity before fulfilling the request."
           }
         ]
       },
@@ -2342,117 +2533,145 @@
         "blocks": [
           {
             "type": "p",
-            "html": "Quando disponibile nell’App, puoi richiedere/eseguire l’eliminazione dell’account."
+            "html": "Puoi eliminare l’account nell’App in <strong>Account</strong> → <strong>Elimina account</strong> (dopo l’accesso). Se non riesci ad accedere all’App, invia un’e-mail a {{emailLink}} con oggetto “Richiesta Eliminazione Account — Biblia Crux”."
           },
           {
-            "type": "p",
-            "html": "Alcuni dati possono essere conservati per un periodo limitato per:"
-          },
-          {
-            "type": "ul",
+            "type": "ol",
             "items": [
-              "obbligo legale;",
-              "sicurezza;",
-              "prevenzione frodi;",
-              "difesa in procedimenti giudiziari/amministrativi."
-            ]
-          }
-        ]
-      },
-      {
-        "title": "14. Sicurezza delle informazioni",
-        "blocks": [
-          {
-            "type": "p",
-            "html": "Adottiamo misure tecniche e organizzative ragionevoli per ridurre il rischio di accesso non autorizzato, alterazione indebita, divulgazione o distruzione dei dati."
-          },
-          {
-            "type": "p",
-            "html": "Nessun metodo di trasmissione/archiviazione è invulnerabile al 100%, ma applichiamo controlli proporzionati di sicurezza e monitoraggio."
-          }
-        ]
-      },
-      {
-        "title": "15. Cookie e tecnologie simili",
-        "blocks": [
-          {
-            "type": "p",
-            "html": "In componenti web e/o SDK integrati, possiamo usare tecnologie come cookie, identificatori di dispositivo, tag, script e archiviazione locale per:"
-          },
-          {
-            "type": "ul",
-            "items": [
-              "autenticazione e sessione;",
-              "misurazione delle performance;",
-              "sicurezza;",
-              "prevenzione frodi;",
-              "analisi d’uso;",
-              "pubblicità (quando applicabile)."
+              "Apri <strong>Biblia Crux</strong>.",
+              "Vai su <strong>Account</strong>.",
+              "Accedi, se necessario.",
+              "Tocca <strong>Elimina account</strong> e conferma."
             ]
           },
           {
             "type": "p",
-            "html": "Puoi limitare tracciamento e personalizzazione tramite impostazioni del dispositivo/piattaforma."
+            "html": "Quando elimini l’account:"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "l’account di autenticazione viene rimosso in modo permanente;",
+              "i dati locali collegati alla sessione sul dispositivo vengono cancellati;",
+              "il backup cloud delle preferenze e il record della sessione attiva vengono eliminati automaticamente dai nostri server."
+            ]
+          },
+          {
+            "type": "p",
+            "html": "Quanto segue può essere conservato per periodi limitati:"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "segnalazioni di correzione dei versetti inviate (non collegate a un account attivo; rimozione manuale entro un massimo di 5 anni dall’ultimo aggiornamento, come nella sezione 11);",
+              "dati richiesti da legge, sicurezza, prevenzione frodi o gestione contenziosi;",
+              "registri di acquisto/abbonamento detenuti dagli store o richiesti dalla legge."
+            ]
+          },
+          {
+            "type": "p",
+            "html": "Eliminare l’account <strong>non annulla</strong> un abbonamento a pagamento. Annullalo su <strong>Google Play</strong> o sull’<strong>App Store</strong>, a seconda del caso."
+          },
+          {
+            "type": "p",
+            "html": "Maggiori dettagli: {{accountDeletionLink}}."
           }
         ]
       },
       {
-        "title": "16. Note per residenti di regioni specifiche (sintesi)",
+        "title": "14. Information security",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "We adopt reasonable technical and organizational measures to reduce the risk of unauthorized access, improper alteration, disclosure, or destruction of data."
+          },
+          {
+            "type": "p",
+            "html": "No transmission/storage method is 100% invulnerable, but we apply proportionate security and monitoring controls."
+          }
+        ]
+      },
+      {
+        "title": "15. Cookies and similar technologies",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "In web components and/or integrated SDKs, we may use technologies such as cookies, device identifiers, tags, scripts, and local storage for:"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "authentication and session;",
+              "performance measurement;",
+              "security;",
+              "fraud prevention;",
+              "usage analysis;",
+              "advertising (when applicable)."
+            ]
+          },
+          {
+            "type": "p",
+            "html": "You can limit tracking and personalization through device/platform settings."
+          }
+        ]
+      },
+      {
+        "title": "16. Notes for residents of specific regions (summary)",
         "blocks": [
           {
             "type": "h3",
-            "html": "16.1 Brasile (LGPD)"
+            "html": "16.1 Brazil (LGPD)"
           },
           {
             "type": "p",
-            "html": "Base giuridica, finalità, necessità, sicurezza e diritti dell’interessato sono osservati secondo la LGPD. Le richieste possono essere inviate al contatto di questa Informativa."
-          },
-          {
-            "type": "h3",
-            "html": "16.2 SEE/Regno Unito/Svizzera (GDPR/UK GDPR)"
-          },
-          {
-            "type": "p",
-            "html": "Puoi esercitare i diritti previsti dagli artt. 15 a 22 del GDPR/UK GDPR, secondo applicabilità."
+            "html": "Legal basis, purpose, necessity, security, and data subject rights are observed under the LGPD. Requests may be sent to the contact in this Policy."
           },
           {
             "type": "h3",
-            "html": "16.3 California (CCPA/CPRA) e Virginia (VCDPA)"
+            "html": "16.2 EEA/United Kingdom/Switzerland (GDPR/UK GDPR)"
           },
           {
             "type": "p",
-            "html": "Gli utenti idonei possono esercitare diritti di accesso, eliminazione, correzione, opt-out di determinate finalità e non discriminazione, secondo la legge locale."
-          }
-        ]
-      },
-      {
-        "title": "17. Servizi e link di terzi",
-        "blocks": [
+            "html": "You may exercise the rights provided in arts. 15 to 22 of the GDPR/UK GDPR, as applicable."
+          },
           {
-            "type": "p",
-            "html": "L’App può contenere link/integrazioni di terzi. Non controlliamo integralmente questi ambienti e raccomandiamo di leggere le politiche proprie di ciascun fornitore."
-          }
-        ]
-      },
-      {
-        "title": "18. Modifiche a questa Informativa",
-        "blocks": [
-          {
-            "type": "p",
-            "html": "Possiamo aggiornare periodicamente questa Informativa."
+            "type": "h3",
+            "html": "16.3 California (CCPA/CPRA) and Virginia (VCDPA)"
           },
           {
             "type": "p",
-            "html": "La versione vigente sarà sempre la più recente pubblicata nel canale ufficiale indicato nell’App/store. In caso di modifiche rilevanti, potremo evidenziare un avviso nell’App."
+            "html": "Eligible users may exercise rights of access, deletion, correction, opt-out of certain purposes, and non-discrimination, according to local law."
           }
         ]
       },
       {
-        "title": "19. Contatto e reclami",
+        "title": "17. Third-party services and links",
         "blocks": [
           {
             "type": "p",
-            "html": "Per domande, richieste sui diritti o reclami sulla privacy:"
+            "html": "The App may contain third-party links/integrations. We do not fully control those environments and recommend reading each provider’s own policies."
+          }
+        ]
+      },
+      {
+        "title": "18. Changes to this Policy",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "We may update this Policy periodically."
+          },
+          {
+            "type": "p",
+            "html": "The version in force will always be the most recent version published through the official channel indicated in the App/store. For relevant changes, we may highlight a notice in the App."
+          }
+        ]
+      },
+      {
+        "title": "19. Contact and complaints",
+        "blocks": [
+          {
+            "type": "p",
+            "html": "For questions, rights requests, or privacy complaints:"
           },
           {
             "type": "p",
@@ -2461,7 +2680,7 @@
           },
           {
             "type": "p",
-            "html": "Se non sei soddisfatto della nostra risposta, potrai rivolgerti all’autorità di protezione dei dati competente nella tua giurisdizione."
+            "html": "If you are not satisfied with our response, you may contact the competent data protection authority in your jurisdiction."
           }
         ]
       }
@@ -2470,15 +2689,15 @@
   "tl": {
     "htmlLang": "tl",
     "documentTitle": "Patakaran sa Privacy — Biblia Crux",
-    "metaDescription": "Patakaran sa Privacy para sa Biblia Crux Android application.",
+    "metaDescription": "Patakaran sa Privacy para sa Biblia Crux application (Android at iOS).",
     "pageTitle": "Patakaran sa Privacy — Biblia Crux",
     "effectiveDateLabel": "Bisa mula:",
     "lastUpdatedLabel": "Huling na-update:",
     "applicationLabel": "Aplikasyon:",
     "privacyContactLabel": "Kontak sa privacy:",
     "effectiveDate": "Abril 24, 2026",
-    "lastUpdated": "Mayo 9, 2026",
-    "applicationName": "Biblia Crux (Android)",
+    "lastUpdated": "Mayo 15, 2026",
+    "applicationName": "Biblia Crux (Android / iOS)",
     "settingsTitle": "Mga kagustuhan",
     "labelAppLanguage": "Piliin ang wika para sa iyong pagbabasa",
     "settingsUiLanguageHint": "",
@@ -2496,7 +2715,9 @@
       "googlePrivacy": "Google Privacy Policy",
       "firebase": "Firebase",
       "revenueCat": "RevenueCat",
-      "googlePlay": "Google Play"
+      "googlePlay": "Google Play",
+      "appStore": "Apple App Store",
+      "accountDeletion": "Pag-delete ng account at data"
     },
     "sections": [
       {
@@ -2509,11 +2730,11 @@
         ]
       },
       {
-        "title": "2. Saklaw ng Patakarang ito",
+        "title": "2. Scope of this Policy",
         "blocks": [
           {
             "type": "p",
-            "html": "Nalalapat ang Patakarang ito sa paggamit ng Biblia Crux App, kabilang ang:"
+            "html": "This Policy applies to the use of the Biblia Crux App, including:"
           },
           {
             "type": "ul",
@@ -2523,25 +2744,26 @@
               "cloud synchronization/backup;",
               "premium subscriptions;",
               "ads sa libreng bersyon;",
+              "mga ulat ng pagwawasto ng talata na isinumite habang naka-log in;",
               "online at offline na resources ng App."
             ]
           },
           {
             "type": "p",
-            "html": "Kung gagamit ka ng third-party services na integrated sa App, nalalapat din ang terms at policies ng mga third party na iyon."
+            "html": "If you use third-party services integrated with the App, those third parties’ terms and policies also apply."
           }
         ]
       },
       {
-        "title": "3. Consent at pagtanggap",
+        "title": "3. Consent and acceptance",
         "blocks": [
           {
             "type": "p",
-            "html": "Sa pag-install, pag-access, o paggamit ng App, ipinapahayag mong nabasa mo at sumasang-ayon ka sa Patakarang ito."
+            "html": "By installing, accessing, or using the App, you state that you have read and agree to this Policy."
           },
           {
             "type": "p",
-            "html": "Kung ikaw (o ang iyong legal guardian, kapag naaangkop) ay hindi sumasang-ayon sa Patakarang ito, huwag i-install o gamitin ang App."
+            "html": "If you (or your legal guardian, where applicable) do not agree with this Policy, do not install or use the App."
           }
         ]
       },
@@ -2550,106 +2772,118 @@
         "blocks": [
           {
             "type": "p",
-            "html": "Nagbibigay ang App ng nilalamang biblikal at maaaring gamitin ng mga taong nasa iba’t ibang edad, kabilang ang mga menor de edad."
+            "html": "Nagbibigay ang App ng nilalamang biblikal at inilaan para sa mga taong may edad 13 pataas, kabilang ang mga kabataan at matatanda."
           },
           {
             "type": "p",
-            "html": "Inirerekomenda namin ang paggabay ng mga magulang o legal guardians para sa paggamit ng mga bata at kabataan. Kapag hinihingi ng lokal na batas, nagsasagawa kami ng karagdagang hakbang upang protektahan ang mga menor de edad."
+            "html": "Inirerekomenda namin ang paggabay ng mga magulang o legal guardians para sa mga adolescenteng menor de edad. Kapag hinihingi ng lokal na batas, nagsasagawa kami ng karagdagang hakbang upang protektahan ang mga menor de edad."
           },
           {
             "type": "p",
-            "html": "Kung ikaw ay legal guardian at may natukoy na maling paggamit ng datos ng menor de edad, makipag-ugnayan sa: {{emailLink}}."
+            "html": "If you are a legal guardian and identify misuse of a minor’s data, contact us at: {{emailLink}}."
           }
         ]
       },
       {
-        "title": "5. Anong datos ang pinoproseso namin",
+        "title": "5. What data we process",
         "blocks": [
           {
             "type": "p",
-            "html": "Depende sa paraan ng paggamit ng App, maaari naming iproseso ang:"
+            "html": "Depending on how the App is used, we may process:"
           },
           {
             "type": "h3",
-            "html": "5.1 Datos ng account at authentication"
+            "html": "5.1 Account and authentication data"
           },
           {
             "type": "ul",
             "items": [
               "e-mail;",
               "user identifier (UID);",
-              "pangunahing datos mula sa login provider (hal.: Google), kapag naaangkop."
+              "pangunahing datos mula sa login provider (hal.: Google o Apple Sign-In), kapag naaangkop."
             ]
           },
           {
             "type": "h3",
-            "html": "5.2 Datos ng paggamit at preferences"
+            "html": "5.2 Usage and preference data"
           },
           {
             "type": "ul",
             "items": [
-              "wika ng interface;",
-              "theme, laki/family ng font, reading preferences;",
-              "estado ng settings at technical metadata na kailangan para gumana."
+              "interface language;",
+              "theme, font size/family, reading preferences;",
+              "settings state and technical metadata required for operation."
             ]
           },
           {
             "type": "h3",
-            "html": "5.3 Naka-save/naka-sync na content"
+            "html": "5.3 Saved/synced content"
           },
           {
             "type": "ul",
             "items": [
-              "naka-save na markers at references;",
-              "settings na naka-sync sa mga device;",
-              "active session metadata para sa proteksyon ng account sa maraming device."
+              "saved bookmarks and references;",
+              "settings synced across devices;",
+              "active session metadata for account protection across multiple devices."
             ]
           },
           {
             "type": "h3",
-            "html": "5.4 Datos ng subscription"
+            "html": "5.4 Subscription data"
           },
           {
             "type": "ul",
             "items": [
               "premium status (active/inactive);",
-              "technical subscription data na pinoproseso ng store/RevenueCat."
+              "technical subscription data processed by the store/RevenueCat."
             ]
           },
           {
             "type": "h3",
-            "html": "5.5 Datos ng ads (libreng bersyon)"
+            "html": "5.5 Advertising data (free version)"
           },
           {
             "type": "ul",
             "items": [
-              "datos na kailangan para ipakita at sukatin ang ads (AdMob);",
-              "privacy consent preferences/statuses (UMP), kapag naaangkop."
+              "data required to display and measure ads (AdMob);",
+              "privacy consent preferences/statuses (UMP), when applicable."
             ]
           },
           {
             "type": "h3",
-            "html": "5.6 Technical at security data"
+            "html": "5.6 Technical and security data"
           },
           {
             "type": "ul",
             "items": [
-              "technical logs, failures, connectivity events, at anti-abuse validations (hal.: App Check);",
-              "maaaring iproseso ng infrastructure providers ang IP address at technical identifiers."
+              "technical logs, failures, connectivity events, and anti-abuse validations (e.g., App Check);",
+              "IP address and technical identifiers may be processed by infrastructure providers."
+            ]
+          },
+          {
+            "type": "h3",
+            "html": "5.7 Mga komento at ulat ng pagwawasto ng talata"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "teksto ng mga komento o mungkahi ng pagwawasto tungkol sa mga talata sa Bibliya na isinumite habang naka-log in;",
+              "sanggunian ng talata, bersyon ng Bibliya, at technical metadata na kailangan para iproseso;",
+              "hindi kami sadyang kumokolekta ng sensitibong kategorya lampas sa isinusulat mo sa ulat."
             ]
           },
           {
             "type": "p",
-            "html": "Hindi kami sadyang humihingi ng sensitibong personal na datos lampas sa mahigpit na kailangan upang patakbuhin ang Services."
+            "html": "We do not intentionally request sensitive personal data beyond what is strictly necessary to operate the Services."
           }
         ]
       },
       {
-        "title": "6. Mga layunin ng pagproseso",
+        "title": "6. Purposes of processing",
         "blocks": [
           {
             "type": "p",
-            "html": "Pinoproseso namin ang datos upang:"
+            "html": "We process data to:"
           },
           {
             "type": "ul",
@@ -2659,6 +2893,7 @@
               "i-sync ang backup/restore sa mga device;",
               "magbigay at mamahala ng premium subscription;",
               "magpakita ng ads sa libreng bersyon;",
+              "suriin ang mga ulat ng pagwawasto ng talata at pagbutihin ang kalidad ng tekstong biblikal;",
               "sumunod sa legal/regulatory obligations;",
               "maiwasan ang fraud, abuse, at unauthorized access;",
               "mapabuti ang stability, security, at performance."
@@ -2667,40 +2902,40 @@
         ]
       },
       {
-        "title": "7. Legal bases ng pagproseso (LGPD/GDPR at katumbas)",
+        "title": "7. Legal bases for processing (LGPD/GDPR and equivalents)",
         "blocks": [
           {
             "type": "p",
-            "html": "Kapag naaangkop, pinoproseso namin ang datos batay sa:"
+            "html": "Where applicable, we process data based on:"
           },
           {
             "type": "ul",
             "items": [
-              "contract performance (functionalities ng App);",
-              "legitimate interest (security, fraud prevention, technical maintenance);",
-              "consent (kapag kailangan para sa advertising/privacy);",
-              "pagtupad sa legal/regulatory obligation."
+              "contract performance (App features);",
+              "legitimate interest (security, fraud prevention, technical maintenance, quality review of reports);",
+              "consent (when required for advertising/privacy);",
+              "compliance with legal/regulatory obligations."
             ]
           }
         ]
       },
       {
-        "title": "8. Ads, consent, at preferences (AdMob/UMP)",
+        "title": "8. Ads, consent, and preferences (AdMob/UMP)",
         "blocks": [
           {
             "type": "p",
-            "html": "Maaaring magpakita ng ads ang libreng bersyon."
+            "html": "The free version may display ads."
           },
           {
             "type": "p",
-            "html": "Kapag naaangkop ayon sa rehiyon, ginagamit namin ang consent flow ng Google (UMP). Maaaring mag-iba ang format at availability ng options ayon sa bansa/estado."
+            "html": "Where applicable by region, we use Google’s consent flow (UMP). The format and availability of options may vary by country/state."
           },
           {
             "type": "ul",
             "items": [
-              "Ayon sa rules ng App, hindi dapat makatanggap ng ads ang premium users.",
-              "Kahit walang consent para sa personalization, maaaring magpakita ng non-personalized/limited ads kapag pinapayagan ng batas at ng advertising platform.",
-              "Maaari mong tingnan/baguhin ang preferences sa privacy entry sa loob ng App."
+              "Premium users, under the App’s rules, should not receive ads.",
+              "Even without consent for personalization, non-personalized/limited ads may be displayed when permitted by law and the advertising platform.",
+              "You can review/change preferences through the privacy entry point inside the App."
             ]
           },
           {
@@ -2710,11 +2945,11 @@
         ]
       },
       {
-        "title": "9. Pagbabahagi sa third parties (operators at essential partners)",
+        "title": "9. Sharing with third parties (operators and essential partners)",
         "blocks": [
           {
             "type": "p",
-            "html": "Maaari kaming magbahagi ng datos sa providers na nagpapagana sa App, halimbawa:"
+            "html": "We may share data with providers that enable the App to operate, for example:"
           },
           {
             "type": "ul",
@@ -2722,13 +2957,13 @@
               "Google Firebase (authentication, cloud database, functions, security);",
               "Google AdMob / UMP (advertising at privacy management);",
               "RevenueCat (subscription management);",
-              "Google Play (purchase at billing);",
+              "Google Play at Apple App Store (purchase at billing);",
               "infrastructure, storage, at technical support providers."
             ]
           },
           {
             "type": "p",
-            "html": "Pinoproseso ng mga third party na ito ang datos ayon sa kanilang sariling policies at terms."
+            "html": "These third parties process data according to their own policies and terms."
           }
         ]
       },
@@ -2737,63 +2972,75 @@
         "blocks": [
           {
             "type": "p",
-            "html": "Kung nasa labas ka ng bansang nagho-host ng systems, maaaring iproseso ang iyong datos sa ibang jurisdictions."
+            "html": "If you are outside the country where the systems are hosted, your data may be processed in other jurisdictions."
           },
           {
             "type": "p",
-            "html": "Gumagamit kami ng makatwirang safeguards para sa international data transfers, alinsunod sa naaangkop na batas."
+            "html": "We adopt reasonable safeguards for international data transfers, in accordance with applicable law."
           }
         ]
       },
       {
-        "title": "11. Retention at disposal",
+        "title": "11. Retention and disposal",
         "blocks": [
           {
             "type": "p",
-            "html": "Pinananatili namin ang datos hangga’t kailangan upang:"
+            "html": "We retain data for as long as necessary to:"
           },
           {
             "type": "ul",
             "items": [
-              "maihatid ang App functionality;",
-              "sumunod sa legal, accounting, at security obligations;",
-              "maiwasan ang fraud at maresolba ang disputes."
+              "deliver App functionality;",
+              "comply with legal, accounting, and security obligations;",
+              "prevent fraud and resolve disputes."
             ]
           },
           {
             "type": "p",
-            "html": "Kapag posible at naaangkop, ang datos ay dine-delete, ina-anonymize, o mini-minimize kapag hindi na kailangan."
+            "html": "In particular:"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "<strong>Cloud backup at active session:</strong> naka-imbak habang may account ka; awtomatikong dine-delete sa aming mga server ilang sandali pagkatapos mong i-delete ang account sa App.",
+              "<strong>Mga ulat ng pagwawasto ng talata:</strong> maaaring panatilihin pagkatapos ng pag-delete ng account upang suriin at pagbutihin ang tekstong biblikal; hindi na naka-link sa aktibong account. Maaari naming <strong>manu-manong alisin ang mga ito sa aming mga sistema sa loob ng hanggang 5 taon</strong> mula sa huling pag-update.",
+              "<strong>Technical logs at store records:</strong> pinananatili nang limitadong panahon para sa security, operasyon, o legal/financial obligations."
+            ]
+          },
+          {
+            "type": "p",
+            "html": "Where possible and applicable, other data is deleted, anonymized, or minimized after it is no longer necessary."
           }
         ]
       },
       {
-        "title": "12. Iyong privacy rights",
+        "title": "12. Your privacy rights",
         "blocks": [
           {
             "type": "p",
-            "html": "Depende sa iyong rehiyon (hal.: LGPD, GDPR, CCPA/CPRA, VCDPA), maaari kang magkaroon ng karapatang:"
+            "html": "Depending on your region (e.g., LGPD, GDPR, CCPA/CPRA, VCDPA), you may have the right to:"
           },
           {
             "type": "ul",
             "items": [
-              "kumpirmahin at i-access ang datos;",
-              "iwasto ang incomplete/inaccurate data;",
-              "humiling ng deletion;",
-              "humiling ng anonymization/blocking/restriction;",
-              "humiling ng portability;",
-              "tumutol sa ilang processing;",
-              "bawiin ang consent (kapag ito ang legal basis);",
-              "humiling ng review ng automated decisions, kapag naaangkop;",
-              "magsampa ng reklamo sa competent authority."
+              "confirm and access data;",
+              "correct incomplete/inaccurate data;",
+              "request deletion;",
+              "request anonymization/blocking/restriction;",
+              "request portability;",
+              "object to certain processing;",
+              "withdraw consent (when this is the legal basis);",
+              "request review of automated decisions, where applicable;",
+              "file a complaint with the competent authority."
             ]
           },
           {
             "type": "p",
-            "html": "Para gamitin ang rights: {{emailLink}}<br>{{suggestedSubject}} “Personal Data Request — Biblia Crux”"
+            "html": "To exercise rights: {{emailLink}}<br>{{suggestedSubject}} “Personal Data Request — Biblia Crux”"
           },
           {
             "type": "p",
-            "html": "Maaari kaming humiling ng patunay ng identity bago tugunan ang request."
+            "html": "We may request proof of identity before fulfilling the request."
           }
         ]
       },
@@ -2802,20 +3049,48 @@
         "blocks": [
           {
             "type": "p",
-            "html": "Kapag available sa App, maaari kang humiling/magsagawa ng account deletion."
+            "html": "Maaari mong i-delete ang account sa App sa ilalim ng <strong>Account</strong> → <strong>Delete account</strong> (pagkatapos mag-sign in). Kung hindi mo ma-access ang App, mag-email sa {{emailLink}} na may subject na “Account Deletion Request — Biblia Crux”."
+          },
+          {
+            "type": "ol",
+            "items": [
+              "Buksan ang <strong>Biblia Crux</strong>.",
+              "Pumunta sa <strong>Account</strong>.",
+              "Mag-sign in kung kailangan.",
+              "I-tap ang <strong>Delete account</strong> at i-confirm."
+            ]
           },
           {
             "type": "p",
-            "html": "Maaaring panatilihin ang ilang datos sa limitadong panahon para sa:"
+            "html": "Kapag dine-delete mo ang account:"
           },
           {
             "type": "ul",
             "items": [
-              "legal obligation;",
-              "security;",
-              "fraud prevention;",
-              "defense sa judicial/administrative proceedings."
+              "permanenteng tinatanggal ang authentication account;",
+              "binubura ang lokal na data na naka-link sa session sa device;",
+              "awtomatikong dine-delete ang cloud backup ng mga preference at ang active session record sa aming mga server."
             ]
+          },
+          {
+            "type": "p",
+            "html": "Ang sumusunod ay maaaring panatilihin nang limitadong panahon:"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "mga ulat ng pagwawasto ng talata na isinumite mo (hindi na naka-link sa aktibong account; manu-manong pag-alis sa loob ng hanggang 5 taon mula sa huling pag-update, tulad sa seksyon 11);",
+              "data na kailangan ayon sa batas, security, fraud prevention, o dispute resolution;",
+              "purchase/subscription records na hawak ng app stores o kailangan ng batas."
+            ]
+          },
+          {
+            "type": "p",
+            "html": "Ang pag-delete ng account ay <strong>hindi nagkakansela</strong> ng bayad na subscription. I-cancel ito sa <strong>Google Play</strong> o sa <strong>App Store</strong>, depende sa kung saan ka nag-subscribe."
+          },
+          {
+            "type": "p",
+            "html": "Karagdagang detalye: {{accountDeletionLink}}."
           }
         ]
       },
@@ -2824,40 +3099,40 @@
         "blocks": [
           {
             "type": "p",
-            "html": "Gumagamit kami ng makatwirang technical at organizational measures upang mabawasan ang panganib ng unauthorized access, improper alteration, disclosure, o destruction ng datos."
+            "html": "We adopt reasonable technical and organizational measures to reduce the risk of unauthorized access, improper alteration, disclosure, or destruction of data."
           },
           {
             "type": "p",
-            "html": "Walang transmission/storage method na 100% invulnerable, ngunit gumagamit kami ng proportionate security at monitoring controls."
+            "html": "No transmission/storage method is 100% invulnerable, but we apply proportionate security and monitoring controls."
           }
         ]
       },
       {
-        "title": "15. Cookies at similar technologies",
+        "title": "15. Cookies and similar technologies",
         "blocks": [
           {
             "type": "p",
-            "html": "Sa web components at/o integrated SDKs, maaari kaming gumamit ng technologies gaya ng cookies, device identifiers, tags, scripts, at local storage para sa:"
+            "html": "In web components and/or integrated SDKs, we may use technologies such as cookies, device identifiers, tags, scripts, and local storage for:"
           },
           {
             "type": "ul",
             "items": [
-              "authentication at session;",
+              "authentication and session;",
               "performance measurement;",
               "security;",
               "fraud prevention;",
               "usage analysis;",
-              "advertising (kapag naaangkop)."
+              "advertising (when applicable)."
             ]
           },
           {
             "type": "p",
-            "html": "Maaari mong limitahan ang tracking at personalization sa settings ng device/platform."
+            "html": "You can limit tracking and personalization through device/platform settings."
           }
         ]
       },
       {
-        "title": "16. Notes para sa residents ng specific regions (summary)",
+        "title": "16. Notes for residents of specific regions (summary)",
         "blocks": [
           {
             "type": "h3",
@@ -2865,7 +3140,7 @@
           },
           {
             "type": "p",
-            "html": "Sinusunod ang legal basis, purpose, necessity, security, at rights ng data subject ayon sa LGPD. Maaaring ipadala ang requests sa contact sa Patakarang ito."
+            "html": "Legal basis, purpose, necessity, security, and data subject rights are observed under the LGPD. Requests may be sent to the contact in this Policy."
           },
           {
             "type": "h3",
@@ -2873,46 +3148,46 @@
           },
           {
             "type": "p",
-            "html": "Maaari mong gamitin ang rights na nakasaad sa arts. 15 hanggang 22 ng GDPR/UK GDPR, kapag naaangkop."
+            "html": "You may exercise the rights provided in arts. 15 to 22 of the GDPR/UK GDPR, as applicable."
           },
           {
             "type": "h3",
-            "html": "16.3 California (CCPA/CPRA) at Virginia (VCDPA)"
+            "html": "16.3 California (CCPA/CPRA) and Virginia (VCDPA)"
           },
           {
             "type": "p",
-            "html": "Ang eligible users ay maaaring gumamit ng rights of access, deletion, correction, opt-out sa ilang purposes, at non-discrimination, ayon sa lokal na batas."
+            "html": "Eligible users may exercise rights of access, deletion, correction, opt-out of certain purposes, and non-discrimination, according to local law."
           }
         ]
       },
       {
-        "title": "17. Third-party services at links",
+        "title": "17. Third-party services and links",
         "blocks": [
           {
             "type": "p",
-            "html": "Maaaring may links/integrations ng third parties ang App. Hindi namin ganap na kontrolado ang mga environment na ito at inirerekomenda naming basahin ang sariling policies ng bawat provider."
+            "html": "The App may contain third-party links/integrations. We do not fully control those environments and recommend reading each provider’s own policies."
           }
         ]
       },
       {
-        "title": "18. Mga pagbabago sa Patakarang ito",
+        "title": "18. Changes to this Policy",
         "blocks": [
           {
             "type": "p",
-            "html": "Maaari naming i-update ang Patakarang ito paminsan-minsan."
+            "html": "We may update this Policy periodically."
           },
           {
             "type": "p",
-            "html": "Ang kasalukuyang bersyon ay palaging ang pinakabagong inilathala sa opisyal na channel na nakasaad sa App/store. Para sa mahahalagang pagbabago, maaari kaming magpakita ng notice sa App."
+            "html": "The version in force will always be the most recent version published through the official channel indicated in the App/store. For relevant changes, we may highlight a notice in the App."
           }
         ]
       },
       {
-        "title": "19. Kontak at reklamo",
+        "title": "19. Contact and complaints",
         "blocks": [
           {
             "type": "p",
-            "html": "Para sa mga tanong, rights requests, o privacy complaints:"
+            "html": "For questions, rights requests, or privacy complaints:"
           },
           {
             "type": "p",
@@ -2921,14 +3196,13 @@
           },
           {
             "type": "p",
-            "html": "Kung hindi ka nasiyahan sa aming sagot, maaari kang lumapit sa competent data protection authority sa iyong jurisdiction."
+            "html": "If you are not satisfied with our response, you may contact the competent data protection authority in your jurisdiction."
           }
         ]
       }
     ]
   }
 };
-
     const languageNameKeys = {
       en: "languageEnglish",
       pt: "languagePortuguese",
@@ -2937,16 +3211,14 @@
       it: "languageItalian",
       tl: "languageTagalog"
     };
-
     const appendixUrls = {
       googlePrivacy: "https://policies.google.com/privacy",
       firebase: "https://firebase.google.com/support/privacy",
       revenueCat: "https://www.revenuecat.com/privacy",
-      googlePlay: "https://play.google.com/about/play-terms/"
+      googlePlay: "https://play.google.com/about/play-terms/",
+      appStore: "https://www.apple.com/legal/internet-services/itunes/",
+      accountDeletion: "https://enterprisedigitexum-oss.github.io/Biblia-Crux/account-deletion/"
     };
-
-    let uiLocale = getInitialLocale();
-
     const els = {
       pageTitle: document.getElementById("pageTitle"),
       effectiveDateLabel: document.getElementById("effectiveDateLabel"),
@@ -2963,38 +3235,33 @@
       appendixTitle: document.getElementById("appendixTitle"),
       appendixLinks: document.getElementById("appendixLinks")
     };
-
+    let uiLocale = getInitialLocale();
     function getInitialLocale() {
       const stored = localStorage.getItem(storageKey);
       if (supportedLocales.includes(stored)) return stored;
-
-      return "en";
+      return defaultLocale;
     }
-
     function t(key) {
       return translations[uiLocale]?.[key] ?? translations.en[key] ?? key;
     }
-
     function localizedLanguageName(localeCode) {
       const key = languageNameKeys[localeCode];
       return key ? t(key) : localeCode;
     }
-
     function interpolate(html) {
       const emailLink = '<a href="mailto:enterprisedigitexum@gmail.com">enterprisedigitexum@gmail.com</a>';
-      const umpLink = '<a href="https://developers.google.com/admob/android/privacy?hl=pt-br" target="_blank" rel="noopener noreferrer">Google AdMob UMP (Android)</a>';
-
+      const umpLink = '<a href="https://developers.google.com/admob/android/privacy" target="_blank" rel="noopener noreferrer">Google AdMob UMP</a>';
+      const accountDeletionLink = '<a href="' + appendixUrls.accountDeletion + '" target="_blank" rel="noopener noreferrer">' + (translations[uiLocale]?.links?.accountDeletion ?? translations.en.links.accountDeletion) + '</a>';
       return html
         .replaceAll("{{emailLink}}", emailLink)
         .replaceAll("{{officialReference}}", t("officialReferenceLabel"))
         .replaceAll("{{suggestedSubject}}", t("suggestedSubjectLabel"))
         .replaceAll("{{emailLabel}}", t("emailLabel"))
-        .replaceAll("{{umpLink}}", umpLink);
+        .replaceAll("{{umpLink}}", umpLink)
+        .replaceAll("{{accountDeletionLink}}", accountDeletionLink);
     }
-
     function renderLanguageOptions() {
       els.languageSelect.innerHTML = "";
-
       supportedLocales.forEach((localeCode) => {
         const option = document.createElement("option");
         option.value = localeCode;
@@ -3003,7 +3270,6 @@
         els.languageSelect.appendChild(option);
       });
     }
-
     function renderBlocks(blocks, parent) {
       blocks.forEach((block) => {
         if (block.type === "p") {
@@ -3013,31 +3279,26 @@
           parent.appendChild(p);
           return;
         }
-
         if (block.type === "h3") {
           const h3 = document.createElement("h3");
           h3.innerHTML = interpolate(block.html);
           parent.appendChild(h3);
           return;
         }
-
-        if (block.type === "ul") {
-          const ul = document.createElement("ul");
+        if (block.type === "ul" || block.type === "ol") {
+          const list = document.createElement(block.type);
           block.items.forEach((item) => {
             const li = document.createElement("li");
             li.innerHTML = interpolate(item);
-            ul.appendChild(li);
+            list.appendChild(li);
           });
-          parent.appendChild(ul);
+          parent.appendChild(list);
         }
       });
     }
-
     function renderPolicyContent() {
       els.policyContent.innerHTML = "";
-
       const localeSections = translations[uiLocale]?.sections ?? translations.en.sections;
-
       localeSections.forEach((section) => {
         const sectionElement = document.createElement("section");
         const h2 = document.createElement("h2");
@@ -3047,13 +3308,10 @@
         els.policyContent.appendChild(sectionElement);
       });
     }
-
     function renderAppendix() {
       els.appendixTitle.textContent = t("appendixTitle");
       els.appendixLinks.innerHTML = "";
-
       const labels = translations[uiLocale]?.links ?? translations.en.links;
-
       Object.entries(appendixUrls).forEach(([key, url]) => {
         const li = document.createElement("li");
         const link = document.createElement("a");
@@ -3065,14 +3323,11 @@
         els.appendixLinks.appendChild(li);
       });
     }
-
     function render() {
       document.documentElement.lang = t("htmlLang");
       document.title = t("documentTitle");
-
       const description = document.querySelector('meta[name="description"]');
       if (description) description.setAttribute("content", t("metaDescription"));
-
       els.pageTitle.textContent = t("pageTitle");
       els.effectiveDateLabel.textContent = t("effectiveDateLabel");
       els.effectiveDate.textContent = t("effectiveDate");
@@ -3084,18 +3339,15 @@
       els.settingsTitle.textContent = t("settingsTitle");
       els.languageSelectLabel.textContent = t("labelAppLanguage");
       els.languageSelect.setAttribute("aria-label", t("labelAppLanguage"));
-
       renderLanguageOptions();
       renderPolicyContent();
       renderAppendix();
     }
-
     els.languageSelect.addEventListener("change", (event) => {
       uiLocale = event.target.value;
       localStorage.setItem(storageKey, uiLocale);
       render();
     });
-
     render();
   </script>
 </body>
