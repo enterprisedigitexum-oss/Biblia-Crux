@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Terms of Use — Biblia Crux</title>
-  <meta name="description" content="Terms of Use for Biblia Crux." />
+  <meta name="description" content="Terms of Use for Biblia Crux (Android / iOS)." />
   <style>
     :root {
       color-scheme: light dark;
@@ -32,7 +32,7 @@
       padding: 0;
       background: var(--bg);
       color: var(--text);
-      font-family: -google-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, "Helvetica Neue", Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, "Helvetica Neue", Arial, sans-serif;
       line-height: 1.6;
     }
     .wrap {
@@ -42,7 +42,8 @@
     }
     header,
     .preferences-card,
-    .intro-card {
+    .intro-card,
+    .appendix {
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: 12px;
@@ -59,9 +60,22 @@
       font-size: 1.2rem;
       color: var(--accent);
     }
-    .preferences-card h2 {
+    .preferences-card h2,
+    .appendix h2 {
       margin-top: 0;
       margin-bottom: 14px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .appendix li {
+      text-align: justify;
+      text-justify: inter-word;
+      hyphens: auto;
     }
     p, li {
       color: var(--text);
@@ -127,7 +141,9 @@
   <main class="wrap">
     <header>
       <h1 id="pageTitle"></h1>
+      <p class="meta"><strong id="effectiveDateLabel"></strong> <span id="effectiveDate"></span></p>
       <p class="meta"><strong id="lastUpdatedLabel"></strong> <span id="lastUpdated"></span></p>
+      <p class="meta"><strong id="applicationLabel"></strong> <span id="applicationName"></span></p>
     </header>
 
     <section class="preferences-card" aria-labelledby="settingsTitle">
@@ -142,19 +158,25 @@
 
     <section id="introContent" class="intro-card"></section>
     <article id="termsContent"></article>
+
+    <section class="appendix" aria-labelledby="appendixTitle">
+      <h2 id="appendixTitle"></h2>
+      <ul id="appendixLinks"></ul>
+    </section>
   </main>
 
   <script>
     const supportedLocales = ["en", "pt", "es", "fr", "it", "tl"];
-    const storageKey = "uiLocale";
+    const storageKey = "uiLocaleTermsOfUse";
+    const defaultLocale = "en";
     const translations = {
   "pt": {
     "htmlLang": "pt-BR",
     "documentTitle": "Termos de Uso — Biblia Crux",
-    "metaDescription": "Termos de Uso do Biblia Crux.",
+    "metaDescription": "Termos de Uso do Biblia Crux (Android / iOS).",
     "pageTitle": "Termos de Uso — Biblia Crux",
     "lastUpdatedLabel": "Última atualização:",
-    "lastUpdated": "9 de maio de 2026",
+    "lastUpdated": "15 de maio de 2026",
     "settingsTitle": "Preferências",
     "labelAppLanguage": "Escolha o idioma para sua leitura",
     "settingsUiLanguageHint": "",
@@ -207,7 +229,8 @@
               "conta de usuário (opcional para algumas funcionalidades);",
               "recursos premium por assinatura;",
               "exibição de anúncios para usuários não premium;",
-              "integração com serviços de terceiros."
+              "integração com serviços de terceiros.",
+              "envio de relatórios de correção de versículos com login;"
             ]
           },
           {
@@ -312,7 +335,7 @@
           },
           {
             "type": "p",
-            "html": "6.2. O processamento de pagamento é feito por terceiros (por exemplo, Google Play e/ou gateways parceiros), conforme a plataforma usada."
+            "html": "6.2. O processamento de pagamento é feito por terceiros (por exemplo, Google Play, Apple App Store e/ou gateways parceiros), conforme a plataforma usada."
           },
           {
             "type": "p",
@@ -324,7 +347,7 @@
           },
           {
             "type": "p",
-            "html": "6.5. Cancelamentos e renovação automática seguem as regras da loja/plataforma onde a compra foi feita. Você é responsável por gerenciar o cancelamento no canal correto (Google Play etc.)."
+            "html": "6.5. Cancelamentos e renovação automática seguem as regras da loja/plataforma onde a compra foi feita. Você é responsável por gerenciar o cancelamento no canal correto (Google Play, App Store etc.)."
           },
           {
             "type": "p",
@@ -452,7 +475,7 @@
           },
           {
             "type": "p",
-            "html": "13.2. Você pode deixar de usar os Serviços a qualquer momento e solicitar encerramento de conta conforme os canais de suporte disponíveis."
+            "html": "13.2. Você pode deixar de usar os Serviços a qualquer momento. Para excluir sua conta, abra <strong>Conta → Excluir conta</strong> no app ou siga as instruções na nossa <a href=\"https://enterprisedigitexum-oss.github.io/Biblia-Crux/account-deletion/\" target=\"_blank\" rel=\"noopener noreferrer\">página de exclusão de conta</a>. Excluir a conta não é o mesmo que cancelar assinatura; gerencie assinaturas no Google Play ou na App Store."
           },
           {
             "type": "p",
@@ -465,7 +488,7 @@
         "blocks": [
           {
             "type": "p",
-            "html": "14.1. O tratamento de dados pessoais segue a Política de Privacidade do Biblia Crux."
+            "html": "14.1. O tratamento de dados pessoais segue a <a href=\"https://enterprisedigitexum-oss.github.io/Biblia-Crux/privacy-policy/\" target=\"_blank\" rel=\"noopener noreferrer\">Política de Privacidade</a> do Biblia Crux."
           },
           {
             "type": "p",
@@ -517,15 +540,26 @@
           }
         ]
       }
-    ]
+    ],
+    "appendixTitle": "Anexo — Links relacionados",
+    "links": {
+      "privacyPolicy": "Política de Privacidade",
+      "accountDeletion": "Exclusão de conta e dados",
+      "googlePlay": "Google Play",
+      "appStore": "Apple App Store"
+    },
+    "effectiveDateLabel": "Data de vigência:",
+    "effectiveDate": "15 de maio de 2026",
+    "applicationLabel": "Aplicativo:",
+    "applicationName": "Biblia Crux (Android / iOS)"
   },
   "en": {
     "htmlLang": "en",
     "documentTitle": "Terms of Use — Biblia Crux",
-    "metaDescription": "Terms of Use for Biblia Crux.",
+    "metaDescription": "Terms of Use for Biblia Crux (Android / iOS).",
     "pageTitle": "Terms of Use — Biblia Crux",
     "lastUpdatedLabel": "Last updated:",
-    "lastUpdated": "May 9, 2026",
+    "lastUpdated": "May 15, 2026",
     "settingsTitle": "Preferences",
     "labelAppLanguage": "Choose the language for your reading",
     "settingsUiLanguageHint": "",
@@ -578,7 +612,8 @@
               "user account (optional for some features);",
               "premium subscription features;",
               "display of ads for non-premium users;",
-              "integration with third-party services."
+              "integration with third-party services.",
+              "submitting verse correction reports when signed in;"
             ]
           },
           {
@@ -683,7 +718,7 @@
           },
           {
             "type": "p",
-            "html": "6.2. Payment processing is performed by third parties (for example, Google Play and/or partner gateways), according to the platform used."
+            "html": "6.2. Payment processing is performed by third parties (for example, Google Play, Apple App Store, and/or partner gateways), according to the platform used."
           },
           {
             "type": "p",
@@ -695,7 +730,7 @@
           },
           {
             "type": "p",
-            "html": "6.5. Cancellations and automatic renewal follow the rules of the store/platform where the purchase was made. You are responsible for managing cancellation through the correct channel (Google Play etc.)."
+            "html": "6.5. Cancellations and automatic renewal follow the rules of the store/platform where the purchase was made. You are responsible for managing cancellation through the correct channel (Google Play, App Store, etc.)."
           },
           {
             "type": "p",
@@ -823,7 +858,7 @@
           },
           {
             "type": "p",
-            "html": "13.2. You may stop using the Services at any time and request account closure according to the available support channels."
+            "html": "13.2. You may stop using the Services at any time. To delete your account, open <strong>Account → Delete account</strong> in the app, or follow the instructions on our <a href=\"https://enterprisedigitexum-oss.github.io/Biblia-Crux/account-deletion/\" target=\"_blank\" rel=\"noopener noreferrer\">account deletion page</a>. Deleting your account is not the same as canceling a subscription; manage subscriptions in Google Play or the App Store."
           },
           {
             "type": "p",
@@ -836,7 +871,7 @@
         "blocks": [
           {
             "type": "p",
-            "html": "14.1. Personal data processing follows Biblia Crux’s Privacy Policy."
+            "html": "14.1. Personal data processing follows Biblia Crux’s <a href=\"https://enterprisedigitexum-oss.github.io/Biblia-Crux/privacy-policy/\" target=\"_blank\" rel=\"noopener noreferrer\">Privacy Policy</a>."
           },
           {
             "type": "p",
@@ -888,15 +923,26 @@
           }
         ]
       }
-    ]
+    ],
+    "appendixTitle": "Appendix — Related links",
+    "links": {
+      "privacyPolicy": "Privacy Policy",
+      "accountDeletion": "Account and data deletion",
+      "googlePlay": "Google Play",
+      "appStore": "Apple App Store"
+    },
+    "effectiveDateLabel": "Effective date:",
+    "effectiveDate": "May 15, 2026",
+    "applicationLabel": "Application:",
+    "applicationName": "Biblia Crux (Android / iOS)"
   },
   "es": {
     "htmlLang": "es",
     "documentTitle": "Términos de Uso — Biblia Crux",
-    "metaDescription": "Términos de Uso de Biblia Crux.",
+    "metaDescription": "Términos de Uso de Biblia Crux (Android / iOS).",
     "pageTitle": "Términos de Uso — Biblia Crux",
     "lastUpdatedLabel": "Última actualización:",
-    "lastUpdated": "9 de mayo de 2026",
+    "lastUpdated": "15 de mayo de 2026",
     "settingsTitle": "Preferencias",
     "labelAppLanguage": "Elige el idioma para tu lectura",
     "settingsUiLanguageHint": "",
@@ -949,7 +995,8 @@
               "cuenta de usuario (opcional para algunas funcionalidades);",
               "recursos premium por suscripción;",
               "visualización de anuncios para usuarios no premium;",
-              "integración con servicios de terceros."
+              "integración con servicios de terceros.",
+              "envío de informes de corrección de versículos con inicio de sesión;"
             ]
           },
           {
@@ -1054,7 +1101,7 @@
           },
           {
             "type": "p",
-            "html": "6.2. El procesamiento de pago lo realizan terceros (por ejemplo, Google Play y/o pasarelas asociadas), según la plataforma utilizada."
+            "html": "6.2. El procesamiento de pago lo realizan terceros (por ejemplo, Google Play, Apple App Store y/o pasarelas asociadas), según la plataforma utilizada."
           },
           {
             "type": "p",
@@ -1066,7 +1113,7 @@
           },
           {
             "type": "p",
-            "html": "6.5. Las cancelaciones y la renovación automática siguen las reglas de la tienda/plataforma donde se realizó la compra. Eres responsable de gestionar la cancelación en el canal correcto (Google Play etc.)."
+            "html": "6.5. Las cancelaciones y la renovación automática siguen las reglas de la tienda/plataforma donde se realizó la compra. Eres responsable de gestionar la cancelación en el canal correcto (Google Play, App Store, etc.)."
           },
           {
             "type": "p",
@@ -1194,7 +1241,7 @@
           },
           {
             "type": "p",
-            "html": "13.2. Puedes dejar de usar los Servicios en cualquier momento y solicitar el cierre de cuenta conforme a los canales de soporte disponibles."
+            "html": "13.2. Puedes dejar de usar los Servicios en cualquier momento. Para eliminar tu cuenta, abre <strong>Cuenta → Eliminar cuenta</strong> en la app o sigue las instrucciones en nuestra <a href=\"https://enterprisedigitexum-oss.github.io/Biblia-Crux/account-deletion/\" target=\"_blank\" rel=\"noopener noreferrer\">página de eliminación de cuenta</a>. Eliminar la cuenta no es lo mismo que cancelar una suscripción; gestiona suscripciones en Google Play o App Store."
           },
           {
             "type": "p",
@@ -1207,7 +1254,7 @@
         "blocks": [
           {
             "type": "p",
-            "html": "14.1. El tratamiento de datos personales sigue la Política de Privacidad de Biblia Crux."
+            "html": "14.1. El tratamiento de datos personales sigue la <a href=\"https://enterprisedigitexum-oss.github.io/Biblia-Crux/privacy-policy/\" target=\"_blank\" rel=\"noopener noreferrer\">Política de Privacidad</a> de Biblia Crux."
           },
           {
             "type": "p",
@@ -1259,15 +1306,26 @@
           }
         ]
       }
-    ]
+    ],
+    "appendixTitle": "Anexo — Enlaces relacionados",
+    "links": {
+      "privacyPolicy": "Política de Privacidad",
+      "accountDeletion": "Eliminación de cuenta y datos",
+      "googlePlay": "Google Play",
+      "appStore": "Apple App Store"
+    },
+    "effectiveDateLabel": "Fecha de vigencia:",
+    "effectiveDate": "15 de mayo de 2026",
+    "applicationLabel": "Aplicación:",
+    "applicationName": "Biblia Crux (Android / iOS)"
   },
   "fr": {
     "htmlLang": "fr",
     "documentTitle": "Conditions d’utilisation — Biblia Crux",
-    "metaDescription": "Conditions d’utilisation de Biblia Crux.",
+    "metaDescription": "Conditions d’utilisation de Biblia Crux (Android / iOS).",
     "pageTitle": "Conditions d’utilisation — Biblia Crux",
     "lastUpdatedLabel": "Dernière mise à jour:",
-    "lastUpdated": "9 mai 2026",
+    "lastUpdated": "15 mai 2026",
     "settingsTitle": "Préférences",
     "labelAppLanguage": "Choisissez la langue pour votre lecture",
     "settingsUiLanguageHint": "",
@@ -1320,7 +1378,8 @@
               "compte utilisateur (facultatif pour certaines fonctionnalités);",
               "fonctionnalités premium par abonnement;",
               "affichage d’annonces pour les utilisateurs non premium;",
-              "intégration avec des services tiers."
+              "intégration avec des services tiers.",
+              "envoi de rapports de correction de versets lorsque vous êtes connecté;"
             ]
           },
           {
@@ -1425,7 +1484,7 @@
           },
           {
             "type": "p",
-            "html": "6.2. Le traitement des paiements est effectué par des tiers (par exemple Google Play et/ou passerelles partenaires), selon la plateforme utilisée."
+            "html": "6.2. Le traitement des paiements est effectué par des tiers (par exemple Google Play, Apple App Store et/ou passerelles partenaires), selon la plateforme utilisée."
           },
           {
             "type": "p",
@@ -1437,7 +1496,7 @@
           },
           {
             "type": "p",
-            "html": "6.5. Les annulations et le renouvellement automatique suivent les règles de la boutique/plateforme où l’achat a été effectué. Vous êtes responsable de gérer l’annulation via le canal approprié (Google Play etc.)."
+            "html": "6.5. Les annulations et le renouvellement automatique suivent les règles de la boutique/plateforme où l’achat a été effectué. Vous êtes responsable de gérer l’annulation via le canal approprié (Google Play, App Store, etc.)."
           },
           {
             "type": "p",
@@ -1565,7 +1624,7 @@
           },
           {
             "type": "p",
-            "html": "13.2. Vous pouvez cesser d’utiliser les Services à tout moment et demander la clôture de votre compte selon les canaux de support disponibles."
+            "html": "13.2. Vous pouvez cesser d’utiliser les Services à tout moment. Pour supprimer votre compte, ouvrez <strong>Compte → Supprimer le compte</strong> dans l’app ou suivez les instructions sur notre <a href=\"https://enterprisedigitexum-oss.github.io/Biblia-Crux/account-deletion/\" target=\"_blank\" rel=\"noopener noreferrer\">page de suppression de compte</a>. Supprimer le compte n’est pas la même chose qu’annuler un abonnement; gérez les abonnements dans Google Play ou l’App Store."
           },
           {
             "type": "p",
@@ -1578,7 +1637,7 @@
         "blocks": [
           {
             "type": "p",
-            "html": "14.1. Le traitement des données personnelles suit la Politique de confidentialité de Biblia Crux."
+            "html": "14.1. Le traitement des données personnelles suit la <a href=\"https://enterprisedigitexum-oss.github.io/Biblia-Crux/privacy-policy/\" target=\"_blank\" rel=\"noopener noreferrer\">Politique de confidentialité</a> de Biblia Crux."
           },
           {
             "type": "p",
@@ -1630,15 +1689,26 @@
           }
         ]
       }
-    ]
+    ],
+    "appendixTitle": "Annexe — Liens connexes",
+    "links": {
+      "privacyPolicy": "Politique de confidentialité",
+      "accountDeletion": "Suppression de compte et de données",
+      "googlePlay": "Google Play",
+      "appStore": "Apple App Store"
+    },
+    "effectiveDateLabel": "Date d’entrée en vigueur:",
+    "effectiveDate": "15 mai 2026",
+    "applicationLabel": "Application:",
+    "applicationName": "Biblia Crux (Android / iOS)"
   },
   "it": {
     "htmlLang": "it",
     "documentTitle": "Termini di Utilizzo — Biblia Crux",
-    "metaDescription": "Termini di Utilizzo di Biblia Crux.",
+    "metaDescription": "Termini di Utilizzo di Biblia Crux (Android / iOS).",
     "pageTitle": "Termini di Utilizzo — Biblia Crux",
     "lastUpdatedLabel": "Ultimo aggiornamento:",
-    "lastUpdated": "9 maggio 2026",
+    "lastUpdated": "15 maggio 2026",
     "settingsTitle": "Preferenze",
     "labelAppLanguage": "Scegli la lingua per la tua lettura",
     "settingsUiLanguageHint": "",
@@ -1691,7 +1761,8 @@
               "account utente (facoltativo per alcune funzionalità);",
               "funzionalità premium in abbonamento;",
               "visualizzazione di annunci per utenti non premium;",
-              "integrazione con servizi di terzi."
+              "integrazione con servizi di terzi.",
+              "invio di segnalazioni di correzione dei versetti con accesso effettuato;"
             ]
           },
           {
@@ -1796,7 +1867,7 @@
           },
           {
             "type": "p",
-            "html": "6.2. L’elaborazione dei pagamenti è effettuata da terzi (ad esempio Google Play e/o gateway partner), secondo la piattaforma utilizzata."
+            "html": "6.2. L’elaborazione dei pagamenti è effettuata da terzi (ad esempio Google Play, Apple App Store e/o gateway partner), secondo la piattaforma utilizzata."
           },
           {
             "type": "p",
@@ -1808,7 +1879,7 @@
           },
           {
             "type": "p",
-            "html": "6.5. Cancellazioni e rinnovo automatico seguono le regole dello store/piattaforma dove è stato effettuato l’acquisto. Sei responsabile di gestire la cancellazione nel canale corretto (Google Play ecc.)."
+            "html": "6.5. Cancellazioni e rinnovo automatico seguono le regole dello store/piattaforma dove è stato effettuato l’acquisto. Sei responsabile di gestire la cancellazione nel canale corretto (Google Play, App Store, ecc.)."
           },
           {
             "type": "p",
@@ -1936,7 +2007,7 @@
           },
           {
             "type": "p",
-            "html": "13.2. Puoi smettere di usare i Servizi in qualsiasi momento e richiedere la chiusura dell’account secondo i canali di supporto disponibili."
+            "html": "13.2. Puoi smettere di usare i Servizi in qualsiasi momento. Per eliminare il tuo account, apri <strong>Account → Elimina account</strong> nell’app o segui le istruzioni nella nostra <a href=\"https://enterprisedigitexum-oss.github.io/Biblia-Crux/account-deletion/\" target=\"_blank\" rel=\"noopener noreferrer\">pagina di eliminazione account</a>. Eliminare l’account non equivale a cancellare un abbonamento; gestisci gli abbonamenti su Google Play o App Store."
           },
           {
             "type": "p",
@@ -1949,7 +2020,7 @@
         "blocks": [
           {
             "type": "p",
-            "html": "14.1. Il trattamento dei dati personali segue l’Informativa sulla privacy di Biblia Crux."
+            "html": "14.1. Il trattamento dei dati personali segue l’<a href=\"https://enterprisedigitexum-oss.github.io/Biblia-Crux/privacy-policy/\" target=\"_blank\" rel=\"noopener noreferrer\">Informativa sulla privacy</a> di Biblia Crux."
           },
           {
             "type": "p",
@@ -2001,15 +2072,26 @@
           }
         ]
       }
-    ]
+    ],
+    "appendixTitle": "Appendice — Link correlati",
+    "links": {
+      "privacyPolicy": "Informativa sulla privacy",
+      "accountDeletion": "Eliminazione di account e dati",
+      "googlePlay": "Google Play",
+      "appStore": "Apple App Store"
+    },
+    "effectiveDateLabel": "Data di efficacia:",
+    "effectiveDate": "15 maggio 2026",
+    "applicationLabel": "Applicazione:",
+    "applicationName": "Biblia Crux (Android / iOS)"
   },
   "tl": {
     "htmlLang": "tl",
     "documentTitle": "Mga Tuntunin sa Paggamit — Biblia Crux",
-    "metaDescription": "Mga Tuntunin sa Paggamit ng Biblia Crux.",
+    "metaDescription": "Mga Tuntunin sa Paggamit ng Biblia Crux (Android / iOS).",
     "pageTitle": "Mga Tuntunin sa Paggamit — Biblia Crux",
     "lastUpdatedLabel": "Huling na-update:",
-    "lastUpdated": "Mayo 9, 2026",
+    "lastUpdated": "Mayo 15, 2026",
     "settingsTitle": "Mga kagustuhan",
     "labelAppLanguage": "Piliin ang wika para sa iyong pagbabasa",
     "settingsUiLanguageHint": "",
@@ -2062,7 +2144,8 @@
               "user account (opsyonal para sa ilang features);",
               "premium subscription features;",
               "pagpapakita ng ads para sa non-premium users;",
-              "integration sa third-party services."
+              "integration sa third-party services.",
+              "pagpapadala ng verse correction reports kapag naka-sign in;"
             ]
           },
           {
@@ -2167,7 +2250,7 @@
           },
           {
             "type": "p",
-            "html": "6.2. Ang payment processing ay ginagawa ng third parties (halimbawa, Google Play at/o partner gateways), ayon sa platform na ginamit."
+            "html": "6.2. Ang payment processing ay ginagawa ng third parties (halimbawa, Google Play, Apple App Store, at/o partner gateways), ayon sa platform na ginamit."
           },
           {
             "type": "p",
@@ -2179,7 +2262,7 @@
           },
           {
             "type": "p",
-            "html": "6.5. Ang cancellations at automatic renewal ay sumusunod sa rules ng store/platform kung saan ginawa ang purchase. Responsable kang pamahalaan ang cancellation sa tamang channel (Google Play, atbp.)."
+            "html": "6.5. Ang cancellations at automatic renewal ay sumusunod sa rules ng store/platform kung saan ginawa ang purchase. Responsable kang pamahalaan ang cancellation sa tamang channel (Google Play, App Store, atbp.)."
           },
           {
             "type": "p",
@@ -2307,7 +2390,7 @@
           },
           {
             "type": "p",
-            "html": "13.2. Maaari kang tumigil sa paggamit ng Services anumang oras at humiling ng account closure ayon sa available support channels."
+            "html": "13.2. Maaari kang tumigil sa paggamit ng Services anumang oras. Para i-delete ang account mo, buksan ang <strong>Account → Delete account</strong> sa app, o sundin ang instructions sa aming <a href=\"https://enterprisedigitexum-oss.github.io/Biblia-Crux/account-deletion/\" target=\"_blank\" rel=\"noopener noreferrer\">account deletion page</a>. Ang pag-delete ng account ay hindi pareho ng pag-cancel ng subscription; pamahalaan ang subscriptions sa Google Play o App Store."
           },
           {
             "type": "p",
@@ -2320,7 +2403,7 @@
         "blocks": [
           {
             "type": "p",
-            "html": "14.1. Ang pagproseso ng personal data ay sumusunod sa Privacy Policy ng Biblia Crux."
+            "html": "14.1. Ang pagproseso ng personal data ay sumusunod sa <a href=\"https://enterprisedigitexum-oss.github.io/Biblia-Crux/privacy-policy/\" target=\"_blank\" rel=\"noopener noreferrer\">Privacy Policy</a> ng Biblia Crux."
           },
           {
             "type": "p",
@@ -2372,7 +2455,18 @@
           }
         ]
       }
-    ]
+    ],
+    "appendixTitle": "Appendix — Kaugnay na mga link",
+    "links": {
+      "privacyPolicy": "Patakaran sa Privacy",
+      "accountDeletion": "Pag-delete ng account at data",
+      "googlePlay": "Google Play",
+      "appStore": "Apple App Store"
+    },
+    "effectiveDateLabel": "Petsa ng bisa:",
+    "effectiveDate": "Mayo 15, 2026",
+    "applicationLabel": "Application:",
+    "applicationName": "Biblia Crux (Android / iOS)"
   }
 };
 
@@ -2387,6 +2481,12 @@
 
     let uiLocale = getInitialLocale();
 
+    const appendixUrls = {
+      privacyPolicy: "https://enterprisedigitexum-oss.github.io/Biblia-Crux/privacy-policy/",
+      accountDeletion: "https://enterprisedigitexum-oss.github.io/Biblia-Crux/account-deletion/",
+      googlePlay: "https://play.google.com/about/play-terms/",
+      appStore: "https://www.apple.com/legal/internet-services/itunes/"
+    };
     const els = {
       pageTitle: document.getElementById("pageTitle"),
       lastUpdatedLabel: document.getElementById("lastUpdatedLabel"),
@@ -2395,14 +2495,19 @@
       languageSelectLabel: document.getElementById("languageSelectLabel"),
       languageSelect: document.getElementById("languageSelect"),
       introContent: document.getElementById("introContent"),
-      termsContent: document.getElementById("termsContent")
+      termsContent: document.getElementById("termsContent"),
+      effectiveDateLabel: document.getElementById("effectiveDateLabel"),
+      effectiveDate: document.getElementById("effectiveDate"),
+      applicationLabel: document.getElementById("applicationLabel"),
+      applicationName: document.getElementById("applicationName"),
+      appendixTitle: document.getElementById("appendixTitle"),
+      appendixLinks: document.getElementById("appendixLinks")
     };
 
     function getInitialLocale() {
       const stored = localStorage.getItem(storageKey);
       if (supportedLocales.includes(stored)) return stored;
-
-      return "en";
+      return defaultLocale;
     }
 
     function t(key) {
@@ -2466,6 +2571,29 @@
       });
     }
 
+
+    function renderAppendix() {
+      if (!els.appendixTitle || !els.appendixLinks) return;
+      els.appendixTitle.textContent = t("appendixTitle");
+      els.appendixLinks.innerHTML = "";
+      const items = [
+        { key: "privacyPolicy", url: appendixUrls.privacyPolicy },
+        { key: "accountDeletion", url: appendixUrls.accountDeletion },
+        { key: "googlePlay", url: appendixUrls.googlePlay },
+        { key: "appStore", url: appendixUrls.appStore }
+      ];
+      const links = translations[uiLocale]?.links ?? translations.en.links;
+      items.forEach(({ key, url }) => {
+        const li = document.createElement("li");
+        const a = document.createElement("a");
+        a.href = url;
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+        a.textContent = links[key] ?? key;
+        li.appendChild(a);
+        els.appendixLinks.appendChild(li);
+      });
+    }
     function renderTermsContent() {
       els.termsContent.innerHTML = "";
 
@@ -2491,6 +2619,10 @@
       els.pageTitle.textContent = t("pageTitle");
       els.lastUpdatedLabel.textContent = t("lastUpdatedLabel");
       els.lastUpdated.textContent = t("lastUpdated");
+      if (els.effectiveDateLabel) els.effectiveDateLabel.textContent = t("effectiveDateLabel");
+      if (els.effectiveDate) els.effectiveDate.textContent = t("effectiveDate");
+      if (els.applicationLabel) els.applicationLabel.textContent = t("applicationLabel");
+      if (els.applicationName) els.applicationName.textContent = t("applicationName");
       els.settingsTitle.textContent = t("settingsTitle");
       els.languageSelectLabel.textContent = t("labelAppLanguage");
       els.languageSelect.setAttribute("aria-label", t("labelAppLanguage"));
@@ -2498,6 +2630,7 @@
       renderLanguageOptions();
       renderIntro();
       renderTermsContent();
+      renderAppendix();
     }
 
     els.languageSelect.addEventListener("change", (event) => {
